@@ -1,0 +1,39 @@
+{
+  "name": "personae",
+  "version": "0.0.1",
+  "description": "This tool is used to generate a person either NPC or other Edit",
+  "main": "lib/personae.js",
+  "scripts": {
+    "start": "bin/personae",
+    "test": "mocha --reporter spec 'test/**/*.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/opendnd/personae.git"
+  },
+  "keywords": [
+    "person",
+    "NPC",
+    "DnD"
+  ],
+  "author": "Drew Morris <dhmorris@gmail.com> (http://github.com/drewry)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/opendnd/personae/issues"
+  },
+  "homepage": "https://github.com/opendnd/personae#readme",
+  "bin": {
+    "personae": "./bin/personae"
+  },
+  "dependencies": {
+    "colors": "^1.1.2",
+    "commander": "^2.11.0",
+    "nomina": "^0.2.3",
+    "questions": "0.0.6",
+    "roll": "^1.2.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^3.5.0"
+  }
+}
