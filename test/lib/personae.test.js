@@ -3,7 +3,7 @@ const path = require('path');
 const rootDir = path.join(__dirname, '..', '..');
 const libDir = path.join(rootDir, 'lib');
 const Personae = require(path.join(libDir, 'personae'));
-let personae;
+let personae, person;
 
 describe('Personae', () => {
   before(() => {
@@ -11,6 +11,14 @@ describe('Personae', () => {
   });
 
   it('can generate', () => {
-    expect(personae.generate()).to.be.an('object');
+    person = personae.generate();
+
+    expect(person).to.be.an('object');
+  });
+
+  it('generates with defaults', () => {
+    person = personae.generate();
+
+    expect(person.type).to.eq('NPC');
   });
 });
