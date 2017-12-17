@@ -28,7 +28,7 @@
   "dependencies": {
     "colors": "^1.1.2",
     "commander": "^2.11.0",
-    "nomina": "^0.3.0",
+    "nomina": "^0.3.1",
     "questions": "0.0.6",
     "roll": "^1.2.0"
   },
