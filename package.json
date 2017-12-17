@@ -5,7 +5,9 @@
   "main": "lib/personae.js",
   "scripts": {
     "start": "bin/personae",
-    "test": "mocha --reporter spec 'test/**/*.js'"
+    "test": "npm run test:mocha && npm run test:lint",
+    "test:mocha": "mocha --reporter spec 'test/**/*.js'",
+    "test:lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -28,12 +30,15 @@
   "dependencies": {
     "colors": "^1.1.2",
     "commander": "^2.11.0",
-    "nomina": "^0.3.1",
+    "nomina": "^0.3.2",
     "questions": "0.0.6",
     "roll": "^1.2.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",
+    "eslint": "^3.16.1",
+    "eslint-config-airbnb-base": "^11.1.0",
+    "eslint-plugin-import": "^2.2.0",
     "mocha": "^3.5.0"
   }
 }
