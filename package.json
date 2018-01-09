@@ -29,10 +29,10 @@
   },
   "dependencies": {
     "colors": "^1.1.2",
-    "commander": "^2.11.0",
+    "commander": "^2.12.2",
     "genetica": "^0.2.3",
     "node-zip": "^1.1.1",
-    "nomina": "^0.3.2",
+    "nomina": "^0.4.1",
     "questions": "0.0.6",
     "random-weighted": "^1.0.0",
     "roll": "^1.2.0"
