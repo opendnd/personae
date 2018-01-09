@@ -30,7 +30,7 @@
   "dependencies": {
     "colors": "^1.1.2",
     "commander": "^2.12.2",
-    "genetica": "^0.2.3",
+    "genetica": "^0.2.4",
     "node-zip": "^1.1.1",
     "nomina": "^0.4.1",
     "questions": "0.0.6",
