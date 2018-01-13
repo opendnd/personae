@@ -117,8 +117,8 @@ describe('Personae', () => {
   });
 
   it('generates a child', () => {
-    const mother = personae.generate({ gender: 'female', race: 'Dragonborn '});
-    const father = personae.generate({ gender: 'male', race: 'Dragonborn '});
+    const mother = personae.generate({ gender: 'female', race: 'Dragonborn' });
+    const father = personae.generate({ gender: 'male', race: 'Dragonborn' });
     child = personae.generateChild({}, mother, father);
 
     expect(child).to.be.an('object');
