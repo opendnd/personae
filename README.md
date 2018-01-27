@@ -1,5 +1,9 @@
 # personae
-Personae is a tool used to generate a person-- either NPC or playable.
+This tool is used to generate a person either NPC or playable characters for D&D.
+
+[![NPM](https://nodei.co/npm/personae.png?downloads=true&stars=true)](https://nodei.co/npm/personae/)
+
+[![Build Status](https://travis-ci.org/opendnd/personae.svg?branch=master)](https://travis-ci.org/opendnd/personae)
 
 ## Installation
 You will need [node](https://nodejs.org/en/) and [npm](https://www.npmjs.com/) installed. Then run the command:
