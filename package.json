@@ -1,6 +1,6 @@
 {
   "name": "personae",
-  "version": "0.7.0",
+  "version": "0.7.6",
   "description": "This tool is used to generate a person either NPC or other Edit",
   "main": "lib/personae.js",
   "scripts": {
@@ -30,7 +30,7 @@
   "dependencies": {
     "colors": "^1.1.2",
     "commander": "^2.13.0",
-    "genetica": "^0.3.7",
+    "genetica": "^0.3.10",
     "node-zip": "^1.1.1",
     "nomina": "^0.4.2",
     "questions": "0.0.6",
