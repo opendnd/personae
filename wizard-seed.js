@@ -1,19 +1,25 @@
 const fs = require('fs');
 const questions = require('questions');
 const colors = require('colors/safe');
+const Genetica = require('genetica');
 const path = require('path');
 const rootDir = path.join(__dirname, '..');
 const libDir = path.join(rootDir, 'lib');
 const logo = fs.readFileSync(path.join(rootDir, 'logo.txt'), { encoding: 'utf-8' });
 const Personae = require(path.join(libDir, 'personae'));
 const defaults = require(path.join(libDir, 'defaults'));
+const Renderer = require(path.join(libDir, 'renderer'));
 const Saver = require(path.join(libDir, 'saver'));
 
-const wizard = (outputDir) => {
+const wizardSeed = (outputDir, seedPath) => {
   if (outputDir === undefined) outputDir = '.';
 
   // output welcome
   process.stdout.write(`\n${colors.yellow(logo)}\n`);
+
+  // load seed
+  const seed = Genetica.loadSeed(seedPath);
+  const { race, gender } = seed;
 
   // ask a few questions
   questions.askMany({
@@ -30,19 +36,7 @@ const wizard = (outputDir) => {
       required: false,
     },
     age: {
-      info: colors.cyan('What is this person\'s age?') + colors.yellow(' *leave blank if age group provided*'),
-      required: false,
-    },
-    ageGroup: {
-      info: colors.cyan('What is this person\'s age group?') + colors.white(' (young | middle | old)') + colors.yellow(' *leave blank if age provided*'),
-      required: false,
-    },
-    gender: {
-      info: colors.cyan('What\'s this person\'s gender? ') + colors.white(`(${defaults.genders.join(' | ')})`),
-      required: false,
-    },
-    race: {
-      info: colors.cyan('What race does this person have? ') + colors.white(`(${defaults.races.join(' | ')})`),
+      info: colors.cyan('What is this person\'s age?'),
       required: false,
     },
     alignment: {
@@ -58,12 +52,16 @@ const wizard = (outputDir) => {
       required: false,
     },
   }, (opts) => {
+    opts.gender = gender;
+    opts.race = race;
+    opts.seed = seed;
+
     const personae = new Personae(opts);
     const person = personae.generate();
 
-    process.stdout.write(Personae.output(person));
+    Renderer.output(person);
     Saver.finish(outputDir, 'Would you like to save your person? (y | n)', person, person.name);
   });
 };
 
-module.exports = wizard;
+module.exports = wizardSeed;
