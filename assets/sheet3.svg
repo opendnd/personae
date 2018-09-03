@@ -314,7 +314,7 @@
                     <tspan x="469" y="6">{weight}</tspan>
                 </text>
                 <text id="{character-name}" font-size="12">
-                    <tspan x="0" y="18">{character-name}</tspan>
+                    <tspan x="0" y="24">{character-name}</tspan>
                 </text>
                 <text id="{hair}" font-size="6">
                     <tspan x="469" y="32">{hair}</tspan>

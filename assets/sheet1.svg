@@ -670,7 +670,7 @@
                     <tspan x="223" y="6">{class-level}</tspan>
                 </text>
                 <text id="{character-name}" font-size="12">
-                    <tspan x="0" y="18">{character-name}</tspan>
+                    <tspan x="0" y="23">{character-name}</tspan>
                 </text>
                 <text id="{player-name}" font-size="6">
                     <tspan x="421.443848" y="6">{player-name}</tspan>
@@ -711,164 +711,164 @@
                 </text>
             </g>
             <g id="initiative" transform="translate(193.000000, 102.000000)" font-size="16">
-                <text id="+0">
-                    <tspan x="8.58203125" y="15">+0</tspan>
+                <text id="{initiative}">
+                    <tspan x="8.58203125" y="15">{initiative}</tspan>
                 </text>
             </g>
             <g id="ac" transform="translate(292.000000, 103.000000)" font-size="16">
-                <text id="10">
-                    <tspan x="9.8828125" y="15">10</tspan>
+                <text id="{ac}">
+                    <tspan x="9.8828125" y="15">{ac}</tspan>
                 </text>
             </g>
             <g id="max-hp" transform="translate(388.000000, 104.000000)" font-size="16">
-                <text id="10">
-                    <tspan x="2.8828125" y="15">10</tspan>
+                <text id="{max-hp}">
+                    <tspan x="2.8828125" y="15">{max-hp}</tspan>
                 </text>
-                <text id="10">
-                    <tspan x="55.8828125" y="15">10</tspan>
+                <text id="{current-hp}">
+                    <tspan x="55.8828125" y="15">{current-hp}</tspan>
                 </text>
-                <text id="10">
-                    <tspan x="108.882812" y="15">10</tspan>
+                <text id="{temp-hp}">
+                    <tspan x="108.882812" y="15">{temp-hp}</tspan>
                 </text>
             </g>
             <g id="hit-dice" transform="translate(398.000000, 157.000000)" font-size="10">
-                <text id="1d8">
-                    <tspan x="0" y="10">1d8</tspan>
+                <text id="{hit-dice}">
+                    <tspan x="0" y="10">{hit-dice}</tspan>
                 </text>
             </g>
-            <g id="prof-bonus" transform="translate(187.000000, 257.000000)" font-size="8">
-                <text id="+10">
-                    <tspan x="1.26171875" y="12">+10</tspan>
+            <g id="prof-bonus" transform="translate(187.000000, 262.000000)" font-size="8">
+                <text id="{prof-bonus}">
+                    <tspan x="1.26171875" y="8">{prof-bonus}</tspan>
                 </text>
             </g>
             <g id="skills" transform="translate(71.000000, 249.000000)" font-size="8">
                 <text id="survival">
-                    <tspan x="0.291015625" y="237">+0</tspan>
+                    <tspan x="0.291015625" y="237">{survival}</tspan>
                 </text>
                 <text id="stealth">
-                    <tspan x="0.291015625" y="223.529412">+0</tspan>
+                    <tspan x="0.291015625" y="223.529412">{stealth}</tspan>
                 </text>
                 <text id="sleight-of-hand">
-                    <tspan x="0.291015625" y="210.058824">+0</tspan>
+                    <tspan x="0.291015625" y="210.058824">{sleight-of-hand}</tspan>
                 </text>
                 <text id="religion">
-                    <tspan x="0.291015625" y="196.588235">+0</tspan>
+                    <tspan x="0.291015625" y="196.588235">{religion}</tspan>
                 </text>
                 <text id="persuasion">
-                    <tspan x="0.291015625" y="183.117647">+0</tspan>
+                    <tspan x="0.291015625" y="183.117647">{persuasion}</tspan>
                 </text>
                 <text id="performance">
-                    <tspan x="0.291015625" y="169.647059">+0</tspan>
+                    <tspan x="0.291015625" y="169.647059">{performance}</tspan>
                 </text>
                 <text id="perception">
-                    <tspan x="0.291015625" y="156.176471">+0</tspan>
+                    <tspan x="0.291015625" y="156.176471">{perception}</tspan>
                 </text>
                 <text id="nature">
-                    <tspan x="0.291015625" y="142.705882">+0</tspan>
+                    <tspan x="0.291015625" y="142.705882">{nature}</tspan>
                 </text>
                 <text id="medicine">
-                    <tspan x="0.291015625" y="129.235294">+0</tspan>
+                    <tspan x="0.291015625" y="129.235294">{medicine}</tspan>
                 </text>
                 <text id="investigation">
-                    <tspan x="0.291015625" y="115.764706">+0</tspan>
+                    <tspan x="0.291015625" y="115.764706">{investigation}</tspan>
                 </text>
                 <text id="intimidation">
-                    <tspan x="0.291015625" y="102.294118">+0</tspan>
+                    <tspan x="0.291015625" y="102.294118">{intimidation}</tspan>
                 </text>
                 <text id="insight">
-                    <tspan x="0.291015625" y="88.8235294">+0</tspan>
+                    <tspan x="0.291015625" y="88.8235294">{insight}</tspan>
                 </text>
                 <text id="history">
-                    <tspan x="0.291015625" y="75.3529412">+0</tspan>
+                    <tspan x="0.291015625" y="75.3529412">{history}</tspan>
                 </text>
                 <text id="deception">
-                    <tspan x="0.291015625" y="61.8823529">+0</tspan>
+                    <tspan x="0.291015625" y="61.8823529">{deception}</tspan>
                 </text>
                 <text id="athletics">
-                    <tspan x="0.291015625" y="48.4117647">+0</tspan>
+                    <tspan x="0.291015625" y="48.4117647">{athletics}</tspan>
                 </text>
                 <text id="arcana">
-                    <tspan x="0.291015625" y="34.9411765">+0</tspan>
+                    <tspan x="0.291015625" y="34.9411765">{arcana}</tspan>
                 </text>
                 <text id="animal-handling">
-                    <tspan x="0.291015625" y="21.4705882">+0</tspan>
+                    <tspan x="0.291015625" y="21.4705882">{animal-handling}</tspan>
                 </text>
                 <text id="acrobatics">
-                    <tspan x="0.291015625" y="8">+0</tspan>
+                    <tspan x="0.291015625" y="8">{acrobatics}</tspan>
                 </text>
             </g>
             <g id="saving-throws" transform="translate(71.000000, 79.000000)" font-size="8">
-                <text id="cha">
-                    <tspan x="0.291015625" y="75">+0</tspan>
-                </text>
-                <text id="wis">
-                    <tspan x="0.291015625" y="62">+0</tspan>
-                </text>
-                <text id="int">
-                    <tspan x="0.291015625" y="48">+0</tspan>
-                </text>
-                <text id="con">
-                    <tspan x="0.291015625" y="35">+0</tspan>
+                <text id="str">
+                    <tspan x="0.291015625" y="8">{saving-str}</tspan>
                 </text>
                 <text id="dex">
-                    <tspan x="0.291015625" y="21">+0</tspan>
+                    <tspan x="0.291015625" y="21">{saving-dex}</tspan>
                 </text>
-                <text id="str">
-                    <tspan x="0.291015625" y="8">+0</tspan>
+                <text id="con">
+                    <tspan x="0.291015625" y="35">{saving-con}</tspan>
+                </text>
+                <text id="int">
+                    <tspan x="0.291015625" y="48">{saving-int}</tspan>
+                </text>
+                <text id="wis">
+                    <tspan x="0.291015625" y="62">{saving-wis}</tspan>
+                </text>              
+                <text id="cha">
+                    <tspan x="0.291015625" y="75">{saving-cha}</tspan>
                 </text>
             </g>
             <g id="abilities" transform="translate(1.000000, 107.000000)">
                 <g id="scores" font-size="20">
-                    <text id="cha">
-                        <tspan x="0.353515625" y="402">10</tspan>
-                    </text>
-                    <text id="wis">
-                        <tspan x="0.353515625" y="325.4">10</tspan>
-                    </text>
-                    <text id="int">
-                        <tspan x="0.353515625" y="248.8">10</tspan>
-                    </text>
-                    <text id="con">
-                        <tspan x="0.353515625" y="172.2">10</tspan>
+                    <text id="str">
+                        <tspan x="0.353515625" y="19">{str}</tspan>
                     </text>
                     <text id="dex">
-                        <tspan x="0.353515625" y="95.6">10</tspan>
+                        <tspan x="0.353515625" y="95.6">{dex}</tspan>
                     </text>
-                    <text id="str">
-                        <tspan x="0.353515625" y="19">10</tspan>
+                    <text id="con">
+                        <tspan x="0.353515625" y="172.2">{con}</tspan>
+                    </text>
+                    <text id="int">
+                        <tspan x="0.353515625" y="248.8">{int}</tspan>
+                    </text>
+                    <text id="wis">
+                        <tspan x="0.353515625" y="325.4">{wis}</tspan>
+                    </text>
+                    <text id="cha">
+                        <tspan x="0.353515625" y="402">{cha}</tspan>
                     </text>
                 </g>
                 <g id="modifiers" transform="translate(5.000000, 31.000000)" font-size="10">
-                    <text id="cha">
-                        <tspan x="0.363769531" y="393">+0</tspan>
-                    </text>
-                    <text id="wis">
-                        <tspan x="0.363769531" y="316.4">+0</tspan>
-                    </text>
-                    <text id="int">
-                        <tspan x="0.363769531" y="239.8">+0</tspan>
-                    </text>
-                    <text id="con">
-                        <tspan x="0.363769531" y="163.2">+0</tspan>
+                    <text id="str">
+                        <tspan x="0.363769531" y="10">{str-mod}</tspan>
                     </text>
                     <text id="dex">
-                        <tspan x="0.363769531" y="86.6">+0</tspan>
+                        <tspan x="0.363769531" y="86.6">{dex-mod}</tspan>
                     </text>
-                    <text id="str">
-                        <tspan x="0.363769531" y="10">+0</tspan>
+                    <text id="con">
+                        <tspan x="0.363769531" y="163.2">{con-mod}</tspan>
+                    </text>
+                    <text id="int">
+                        <tspan x="0.363769531" y="239.8">{int-mod}</tspan>
+                    </text>
+                    <text id="wis">
+                        <tspan x="0.363769531" y="316.4">{wis-mod}</tspan>
+                    </text>
+                    <text id="cha">
+                        <tspan x="0.363769531" y="393">{cha-mod}</tspan>
                     </text>
                 </g>
             </g>
             <g id="senses" transform="translate(0.000000, 577.000000)" font-size="10">
-                <text id="int">
-                    <tspan x="0.176757812" y="70">10</tspan>
+                <text id="passive-perception">
+                    <tspan x="0.176757812" y="10">{passive-perception}</tspan>
                 </text>
-                <text id="wis">
-                    <tspan x="0.176757812" y="40">10</tspan>
+                <text id="passive-insight">
+                    <tspan x="0.176757812" y="40">{passive-insight}</tspan>
                 </text>
-                <text id="per">
-                    <tspan x="0.176757812" y="10">10</tspan>
-                </text>
+                <text id="passive-intelligence">
+                    <tspan x="0.176757812" y="70">{passive-intelligence}</tspan>
+                </text>               
             </g>
         </g>
     </g>
