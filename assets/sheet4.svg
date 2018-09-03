@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="612px" height="792px" viewBox="0 0 612 792" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 51 (57462) - http://www.bohemiancoding.com/sketch -->
+    <!-- Generator: Sketch 51.1 (57501) - http://www.bohemiancoding.com/sketch -->
     <title>BaseLayout_P4</title>
     <desc>Created with Sketch.</desc>
     <defs>
@@ -91,9 +91,7 @@
                         <path d="M73.1129,6.5446 L73.1129,28.2686 M73.1129,25.2086 L66.3969,33.5226 M66.3979,0.9736 L73.1139,9.2866" id="Stroke-859" stroke="#000000" stroke-width="0.6"></path>
                     </g>
                     <text id="SPELL-SAVE-DC" font-family="LucidaGrande, Lucida Grande" font-size="6" font-weight="normal" fill="#000000">
-                        <tspan x="17" y="41">SPELL S</tspan>
-                        <tspan x="38.328125" y="41" letter-spacing="-0.21">A</tspan>
-                        <tspan x="42.2577734" y="41">VE DC</tspan>
+                        <tspan x="17" y="41">SPELL SAVE DC</tspan>
                     </text>
                 </g>
                 <g id="Spell-Attack" transform="translate(224.000000, 13.000000)">
@@ -108,12 +106,7 @@
                         <path d="M72.9115,6.5446 L72.9115,28.2686 M72.9115,25.2086 L66.1955,33.5226 M66.1965,0.9736 L72.9125,9.2866" id="Stroke-868" stroke="#000000" stroke-width="0.6"></path>
                     </g>
                     <text id="SPELL-ATTACK" font-family="LucidaGrande, Lucida Grande" font-size="6" font-weight="normal" fill="#000000">
-                        <tspan x="17" y="41">SPELL </tspan>
-                        <tspan x="35.0966797" y="41" letter-spacing="-0.35">A</tspan>
-                        <tspan x="38.8863281" y="41">T</tspan>
-                        <tspan x="42.6802734" y="41" letter-spacing="-0.35">T</tspan>
-                        <tspan x="46.1242187" y="41" letter-spacing="-0.035">A</tspan>
-                        <tspan x="50.2288672" y="41">CK</tspan>
+                        <tspan x="17" y="41">SPELL ATTACK</tspan>
                     </text>
                     <text id="BONUS" font-family="LucidaGrande, Lucida Grande" font-size="6" font-weight="normal" fill="#000000">
                         <tspan x="28" y="47">BONUS</tspan>
@@ -316,10 +309,10 @@
             <tspan x="465.07423" y="782.202361" letter-spacing="0.1043">e</tspan>
             <tspan x="468.242739" y="782.202361" letter-spacing="-0.02">.</tspan>
         </text>
-        <g id="VARS" transform="translate(32.000000, 56.000000)" fill="#272727" font-family="LucidaGrande, Lucida Grande" font-weight="normal">
+        <g id="VARS" transform="translate(32.000000, 61.000000)" fill="#272727" font-family="LucidaGrande, Lucida Grande" font-weight="normal">
             <g id="header" transform="translate(19.000000, 0.000000)" font-size="12">
                 <text id="{spellcasting-class}">
-                    <tspan x="0" y="18">{spellcasting-class}</tspan>
+                    <tspan x="0" y="17">{spellcasting-class}</tspan>
                 </text>
                 <text id="spellcasting-ability">
                     <tspan x="262.02832" y="12">-</tspan>
@@ -331,7 +324,7 @@
                     <tspan x="467.02832" y="12">-</tspan>
                 </text>
             </g>
-            <g id="spells" transform="translate(0.000000, 97.000000)" font-size="6">
+            <g id="spells" transform="translate(0.000000, 92.000000)" font-size="6">
                 <text>
                     <tspan x="0" y="6">Spell</tspan>
                     <tspan x="0" y="20.8000002">Spell</tspan>
