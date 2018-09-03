@@ -37,7 +37,7 @@
     "questions": "0.0.6",
     "random-weighted": "^1.0.0",
     "roll": "^1.2.0",
-    "svg-to-pdfkit": "^0.1.7",
+    "svg-to-pdfkit": "^0.1.7"
   },
   "devDependencies": {
     "chai": "^4.1.2",
