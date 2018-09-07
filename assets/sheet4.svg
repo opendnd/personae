@@ -315,57 +315,57 @@
                     <tspan x="0" y="17">{spellcasting-class}</tspan>
                 </text>
                 <text id="spellcasting-ability">
-                    <tspan x="262.02832" y="12">-</tspan>
+                    <tspan x="262.02832" y="12">{spellcasting-ability}</tspan>
                 </text>
                 <text id="spell-save-dc">
-                    <tspan x="363.02832" y="12">-</tspan>
+                    <tspan x="363.02832" y="12">{spell-save-dc}</tspan>
                 </text>
                 <text id="spell-attack-bonus">
-                    <tspan x="467.02832" y="12">-</tspan>
+                    <tspan x="467.02832" y="12">{spell-attack-bonus}</tspan>
                 </text>
             </g>
             <g id="spells" transform="translate(0.000000, 92.000000)" font-size="6">
                 <text>
-                    <tspan x="0" y="6">Spell</tspan>
-                    <tspan x="0" y="20.8000002">Spell</tspan>
-                    <tspan x="0" y="35.6000004">Spell</tspan>
-                    <tspan x="0" y="50.4000006">Spell</tspan>
-                    <tspan x="0" y="65.2000008">Spell</tspan>
-                    <tspan x="0" y="80.000001">Spell</tspan>
-                    <tspan x="0" y="94.8000011">Spell</tspan>
-                    <tspan x="0" y="109.600001">Spell</tspan>
-                    <tspan x="0" y="124.400002">Spell</tspan>
-                    <tspan x="0" y="139.200002">Spell</tspan>
-                    <tspan x="0" y="154.000002">Spell</tspan>
-                    <tspan x="0" y="168.800002">Spell</tspan>
-                    <tspan x="0" y="183.600002">Spell</tspan>
-                    <tspan x="0" y="198.400002">Spell</tspan>
-                    <tspan x="0" y="213.200003">Spell</tspan>
-                    <tspan x="0" y="228.000003">Spell</tspan>
-                    <tspan x="0" y="242.800003">Spell</tspan>
-                    <tspan x="0" y="257.600003">Spell</tspan>
-                    <tspan x="0" y="272.400003">Spell</tspan>
-                    <tspan x="0" y="287.200004">Spell</tspan>
-                    <tspan x="0" y="302.000004">Spell</tspan>
-                    <tspan x="0" y="316.800004">Spell</tspan>
-                    <tspan x="0" y="331.600004">Spell</tspan>
-                    <tspan x="0" y="346.400004">Spell</tspan>
-                    <tspan x="0" y="361.200005">Spell</tspan>
-                    <tspan x="0" y="376.000005">Spell</tspan>
-                    <tspan x="0" y="390.800005">Spell</tspan>
-                    <tspan x="0" y="405.600005">Spell</tspan>
-                    <tspan x="0" y="420.400005">Spell</tspan>
-                    <tspan x="0" y="435.200006">Spell</tspan>
-                    <tspan x="0" y="450.000006">Spell</tspan>
-                    <tspan x="0" y="464.800006">Spell</tspan>
-                    <tspan x="0" y="479.600006">Spell</tspan>
-                    <tspan x="0" y="494.400006">Spell</tspan>
-                    <tspan x="0" y="509.200006">Spell</tspan>
-                    <tspan x="0" y="524.000007">Spell</tspan>
-                    <tspan x="0" y="538.800007">Spell</tspan>
-                    <tspan x="0" y="553.600007">Spell</tspan>
-                    <tspan x="0" y="568.400007">Spell</tspan>
-                    <tspan x="0" y="583.200007">Spell</tspan>
+                    <tspan x="0" y="6">{spell-1}</tspan>
+                    <tspan x="0" y="20.8000002">{spell-2}</tspan>
+                    <tspan x="0" y="35.6000004">{spell-3}</tspan>
+                    <tspan x="0" y="50.4000006">{spell-4}</tspan>
+                    <tspan x="0" y="65.2000008">{spell-5}</tspan>
+                    <tspan x="0" y="80.000001">{spell-6}</tspan>
+                    <tspan x="0" y="94.8000011">{spell-7}</tspan>
+                    <tspan x="0" y="109.600001">{spell-8}</tspan>
+                    <tspan x="0" y="124.400002">{spell-9}</tspan>
+                    <tspan x="0" y="139.200002">{spell-10}</tspan>
+                    <tspan x="0" y="154.000002">{spell-11}</tspan>
+                    <tspan x="0" y="168.800002">{spell-12}</tspan>
+                    <tspan x="0" y="183.600002">{spell-13}</tspan>
+                    <tspan x="0" y="198.400002">{spell-14}</tspan>
+                    <tspan x="0" y="213.200003">{spell-15}</tspan>
+                    <tspan x="0" y="228.000003">{spell-16}</tspan>
+                    <tspan x="0" y="242.800003">{spell-17}</tspan>
+                    <tspan x="0" y="257.600003">{spell-18}</tspan>
+                    <tspan x="0" y="272.400003">{spell-19}</tspan>
+                    <tspan x="0" y="287.200004">{spell-20}</tspan>
+                    <tspan x="0" y="302.000004">{spell-21}</tspan>
+                    <tspan x="0" y="316.800004">{spell-22}</tspan>
+                    <tspan x="0" y="331.600004">{spell-23}</tspan>
+                    <tspan x="0" y="346.400004">{spell-24}</tspan>
+                    <tspan x="0" y="361.200005">{spell-25}</tspan>
+                    <tspan x="0" y="376.000005">{spell-26}</tspan>
+                    <tspan x="0" y="390.800005">{spell-27}</tspan>
+                    <tspan x="0" y="405.600005">{spell-28}</tspan>
+                    <tspan x="0" y="420.400005">{spell-29}</tspan>
+                    <tspan x="0" y="435.200006">{spell-30}</tspan>
+                    <tspan x="0" y="450.000006">{spell-31}</tspan>
+                    <tspan x="0" y="464.800006">{spell-32}</tspan>
+                    <tspan x="0" y="479.600006">{spell-33}</tspan>
+                    <tspan x="0" y="494.400006">{spell-34}</tspan>
+                    <tspan x="0" y="509.200006">{spell-35}</tspan>
+                    <tspan x="0" y="524.000007">{spell-36}</tspan>
+                    <tspan x="0" y="538.800007">{spell-37}</tspan>
+                    <tspan x="0" y="553.600007">{spell-38}</tspan>
+                    <tspan x="0" y="568.400007">{spell-39}</tspan>
+                    <tspan x="0" y="583.200007">{spell-40}</tspan>
                 </text>
             </g>
         </g>

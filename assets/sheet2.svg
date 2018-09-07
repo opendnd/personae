@@ -391,67 +391,67 @@
             </g>
             <g id="items" transform="translate(74.000000, 477.000000)" font-size="6">
                 <text id="left">
-                    <tspan x="0" y="6">Item</tspan>
-                    <tspan x="0" y="20.6999998">Item</tspan>
-                    <tspan x="0" y="35.3999996">Item</tspan>
-                    <tspan x="0" y="50.0999994">Item</tspan>
-                    <tspan x="0" y="64.7999992">Item</tspan>
-                    <tspan x="0" y="79.499999">Item</tspan>
-                    <tspan x="0" y="94.1999989">Item</tspan>
-                    <tspan x="0" y="108.899999">Item</tspan>
-                    <tspan x="0" y="123.599998">Item</tspan>
-                    <tspan x="0" y="138.299998">Item</tspan>
-                    <tspan x="0" y="152.999998">Item</tspan>
-                    <tspan x="0" y="167.699998">Item</tspan>
-                    <tspan x="0" y="182.399998">Item</tspan>
-                    <tspan x="0" y="197.099998">Item</tspan>
-                    <tspan x="0" y="211.799997">Item</tspan>
+                    <tspan x="0" y="6">{item-1}</tspan>
+                    <tspan x="0" y="20.6999998">{item-2}</tspan>
+                    <tspan x="0" y="35.3999996">{item-3}</tspan>
+                    <tspan x="0" y="50.0999994">{item-4}</tspan>
+                    <tspan x="0" y="64.7999992">{item-5}</tspan>
+                    <tspan x="0" y="79.499999">{item-6}</tspan>
+                    <tspan x="0" y="94.1999989">{item-7}</tspan>
+                    <tspan x="0" y="108.899999">{item-8}</tspan>
+                    <tspan x="0" y="123.599998">{item-9}</tspan>
+                    <tspan x="0" y="138.299998">{item-10}</tspan>
+                    <tspan x="0" y="152.999998">{item-11}</tspan>
+                    <tspan x="0" y="167.699998">{item-12}</tspan>
+                    <tspan x="0" y="182.399998">{item-13}</tspan>
+                    <tspan x="0" y="197.099998">{item-14}</tspan>
+                    <tspan x="0" y="211.799997">{item-15}</tspan>
                 </text>
                 <text id="right">
-                    <tspan x="238" y="6">Item</tspan>
-                    <tspan x="238" y="20.6999998">Item</tspan>
-                    <tspan x="238" y="35.3999996">Item</tspan>
-                    <tspan x="238" y="50.0999994">Item</tspan>
-                    <tspan x="238" y="64.7999992">Item</tspan>
-                    <tspan x="238" y="79.499999">Item</tspan>
-                    <tspan x="238" y="94.1999989">Item</tspan>
-                    <tspan x="238" y="108.899999">Item</tspan>
-                    <tspan x="238" y="123.599998">Item</tspan>
-                    <tspan x="238" y="138.299998">Item</tspan>
-                    <tspan x="238" y="152.999998">Item</tspan>
+                    <tspan x="238" y="6">{item-16}</tspan>
+                    <tspan x="238" y="20.6999998">{item-17}</tspan>
+                    <tspan x="238" y="35.3999996">{item-18}</tspan>
+                    <tspan x="238" y="50.0999994">{item-19}</tspan>
+                    <tspan x="238" y="64.7999992">{item-20}</tspan>
+                    <tspan x="238" y="79.499999">{item-21}</tspan>
+                    <tspan x="238" y="94.1999989">{item-22}</tspan>
+                    <tspan x="238" y="108.899999">{item-23}</tspan>
+                    <tspan x="238" y="123.599998">{item-24}</tspan>
+                    <tspan x="238" y="138.299998">{item-25}</tspan>
+                    <tspan x="238" y="152.999998">{item-26}</tspan>
                 </text>
                 <text id="magic">
-                    <tspan x="238" y="184">Item</tspan>
-                    <tspan x="238" y="198.7">Item</tspan>
-                    <tspan x="238" y="213.4">Item</tspan>
+                    <tspan x="238" y="184">{magic-item-1}</tspan>
+                    <tspan x="238" y="198.7">{magic-item-2}</tspan>
+                    <tspan x="238" y="213.4">{magic-item-3}</tspan>
                 </text>
             </g>
             <g id="money" transform="translate(0.000000, 475.000000)" font-size="10">
                 <text id="cp">
-                    <tspan x="18.1767578" y="10">10</tspan>
+                    <tspan x="18.1767578" y="10">{cp}</tspan>
                 </text>
                 <text id="sp">
-                    <tspan x="18.1767578" y="39">10</tspan>
+                    <tspan x="18.1767578" y="39">{sp}</tspan>
                 </text>
                 <text id="ep">
-                    <tspan x="18.1767578" y="68">10</tspan>
+                    <tspan x="18.1767578" y="68">{ep}</tspan>
                 </text>
                 <text id="gp">
-                    <tspan x="18.1767578" y="97">10</tspan>
+                    <tspan x="18.1767578" y="97">{gp}</tspan>
                 </text>
                 <text id="pp">
-                    <tspan x="18.1767578" y="125">10</tspan>
+                    <tspan x="18.1767578" y="125">{pp}</tspan>
                 </text>
             </g>
             <g id="carry" transform="translate(0.000000, 624.000000)" font-size="8">
                 <text id="weight">
-                    <tspan x="15.765625" y="8">0 lb.</tspan>
+                    <tspan x="15.765625" y="8">{weight}</tspan>
                 </text>
                 <text id="encumbered">
-                    <tspan x="15.765625" y="36">0 lb.</tspan>
+                    <tspan x="15.765625" y="36">{encumbered}</tspan>
                 </text>
                 <text id="push">
-                    <tspan x="15.765625" y="65">0 lb.</tspan>
+                    <tspan x="15.765625" y="65">{push}</tspan>
                 </text>
             </g>
         </g>

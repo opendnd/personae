@@ -28,6 +28,7 @@
     "personae": "./bin/personae"
   },
   "dependencies": {
+    "avataria": "^0.4.1",
     "colors": "^1.1.2",
     "commander": "^2.13.0",
     "genetica": "^0.4.1",

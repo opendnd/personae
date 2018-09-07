@@ -655,13 +655,13 @@
                 </text>
             </g>
             <g id="weapons" transform="translate(186.000000, 582.000000)" font-size="6">
-                <text id="Weapon-1-Weapon-2-We">
-                    <tspan x="0" y="6">Weapon 1</tspan>
-                    <tspan x="0" y="26.5">Weapon 2</tspan>
-                    <tspan x="0" y="47">Weapon 3</tspan>
-                    <tspan x="0" y="67.5">Weapon 4</tspan>
-                    <tspan x="0" y="88">Weapon 5</tspan>
-                    <tspan x="0" y="108.5">Weapon 6</tspan>
+                <text id="weapons">
+                    <tspan x="0" y="6">{weapon-1}</tspan>
+                    <tspan x="0" y="26.5">{weapon-2}</tspan>
+                    <tspan x="0" y="47">{weapon-3}</tspan>
+                    <tspan x="0" y="67.5">{weapon-4}</tspan>
+                    <tspan x="0" y="88">{weapon-5}</tspan>
+                    <tspan x="0" y="108.5">{weapon-6}</tspan>
                 </text>
             </g>
             <g id="speed" transform="translate(193.000000, 340.000000)" font-size="10">
