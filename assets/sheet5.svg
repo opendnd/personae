@@ -77,42 +77,40 @@
                 <g id="Info" transform="translate(234.000000, 28.000000)">
                     <path d="M0.1051,0.7876 L307.9051,0.7876" id="Stroke-761" stroke="#B5B6B6" stroke-width="0.25"></path>
                     <path d="M0.1051,26.8677 L307.9051,26.8677" id="Stroke-762" stroke="#B5B6B6" stroke-width="0.25"></path>
-                    <text id="ALIGNMENT" font-family="LucidaGrande, Lucida Grande" font-size="6" font-weight="normal" fill="#000000">
-                        <tspan x="0.8266" y="33.0543594">ALIGNMENT</tspan>
+                    <text id="FAMILY-NAME" font-family="LucidaGrande, Lucida Grande" font-size="6" font-weight="normal" fill="#000000">
+                        <tspan x="0.8266" y="33.0543594">FAMILY NAME</tspan>
                     </text>
                     <text id="GENDER" font-family="LucidaGrande, Lucida Grande" font-size="6" font-weight="normal" fill="#000000">
                         <tspan x="0.8266" y="6.97235937">GENDER</tspan>
                     </text>
-                    <text id="WEIGHT" font-family="LucidaGrande, Lucida Grande" font-size="6" font-weight="normal" fill="#000000">
-                        <tspan x="255.3466" y="6.97235937">WEIGHT</tspan>
+                    <text id="#-OF-CHILDREN" font-family="LucidaGrande, Lucida Grande" font-size="6" font-weight="normal" fill="#000000">
+                        <tspan x="255.3466" y="6.97235937"># OF CHILDREN</tspan>
                     </text>
-                    <text id="SIZE" font-family="LucidaGrande, Lucida Grande" font-size="6" font-weight="normal" fill="#000000">
-                        <tspan x="133.5816" y="6.97235937">SIZE</tspan>
+                    <text id="FATHER" font-family="LucidaGrande, Lucida Grande" font-size="6" font-weight="normal" fill="#000000">
+                        <tspan x="126.5816" y="6.97235937">FATHER</tspan>
                     </text>
-                    <text id="HAIR" font-family="LucidaGrande, Lucida Grande" font-size="6" font-weight="normal" fill="#000000">
-                        <tspan x="255.3466" y="33.2433594">HAIR</tspan>
+                    <text id="MOTHER" font-family="LucidaGrande, Lucida Grande" font-size="6" font-weight="normal" fill="#000000">
+                        <tspan x="61.5381" y="6.97265937">MOTHER</tspan>
                     </text>
-                    <text id="SKIN" font-family="LucidaGrande, Lucida Grande" font-size="6" font-weight="normal" fill="#000000">
-                        <tspan x="133.5816" y="33.0473594">SKIN</tspan>
+                    <text id="SPOUSE" font-family="LucidaGrande, Lucida Grande" font-size="6" font-weight="normal" fill="#000000">
+                        <tspan x="191.3851" y="6.97265937">SPOUSE</tspan>
                     </text>
-                    <text id="AGE" font-family="LucidaGrande, Lucida Grande" font-size="6" font-weight="normal" fill="#000000">
-                        <tspan x="73.5381" y="6.97265937">AGE</tspan>
+                    <text id="LIEGE/PATRON" font-family="LucidaGrande, Lucida Grande" font-size="6" font-weight="normal" fill="#000000">
+                        <tspan x="60.0751" y="33.0546594">LIEGE/PATRON</tspan>
                     </text>
-                    <text id="HEIGHT" font-family="LucidaGrande, Lucida Grande" font-size="6" font-weight="normal" fill="#000000">
-                        <tspan x="193.3851" y="6.97265937">HEIGHT</tspan>
+                    <text id="HOMELAND" font-family="LucidaGrande, Lucida Grande" font-size="6" font-weight="normal" fill="#000000">
+                        <tspan x="256.0751" y="33.0546594">HOMELAND</tspan>
                     </text>
-                    <text id="EYES" font-family="LucidaGrande, Lucida Grande" font-size="6" font-weight="normal" fill="#000000">
-                        <tspan x="193.3851" y="33.0546594">EYES</tspan>
+                    <text id="BIRTH-RANK" font-family="LucidaGrande, Lucida Grande" font-size="6" font-weight="normal" fill="#000000">
+                        <tspan x="190.0751" y="33.0546594">BIRTH RANK</tspan>
                     </text>
-                    <text id="FAITH" font-family="LucidaGrande, Lucida Grande" font-size="6" font-weight="normal" fill="#000000">
-                        <tspan x="72.0751" y="33.0546594">FAITH</tspan>
+                    <text id="#-OF-SIBLINGS" font-family="LucidaGrande, Lucida Grande" font-size="6" font-weight="normal" fill="#000000">
+                        <tspan x="125.0751" y="33.0546594"># OF SIBLINGS</tspan>
                     </text>
                 </g>
             </g>
             <text id="CHARACTER-NAME" font-family="LucidaGrande, Lucida Grande" font-size="6" font-weight="normal" fill="#000000">
-                <tspan x="61.2256" y="79.8583594">CHAR</tspan>
-                <tspan x="77.7197406" y="79.8583594" letter-spacing="-0.028">A</tspan>
-                <tspan x="81.8313891" y="79.8583594">CTER NAME</tspan>
+                <tspan x="61.2256" y="79.8583594">CHARACTER NAME</tspan>
             </text>
         </g>
         <g id="Traits" transform="translate(218.000000, 131.000000)">
@@ -706,35 +704,35 @@
                 <text id="{gender}" font-size="6">
                     <tspan x="214" y="6">{gender}</tspan>
                 </text>
-                <text id="{age}" font-size="6">
-                    <tspan x="287" y="6">{age}</tspan>
+                <text id="{mother}" font-size="6">
+                    <tspan x="275" y="6">{mother}</tspan>
                 </text>
-                <text id="{size}" font-size="6">
-                    <tspan x="347" y="6">{size}</tspan>
+                <text id="{father}" font-size="6">
+                    <tspan x="340" y="6">{father}</tspan>
                 </text>
-                <text id="{height}" font-size="6">
-                    <tspan x="407" y="6">{height}</tspan>
+                <text id="{spouse}" font-size="6">
+                    <tspan x="405" y="6">{spouse}</tspan>
                 </text>
-                <text id="{weight}" font-size="6">
-                    <tspan x="469" y="6">{weight}</tspan>
+                <text id="{children}" font-size="6">
+                    <tspan x="469" y="6">{children}</tspan>
                 </text>
                 <text id="{character-name}" font-size="12">
                     <tspan x="0" y="23">{character-name}</tspan>
                 </text>
-                <text id="{hair}" font-size="6">
-                    <tspan x="469" y="32">{hair}</tspan>
+                <text id="{birth-rank}" font-size="6">
+                    <tspan x="405" y="32">{birth-rank}</tspan>
                 </text>
-                <text id="{eyes}" font-size="6">
-                    <tspan x="407" y="32">{eyes}</tspan>
+                <text id="{homeland}" font-size="6">
+                    <tspan x="470" y="32">{homeland}</tspan>
                 </text>
-                <text id="{skin}" font-size="6">
-                    <tspan x="347" y="32">{skin}</tspan>
+                <text id="{siblings}" font-size="6">
+                    <tspan x="340" y="32">{siblings}</tspan>
                 </text>
-                <text id="{faith}" font-size="6">
-                    <tspan x="286" y="32">{faith}</tspan>
+                <text id="{liege}" font-size="6">
+                    <tspan x="274" y="32">{liege}</tspan>
                 </text>
-                <text id="{alignment}" font-size="6">
-                    <tspan x="214" y="32">{alignment}</tspan>
+                <text id="{family}" font-size="6">
+                    <tspan x="214" y="32">{family}</tspan>
                 </text>
             </g>
             <g id="notes" transform="translate(178.000000, 476.000000)" fill="#000000" font-size="6" letter-spacing="-0.004615385">
@@ -744,214 +742,214 @@
             </g>
             <g id="results" transform="translate(237.000000, 106.000000)" fill="#272727" font-size="6">
                 <text>
-                    <tspan x="0" y="6">Result</tspan>
-                    <tspan x="0" y="24.1999998">Result</tspan>
-                    <tspan x="0" y="42.3999996">Result</tspan>
-                    <tspan x="0" y="60.5999994">Result</tspan>
-                    <tspan x="0" y="78.7999992">Result</tspan>
-                    <tspan x="0" y="96.999999">Result</tspan>
-                    <tspan x="0" y="115.199999">Result</tspan>
-                    <tspan x="0" y="133.399999">Result</tspan>
-                    <tspan x="0" y="151.599998">Result</tspan>
-                    <tspan x="0" y="169.799998">Result</tspan>
-                    <tspan x="0" y="187.999998">Result</tspan>
-                    <tspan x="0" y="206.199998">Result</tspan>
-                    <tspan x="0" y="224.399998">Result</tspan>
-                    <tspan x="0" y="242.599998">Result</tspan>
+                    <tspan x="0" y="6">{general-result}</tspan>
+                    <tspan x="0" y="24.1999998">{eye-shape-result}</tspan>
+                    <tspan x="0" y="42.3999996">{eye-color-result}</tspan>
+                    <tspan x="0" y="60.5999994">{eye-brows-result}</tspan>
+                    <tspan x="0" y="78.7999992">{skin-result}</tspan>
+                    <tspan x="0" y="96.999999">{skin-color-result}</tspan>
+                    <tspan x="0" y="115.199999">{skin-aging-result}</tspan>
+                    <tspan x="0" y="133.399999">{face-result}</tspan>
+                    <tspan x="0" y="151.599998">{nose-result}</tspan>
+                    <tspan x="0" y="169.799998">{mouth-result}</tspan>
+                    <tspan x="0" y="187.999998">{hair-result}</tspan>
+                    <tspan x="0" y="206.199998">{hair-color-result}</tspan>
+                    <tspan x="0" y="224.399998">{facial-hair-result}</tspan>
+                    <tspan x="0" y="242.599998">{sex-result}</tspan>
                 </text>
             </g>
             <g id="chromosomes" transform="translate(51.000000, 105.000000)" fill="#272727" font-size="6">
                 <text id="c1-mother">
-                    <tspan x="24.7060547" y="6">10</tspan>
+                    <tspan x="24.7060547" y="6">{chromosome-1-mother}</tspan>
                 </text>
                 <text id="c1-father">
-                    <tspan x="60.7060547" y="6">10</tspan>
+                    <tspan x="60.7060547" y="6">{chromosome-1-father}</tspan>
                 </text>
                 <text id="c2-mother">
-                    <tspan x="15.7060547" y="24">10</tspan>
+                    <tspan x="15.7060547" y="24">{chromosome-2-mother}</tspan>
                 </text>
                 <text id="c2-father">
-                    <tspan x="71.7060547" y="24">10</tspan>
+                    <tspan x="71.7060547" y="24">{chromosome-2-father}</tspan>
                 </text>
                 <text id="c3-mother">
-                    <tspan x="7.70605469" y="43">10</tspan>
+                    <tspan x="7.70605469" y="43">{chromosome-3-mother}</tspan>
                 </text>
                 <text id="c3-father">
-                    <tspan x="78.7060547" y="43">10</tspan>
+                    <tspan x="78.7060547" y="43">{chromosome-3-father}</tspan>
                 </text>
                 <text id="c4-mother">
-                    <tspan x="5.70605469" y="61">10</tspan>
+                    <tspan x="5.70605469" y="61">{chromosome-4-mother}</tspan>
                 </text>
                 <text id="c4-father">
-                    <tspan x="81.7060547" y="61">10</tspan>
+                    <tspan x="81.7060547" y="61">{chromosome-4-father}</tspan>
                 </text>
                 <text id="c5-mother">
-                    <tspan x="5.70605469" y="80">10</tspan>
+                    <tspan x="5.70605469" y="80">{chromosome-5-mother}</tspan>
                 </text>
                 <text id="c5-father">
-                    <tspan x="81.7060547" y="80">10</tspan>
+                    <tspan x="81.7060547" y="80">{chromosome-5-father}</tspan>
                 </text>
                 <text id="c6-mother">
-                    <tspan x="10.7060547" y="98">10</tspan>
+                    <tspan x="10.7060547" y="98">{chromosome-6-mother}</tspan>
                 </text>
                 <text id="c6-father">
-                    <tspan x="77.7060547" y="98">10</tspan>
+                    <tspan x="77.7060547" y="98">{chromosome-6-father}</tspan>
                 </text>
                 <text id="c7-mother">
-                    <tspan x="18.7060547" y="117">10</tspan>
+                    <tspan x="18.7060547" y="117">{chromosome-7-mother}</tspan>
                 </text>
                 <text id="c7-father">
-                    <tspan x="68.7060547" y="117">10</tspan>
+                    <tspan x="68.7060547" y="117">{chromosome-7-father}</tspan>
                 </text>
                 <text id="c8-mother">
-                    <tspan x="27.7060547" y="135">10</tspan>
+                    <tspan x="27.7060547" y="135">{chromosome-8-mother}</tspan>
                 </text>
                 <text id="c8-father">
-                    <tspan x="58.7060547" y="135">10</tspan>
+                    <tspan x="58.7060547" y="135">{chromosome-8-father}</tspan>
                 </text>
                 <text id="c9-mother">
-                    <tspan x="26.7060547" y="154">10</tspan>
+                    <tspan x="26.7060547" y="154">{chromosome-9-mother}</tspan>
                 </text>
                 <text id="c9-father">
-                    <tspan x="58.7060547" y="154">10</tspan>
+                    <tspan x="58.7060547" y="154">{chromosome-9-father}</tspan>
                 </text>
                 <text id="c10-mother">
-                    <tspan x="16.7060547" y="172">10</tspan>
+                    <tspan x="16.7060547" y="172">{chromosome-10-mother}</tspan>
                 </text>
                 <text id="c10-father">
-                    <tspan x="70.7060547" y="172">10</tspan>
+                    <tspan x="70.7060547" y="172">{chromosome-10-father}</tspan>
                 </text>
                 <text id="c11-mother">
-                    <tspan x="9.70605469" y="191">10</tspan>
+                    <tspan x="9.70605469" y="191">{chromosome-11-mother}</tspan>
                 </text>
                 <text id="c11-father">
-                    <tspan x="78.7060547" y="191">10</tspan>
+                    <tspan x="78.7060547" y="191">{chromosome-11-father}</tspan>
                 </text>
                 <text id="c12-mother">
-                    <tspan x="4.70605469" y="209">10</tspan>
+                    <tspan x="4.70605469" y="209">{chromosome-12-mother}</tspan>
                 </text>
                 <text id="c12-father">
-                    <tspan x="82.7060547" y="209">10</tspan>
+                    <tspan x="82.7060547" y="209">{chromosome-12-father}</tspan>
                 </text>
                 <text id="c13-mother">
-                    <tspan x="2.70605469" y="228">10</tspan>
+                    <tspan x="2.70605469" y="228">{chromosome-13-mother}</tspan>
                 </text>
                 <text id="c13-father">
-                    <tspan x="84.7060547" y="228">10</tspan>
+                    <tspan x="84.7060547" y="228">{chromosome-13-father}</tspan>
                 </text>
                 <text id="c14-mother">
-                    <tspan x="4.70605469" y="246">10</tspan>
+                    <tspan x="4.70605469" y="246">{chromosome-14-mother}</tspan>
                 </text>
                 <text id="c14-father">
-                    <tspan x="82.7060547" y="246">10</tspan>
+                    <tspan x="82.7060547" y="246">{chromosome-14-father}</tspan>
                 </text>
                 <text id="c15-mother">
-                    <tspan x="12.7060547" y="265">10</tspan>
+                    <tspan x="12.7060547" y="265">{chromosome-15-mother}</tspan>
                 </text>
                 <text id="c15-father">
-                    <tspan x="74.7060547" y="265">10</tspan>
+                    <tspan x="74.7060547" y="265">{chromosome-15-father}</tspan>
                 </text>
                 <text id="c16-mother">
-                    <tspan x="25.7060547" y="283">10</tspan>
+                    <tspan x="25.7060547" y="283">{chromosome-16-mother}</tspan>
                 </text>
                 <text id="c16-father">
-                    <tspan x="60.7060547" y="283">10</tspan>
+                    <tspan x="60.7060547" y="283">{chromosome-16-father}</tspan>
                 </text>
                 <text id="c17-mother">
-                    <tspan x="24.7060547" y="302">10</tspan>
+                    <tspan x="24.7060547" y="302">{chromosome-17-mother}</tspan>
                 </text>
                 <text id="c17-father">
-                    <tspan x="60.7060547" y="302">10</tspan>
+                    <tspan x="60.7060547" y="302">{chromosome-17-father}</tspan>
                 </text>
                 <text id="c18-mother">
-                    <tspan x="15.7060547" y="320">10</tspan>
+                    <tspan x="15.7060547" y="320">{chromosome-18-mother}</tspan>
                 </text>
                 <text id="c18-father">
-                    <tspan x="71.7060547" y="320">10</tspan>
+                    <tspan x="71.7060547" y="320">{chromosome-18-father}</tspan>
                 </text>
                 <text id="c19-mother">
-                    <tspan x="7.70605469" y="339">10</tspan>
+                    <tspan x="7.70605469" y="339">{chromosome-19-mother}</tspan>
                 </text>
                 <text id="c19-father">
-                    <tspan x="78.7060547" y="339">10</tspan>
+                    <tspan x="78.7060547" y="339">{chromosome-19-father}</tspan>
                 </text>
                 <text id="c20-mother">
-                    <tspan x="5.70605469" y="357">10</tspan>
+                    <tspan x="5.70605469" y="357">{chromosome-20-mother}</tspan>
                 </text>
                 <text id="c20-father">
-                    <tspan x="81.7060547" y="357">10</tspan>
+                    <tspan x="81.7060547" y="357">{chromosome-20-father}</tspan>
                 </text>
                 <text id="c21-mother">
-                    <tspan x="5.70605469" y="376">10</tspan>
+                    <tspan x="5.70605469" y="376">{chromosome-21-mother}</tspan>
                 </text>
                 <text id="c21-father">
-                    <tspan x="81.7060547" y="376">10</tspan>
+                    <tspan x="81.7060547" y="376">{chromosome-21-father}</tspan>
                 </text>
                 <text id="c22-mother">
-                    <tspan x="10.7060547" y="394">10</tspan>
+                    <tspan x="10.7060547" y="394">{chromosome-22-mother}</tspan>
                 </text>
                 <text id="c22-father">
-                    <tspan x="77.7060547" y="394">10</tspan>
+                    <tspan x="77.7060547" y="394">{chromosome-22-father}</tspan>
                 </text>
                 <text id="c23-mother">
-                    <tspan x="18.7060547" y="413">10</tspan>
+                    <tspan x="18.7060547" y="413">{chromosome-23-mother}</tspan>
                 </text>
                 <text id="c23-father">
-                    <tspan x="68.7060547" y="413">10</tspan>
+                    <tspan x="68.7060547" y="413">{chromosome-23-father}</tspan>
                 </text>
                 <text id="c24-mother">
-                    <tspan x="27.7060547" y="431">10</tspan>
+                    <tspan x="27.7060547" y="431">{chromosome-24-mother}</tspan>
                 </text>
                 <text id="c24-father">
-                    <tspan x="58.7060547" y="431">10</tspan>
+                    <tspan x="58.7060547" y="431">{chromosome-24-father}</tspan>
                 </text>
                 <text id="c25-mother">
-                    <tspan x="26.7060547" y="450">10</tspan>
+                    <tspan x="26.7060547" y="450">{chromosome-25-mother}</tspan>
                 </text>
                 <text id="c25-father">
-                    <tspan x="58.7060547" y="450">10</tspan>
+                    <tspan x="58.7060547" y="450">{chromosome-25-father}</tspan>
                 </text>
                 <text id="c26-mother">
-                    <tspan x="16.7060547" y="468">10</tspan>
+                    <tspan x="16.7060547" y="468">{chromosome-26-mother}</tspan>
                 </text>
                 <text id="c26-father">
-                    <tspan x="70.7060547" y="468">10</tspan>
+                    <tspan x="70.7060547" y="468">{chromosome-26-father}</tspan>
                 </text>
                 <text id="c27-mother">
-                    <tspan x="9.70605469" y="487">10</tspan>
+                    <tspan x="9.70605469" y="487">{chromosome-27-mother}</tspan>
                 </text>
                 <text id="c27-father">
-                    <tspan x="78.7060547" y="487">10</tspan>
+                    <tspan x="78.7060547" y="487">{chromosome-27-father}</tspan>
                 </text>
                 <text id="c28-mother">
-                    <tspan x="4.70605469" y="505">10</tspan>
+                    <tspan x="4.70605469" y="505">{chromosome-28-mother}</tspan>
                 </text>
                 <text id="c28-father">
-                    <tspan x="82.7060547" y="505">10</tspan>
+                    <tspan x="82.7060547" y="505">{chromosome-28-father}</tspan>
                 </text>
                 <text id="c29-mother">
-                    <tspan x="2.70605469" y="524">10</tspan>
+                    <tspan x="2.70605469" y="524">{chromosome-29-mother}</tspan>
                 </text>
                 <text id="c29-father">
-                    <tspan x="84.7060547" y="524">10</tspan>
+                    <tspan x="84.7060547" y="524">{chromosome-29-father}</tspan>
                 </text>
                 <text id="c30-mother">
-                    <tspan x="4.70605469" y="542">10</tspan>
+                    <tspan x="4.70605469" y="542">{chromosome-30-mother}</tspan>
                 </text>
                 <text id="c30-father">
-                    <tspan x="82.7060547" y="542">10</tspan>
+                    <tspan x="82.7060547" y="542">{chromosome-30-father}</tspan>
                 </text>
                 <text id="c31-mother">
-                    <tspan x="12.7060547" y="561">10</tspan>
+                    <tspan x="12.7060547" y="561">{chromosome-31-mother}</tspan>
                 </text>
                 <text id="c31-father">
-                    <tspan x="74.7060547" y="561">10</tspan>
+                    <tspan x="74.7060547" y="561">{chromosome-31-father}</tspan>
                 </text>
                 <text id="c32-mother">
-                    <tspan x="25.7060547" y="579">10</tspan>
+                    <tspan x="25.7060547" y="579">{chromosome-32-mother}</tspan>
                 </text>
                 <text id="c32-father">
-                    <tspan x="60.7060547" y="579">10</tspan>
+                    <tspan x="60.7060547" y="579">{chromosome-32-father}</tspan>
                 </text>
             </g>
         </g>
