@@ -1,8 +1,6 @@
+import wizardChild from './wizard-child';
+
 const program = require('commander');
-const path = require('path');
-const rootDir = path.join(__dirname, '..');
-const libDir = path.join(rootDir, 'lib');
-const wizardChild = require(path.join(libDir, 'wizard-child'));
 
 // program basics
 program

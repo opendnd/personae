@@ -1,8 +1,6 @@
+import './extensions';
+
 const colors = require('colors/safe');
-const path = require('path');
-const rootDir = path.join(__dirname, '..');
-const libDir = path.join(rootDir, 'lib');
-require(path.join(libDir, 'extensions'));
 
 class Renderer {
   static renderDescription(person) {
@@ -127,4 +125,4 @@ class Renderer {
   }
 }
 
-module.exports = Renderer;
+export default Renderer;

@@ -1,9 +1,7 @@
+import Personae from './personae';
+import Saver from './saver';
+
 const program = require('commander');
-const path = require('path');
-const rootDir = path.join(__dirname, '..');
-const libDir = path.join(rootDir, 'lib');
-const Saver = require(path.join(libDir, 'saver'));
-const Personae = require(path.join(libDir, 'personae'));
 
 // program basics
 program
@@ -20,6 +18,6 @@ if (program.child) {
   process.stdout.write(Personae.output(parents.mother));
   Saver.finish(outputDir, 'Would you like to save the mother? (y | n)', parents.mother, parents.mother.name, () => {
     process.stdout.write(Personae.output(parents.father));
-    Saver.finish(outputDir, 'Would you like to save the father? (y | n)', parents.father, parents.father.name);
+    Saver.finish(outputDir, 'Would you like to save the father? (y | n)', parents.father, parents.father.name, undefined);
   });
 }

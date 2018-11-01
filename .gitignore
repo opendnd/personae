@@ -51,3 +51,6 @@ jspm_packages
 *.seed
 test/*.pdf
 test/*.svg
+test/samples/
+
+dist

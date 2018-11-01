@@ -1,8 +1,5 @@
-const expect = require('chai').expect;
-const path = require('path');
-const rootDir = path.join(__dirname, '..', '..');
-const libDir = path.join(rootDir, 'lib');
-const defaults = require(path.join(libDir, 'defaults'));
+import { expect } from 'chai';
+import defaults from '../src/defaults';
 
 describe('defaults', () => {
   it('loads from default', () => {

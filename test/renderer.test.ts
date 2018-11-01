@@ -1,9 +1,6 @@
-const expect = require('chai').expect;
-const path = require('path');
-const rootDir = path.join(__dirname, '..', '..');
-const libDir = path.join(rootDir, 'lib');
-const Renderer = require(path.join(libDir, 'renderer'));
-const Personae = require(path.join(libDir, 'personae'));
+import { expect } from 'chai';
+import Personae from '../src/personae';
+import Renderer from '../src/renderer';
 
 let personae, person;
 

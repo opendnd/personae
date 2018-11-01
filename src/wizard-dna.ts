@@ -1,14 +1,17 @@
-const fs = require('fs');
+import * as fs from 'fs';
+import * as path from 'path';
+import Genetica from 'genetica';
+
+import Personae from './personae';
+import defaults from './defaults';
+import Saver from './saver';
+
 const questions = require('questions');
 const colors = require('colors/safe');
-const Genetica = require('genetica');
-const path = require('path');
+
 const rootDir = path.join(__dirname, '..');
-const libDir = path.join(rootDir, 'lib');
 const logo = fs.readFileSync(path.join(rootDir, 'logo.txt'), { encoding: 'utf-8' });
-const Personae = require(path.join(libDir, 'personae'));
-const defaults = require(path.join(libDir, 'defaults'));
-const Saver = require(path.join(libDir, 'saver'));
+
 const Nomina = require('nomina');
 const nomina = new Nomina();
 const themes = nomina.getThemes();
@@ -66,8 +69,8 @@ const wizardDNA = (outputDir, DNApath) => {
     const person = personae.generate();
 
     process.stdout.write(Personae.output(person));
-    Saver.finish(outputDir, 'Would you like to save your person? (y | n)', person, person.name);
+    Saver.finish(outputDir, 'Would you like to save your person? (y | n)', person, person.name, undefined);
   });
 };
 
-module.exports = wizardDNA;
+export default wizardDNA;

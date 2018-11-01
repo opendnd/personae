@@ -74,4 +74,4 @@ class Saver {
   }
 }
 
-module.exports = Saver;
+export default Saver;

@@ -1,8 +1,10 @@
 /* eslint-disable */
+import * as fs from 'fs';
+import * as path from 'path';
+import Genetica from 'genetica';
 
-const fs = require('fs');
-const path = require('path');
-const Genetica = require('genetica');
+import defaultsDefault from './defaults-default';
+
 const rootDir = path.join(__dirname, '..');
 const libDir = path.join(rootDir, 'lib');
 const home = process.env.HOME || process.env.USERPROFILE;
@@ -13,7 +15,7 @@ let defaults;
 if (fs.existsSync(userPath)) {
   defaults = require(userPath);
 } else {
-  defaults = require(path.join(libDir, 'defaults-default'));
+  defaults = defaultsDefault;
 }
 
 // put all of the backgrounds into a single master set
@@ -37,4 +39,4 @@ const geneticaDefaults = Genetica.getDefaults();
 defaults.races = geneticaDefaults.races;
 defaults.genders = geneticaDefaults.genders;
 
-module.exports = defaults;
+export default defaults;

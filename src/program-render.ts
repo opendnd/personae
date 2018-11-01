@@ -1,9 +1,7 @@
+import Personae from './personae';
+import Saver from './saver';
+
 const program = require('commander');
-const path = require('path');
-const rootDir = path.join(__dirname, '..');
-const libDir = path.join(rootDir, 'lib');
-const Personae = require(path.join(libDir, 'personae'));
-const Saver = require(path.join(libDir, 'saver'));
 
 // program basics
 program

@@ -1,21 +1,32 @@
+import Genetica from 'genetica';
+import { Person } from 'opendnd-core';
+
+import defaults from './defaults';
+import Saver from './saver';
+import Renderer from './renderer';
+
+import './extensions';
+
 // this is the main class for generating a person
 const randomWeighted = require('random-weighted');
 const Nomina = require('nomina');
-const Genetica = require('genetica');
 const Roll = require('roll');
 const path = require('path');
 const rootDir = path.join(__dirname, '..');
-const libDir = path.join(rootDir, 'lib');
-require(path.join(libDir, 'extensions'));
-const defaults = require(path.join(libDir, 'defaults'));
-const Saver = require(path.join(libDir, 'saver'));
-const Renderer = require(path.join(libDir, 'renderer'));
 const pinfo = require(path.join(rootDir, 'package.json'));
 const roll = new Roll();
 
 class Personae {
+  defaults:any
+  defaultsNomina:any
+  nomina:any
+  opts:any
+  themes:any
+  alignmentX:any
+  alignmentY:any
+
   // init
-  constructor(opts = {}) {
+  constructor(opts:any = {}) {
     this.opts = opts;
 
     this.defaults = opts.defaults || defaults;
@@ -53,7 +64,7 @@ class Personae {
   }
 
   // validate the options
-  validateOpts(opts = {}) {
+  validateOpts(opts:any = {}) {
     // type
     if ((opts.type === undefined) || (opts.type === '')) opts.type = this.defaults.type;
     if (!this.defaults.types.ignoreCaseIncludes(opts.type)) opts.type = this.defaults.type;
@@ -259,7 +270,7 @@ class Personae {
   }
 
   // generate a child
-  generateChild(opts = {}, motherPerson = {}, fatherPerson = {}) {
+  generateChild(opts:any = {}, motherPerson:any = {}, fatherPerson:any = {}) {
     if (motherPerson.DNA.gender !== 'female') throw new Error('Mother is not female!');
     if (fatherPerson.DNA.gender !== 'male') throw new Error('Father is not male!');
 
@@ -316,7 +327,7 @@ class Personae {
   }
 
   // generate a person
-  generate(opts = {}) {
+  generate(opts = {}): Person {
     const genOpts = this.validateOpts(Object.assign(this.opts, opts));
     const { type, race, klass, alignment, theme, name, gender, age, ageGroup, background } = genOpts;
     const { version } = pinfo;
@@ -368,4 +379,4 @@ class Personae {
   }
 }
 
-module.exports = Personae;
+export default Personae;

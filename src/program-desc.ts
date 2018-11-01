@@ -1,6 +1,4 @@
-const path = require('path');
-const rootDir = path.join(__dirname, '..');
-const defaults = require(path.join(rootDir, 'lib', 'defaults'));
+import defaults from './defaults';
 
 const mapping = {
   personality: 'personalityTraits',

@@ -1,9 +1,17 @@
-const expect = require('chai').expect;
-const path = require('path');
-const rootDir = path.join(__dirname, '..', '..');
-const libDir = path.join(rootDir, 'lib');
-const Personae = require(path.join(libDir, 'personae'));
+import { expect } from 'chai';
+import Personae from '../src/personae';
 let personae, person, parents, child;
+
+// TODO: investigate what's setting this
+Object.defineProperty(
+  global,
+  'token',
+  { 
+    set: (x) => { 
+      debugger;
+    } 
+  }
+);
 
 describe('Personae', () => {
   before(() => {

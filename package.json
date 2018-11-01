@@ -5,9 +5,13 @@
   "main": "lib/personae.js",
   "scripts": {
     "start": "bin/personae",
-    "test": "npm run test:mocha && npm run test:lint",
-    "test:mocha": "mocha --reporter spec 'test/**/*.js'",
-    "test:lint": "eslint ."
+    "prebuild": "rimraf dist",
+    "build": "tsc",
+    "lint": "tslint src/**/*.ts",
+    "env:dev": "cross-env NODE_ENV=development",
+    "env:prod": "cross-env NODE_ENV=production",
+    "test": "mocha -c -S -R spec --compilers ts:ts-node/register --check-leaks",
+    "test:watch": "yarn test -- -w"
   },
   "repository": {
     "type": "git",
@@ -31,9 +35,10 @@
     "avataria": "^0.4.1",
     "colors": "^1.1.2",
     "commander": "^2.13.0",
-    "genetica": "^0.4.1",
+    "genetica": "^0.5.0",
     "node-zip": "^1.1.1",
     "nomina": "^0.4.3",
+    "opendnd-core": "0.0.5",
     "pdfkit": "^0.8.3",
     "questions": "0.0.6",
     "random-weighted": "^1.0.0",
@@ -50,9 +55,10 @@
     "eslint-config-airbnb-base": "^11.1.0",
     "eslint-plugin-import": "^2.12.0",
     "mocha": "^5.2.0",
+    "rimraf": "^2.6.2",
     "ts-node": "^7.0.1",
     "tslint": "^5.11.0",
-    "typescript": "^3.1.3",
+    "typescript": "^3.1.4",
     "yarn": "^1.10.1"
   }
 }
