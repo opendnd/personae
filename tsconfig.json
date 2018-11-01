@@ -3,9 +3,13 @@
     "target": "es6",
     "module": "commonjs",
     "outDir": "dist",
-    "sourceMap": true
+    "sourceMap": true,
+    "types": [
+      "node",
+      "chai",
+      "mocha"
+    ]
   },
-  "files": [],
   "include": [
     "src/**/*.ts"
   ],
