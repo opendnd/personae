@@ -35,15 +35,16 @@
     "avataria": "^0.4.1",
     "colors": "^1.1.2",
     "commander": "^2.13.0",
-    "genetica": "^0.5.2",
+    "genetica": "^0.5.3",
     "node-zip": "^1.1.1",
     "nomina": "^0.4.3",
-    "opendnd-core": "^0.1.0",
+    "opendnd-core": "^0.1.1",
     "pdfkit": "^0.8.3",
     "questions": "0.0.6",
     "random-weighted": "^1.0.0",
     "roll": "^1.2.0",
-    "svg-to-pdfkit": "^0.1.7"
+    "svg-to-pdfkit": "^0.1.7",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",

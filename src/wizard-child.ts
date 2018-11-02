@@ -4,6 +4,7 @@ import * as path from 'path';
 import Personae from './personae';
 import defaults from './defaults';
 import Saver from './saver';
+import { Genders } from 'opendnd-core';
 
 const questions = require('questions');
 const colors = require('colors/safe');
@@ -64,12 +65,25 @@ const wizardChild = (outputDir, mother = '', father = '') => {
     const fatherPerson = Saver.load(father);
 
     // check for proper inputs
-    if (motherPerson.DNA.race !== fatherPerson.DNA.race) throw new Error('Cross-breeding between races is not yet supported!');
-    if (motherPerson.DNA.gender !== 'female') throw new Error('The mother is not female!');
-    if (fatherPerson.DNA.gender !== 'male') throw new Error('The father is not male!');
+    if (motherPerson.DNA.race.uuid !== fatherPerson.DNA.race.uuid) throw new Error('Cross-breeding between races is not yet supported!');
+    if (motherPerson.DNA.gender !== Genders.Female) throw new Error('The mother is not female!');
+    if (fatherPerson.DNA.gender !== Genders.Male) throw new Error('The father is not male!');
 
     // add mother's race
     opts.race = motherPerson.race;
+
+    // make conversions for the opts
+    if (opts.type) opts.type = defaults.mapTypes[opts.type.toLowerCase()];
+    if (opts.age) opts.age = parseInt(opts.age);
+    if (opts.gender) opts.gender = defaults.mapGenders[opts.gender.toLowerCase()];
+    if (opts.alignment) opts.alignment = defaults.mapAlignments[opts.alignment];
+    if (opts.background) opts.background = { uuid: opts.background };
+    if (opts.klass) opts.klass = { name: opts.klass };
+
+    // remove empty opts
+    Object.keys(opts).forEach(key => {
+      if (opts[key] === '') opts[key] = undefined;
+    });
 
     const personae = new Personae(opts);
     const person = personae.generateChild(opts, motherPerson, fatherPerson);

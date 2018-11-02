@@ -65,6 +65,18 @@ const wizardSeed = (outputDir, seedPath) => {
     opts.race = race;
     opts.seed = seed;
 
+    // make conversions for the opts
+    if (opts.type) opts.type = defaults.mapTypes[opts.type.toLowerCase()];
+    if (opts.age) opts.age = parseInt(opts.age);
+    if (opts.alignment) opts.alignment = defaults.mapAlignments[opts.alignment];
+    if (opts.background) opts.background = { uuid: opts.background };
+    if (opts.klass) opts.klass = { name: opts.klass };
+
+    // remove empty opts
+    Object.keys(opts).forEach(key => {
+      if (opts[key] === '') opts[key] = undefined;
+    });
+
     const personae = new Personae(opts);
     const person = personae.generate();
 

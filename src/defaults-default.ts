@@ -102,7 +102,6 @@ const defaults = {
 
   // types
   types: ['PC', 'NPC'],
-  type: 'NPC',
 
   // info
   classes: ['Barbarian', 'Bard', 'Cleric', 'Druid', 'Fighter', 'Monk', 'Paladin', 'Ranger', 'Rogue', 'Sorcerer', 'Warlock', 'Wizard'],
@@ -190,19 +189,6 @@ const defaults = {
   // age groups
   ageGroups: ['child', 'young', 'middle', 'old'],
   ageWeights: [0.1, 0.2, 0.5, 0.2],
-
-  // alignment details
-  alignmentDetails: {
-    'Lawful Good'     : { x: 0, y: 2 },
-    'Neutral Good'    : { x: 1, y: 2 },
-    'Chaotic Good'    : { x: 2, y: 2 },
-    'Lawful Neutral'  : { x: 0, y: 1 },
-    'True Neutral'    : { x: 1, y: 1 },
-    'Chaotic Neutral' : { x: 2, y: 1 },
-    'Lawful Evil'     : { x: 0, y: 0 },
-    'Neutral Evil'    : { x: 1, y: 0 },
-    'Chaotic Evil'    : { x: 2, y: 0 },
-  },
 
   // alignment x and y
   alignmentX: ['Lawful', 'Neutral', 'Chaotic'],

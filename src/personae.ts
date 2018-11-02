@@ -1,5 +1,18 @@
+import * as uuidv1 from 'uuid/v1';
 import Genetica from 'genetica';
-import { Person } from 'opendnd-core';
+import { 
+  Person, 
+  PersonTypes, 
+  LinkRace, 
+  LinkKlass, 
+  LinkBackground, 
+  ExpandedAlignments, 
+  expandedAlignmentsMatrix,
+  expandedAlignmentsX,
+  expandedAlignmentsY,
+  Genders, 
+  AgeGroups,
+} from 'opendnd-core';
 
 import defaults from './defaults';
 import Saver from './saver';
@@ -16,6 +29,21 @@ const rootDir = path.join(__dirname, '..');
 const pinfo = require(path.join(rootDir, 'package.json'));
 const roll = new Roll();
 
+export interface PersonaeOpts {
+  defaults?: any
+  defaultsNomina?: any
+  type?: PersonTypes
+  race?: LinkRace
+  klass?: LinkKlass
+  background?: LinkBackground
+  alignment?: ExpandedAlignments
+  gender?: Genders
+  theme?: string // TODO: replace with cultures
+  name?: string
+  age?: number
+  ageGroup?: AgeGroups
+}
+
 class Personae {
   defaults:any
   defaultsNomina:any
@@ -26,7 +54,7 @@ class Personae {
   alignmentY:any
 
   // init
-  constructor(opts:any = {}) {
+  constructor(opts:PersonaeOpts = {}) {
     this.opts = opts;
 
     this.defaults = opts.defaults || defaults;
@@ -64,52 +92,41 @@ class Personae {
   }
 
   // validate the options
-  validateOpts(opts:any = {}) {
-    // type
-    if ((opts.type === undefined) || (opts.type === '')) opts.type = this.defaults.type;
-    if (!this.defaults.types.ignoreCaseIncludes(opts.type)) opts.type = this.defaults.type;
-    opts.type = opts.type.toUpperCase();
+  validateOpts(opts:PersonaeOpts = {}) {
+    // generate default type
+    if (opts.type === undefined) opts.type = PersonTypes.Playable;
 
-    if ((opts.race === undefined) || (opts.race === '')) opts.race = this.defaults.races.sample();
-    if (!this.defaults.races.ignoreCaseIncludes(opts.race)) opts.race = this.defaults.races.sample();
-    opts.race = opts.race.capitalizeAll();
+    // generate random race
+    if (opts.race === undefined) opts.race = { uuid: this.defaults.races.sample() };
 
-    // class
-    if ((opts.klass === undefined) || (opts.klass === '')) opts.klass = this.defaults.classes.sample();
-    if (!this.defaults.classes.ignoreCaseIncludes(opts.klass)) opts.klass = this.defaults.classes.sample();
-    opts.klass = opts.klass.capitalizeAll();
+    // generate random klass
+    if (opts.klass === undefined) opts.klass = { name: this.defaults.classes.sample() };
 
-    // background
-    if ((opts.background === undefined) || (opts.background === '')) opts.background = this.defaults.backgrounds.sample();
-    if (!this.defaults.backgrounds.ignoreCaseIncludes(opts.background)) opts.background = this.defaults.backgrounds.sample();
-    opts.background = opts.background.capitalizeAll();
+    // generate random background
+    if (opts.background === undefined) opts.background = { uuid: this.defaults.backgrounds.sample() };
 
-    // alignment
-    if ((opts.alignment === undefined) || (opts.alignment === '')) opts.alignment = this.defaults.alignments.sample();
-    if (!this.defaults.alignments.ignoreCaseIncludes(opts.alignment)) opts.alignment = this.defaults.alignments.sample();
-    opts.alignment = opts.alignment.capitalizeAll();
+    // generate random alignment
+    if (opts.alignment === undefined) opts.alignment = this.defaults.mapAlignments[this.defaults.alignments.sample()];
 
-    // gender
-    if ((opts.gender === undefined) || (opts.gender === '')) opts.gender = this.defaults.genders.sample();
-    if (!this.defaults.genders.ignoreCaseIncludes(opts.gender)) opts.gender = this.defaults.genders.sample();
-    opts.gender = opts.gender.toLowerCase();
+    // generate random gender
+    if (opts.gender === undefined) opts.gender = this.defaults.mapGenders[this.defaults.genders.sample()];
 
-    // theme
-    if ((opts.theme === undefined) || (opts.theme === '')) opts.theme = this.themes.sample();
-    if (!this.themes.ignoreCaseIncludes(opts.theme)) opts.theme = this.themes.sample();
-    opts.theme = opts.theme.toLowerCase();
+    // generate random theme
+    if (opts.theme === undefined) opts.theme = this.themes.sample();
 
-    // name
-    if ((opts.name === undefined) || (opts.name === '')) opts.name = this.nomina.generate({ type: opts.gender, theme: opts.theme });
+    // generate random name
+    if (opts.name === undefined) opts.name = this.nomina.generate({ type: Genders[opts.gender], theme: opts.theme });
 
     // generate age and ageGroup
-    if (((opts.age === undefined) || (opts.age === '')) && (opts.ageGroup)) {
-      opts.age = Personae.generateAge(opts.race, opts.ageGroup);
-    } else if ((opts.age) && ((opts.ageGroup === undefined) || (opts.ageGroup === ''))) {
+    if ((opts.age === undefined) && (opts.ageGroup === undefined)) {
       opts.ageGroup = Personae.generateAgeGroup();
-    } else if (((opts.age === undefined) || (opts.age === '')) && ((opts.ageGroup === undefined) || (opts.ageGroup === ''))) {
+      opts.age = Personae.generateAge(opts.race.uuid, opts.ageGroup);
+    // generate ageGroup from age
+    } else if ((opts.age !== undefined) && (opts.ageGroup === undefined)) {
       opts.ageGroup = Personae.generateAgeGroup();
-      opts.age = Personae.generateAge(opts.race, opts.ageGroup);
+    // generate age from ageGroup
+    } else if ((opts.age === undefined) && (opts.ageGroup !== undefined)) {
+      opts.age = Personae.generateAge(opts.race.uuid, opts.ageGroup);
     }
 
     this.opts = opts;
@@ -123,11 +140,12 @@ class Personae {
   }
 
   // generate age
-  static generateAge(race = 'Dragonborn', ageGroup = 'child') {
+  static generateAge(raceUUID:string, ageGroup = AgeGroups.Child) {
+    const tmpAgeGroup = AgeGroups[ageGroup].toLowerCase(); // TODO: rework this ageGroup logic to the enum
     const { ageRanges, ageGroups, ageGroupDice } = defaults;
-    const ageRange = ageRanges[race].split('/');
-    const diceGroups = ageGroupDice[race].split('/');
-    const currentGroupIndex = ageGroups.indexOf(ageGroup);
+    const ageRange = ageRanges[raceUUID].split('/');
+    const diceGroups = ageGroupDice[raceUUID].split('/');
+    const currentGroupIndex = ageGroups.indexOf(tmpAgeGroup);
     const prevGroupIndex = currentGroupIndex - 1;
     const dice = diceGroups[currentGroupIndex];
 
@@ -139,9 +157,9 @@ class Personae {
   }
 
   // get ageGroup from age
-  static getAgeGroup(race = 'Dragonborn', age = 1) {
+  static getAgeGroup(raceUUID:string, age:number = 1) {
     const { ageRanges } = defaults;
-    const ageRange = ageRanges[race];
+    const ageRange = ageRanges[raceUUID];
     const groups = ageRange.split('/');
     const child = parseInt(groups[0], 10);
     const young = parseInt(groups[1], 10);
@@ -150,23 +168,23 @@ class Personae {
 
     // check conditionals
     if (age <= old) {
-      return 'old';
+      return AgeGroups.Old;
     } else if (age <= middle) {
-      return 'middle';
+      return AgeGroups.Middle;
     } else if (age <= young) {
-      return 'young';
+      return AgeGroups.Young;
     } else if (age <= child) {
-      return 'child';
+      return AgeGroups.Child;
     }
 
-    return 'unknown';
+    return null;
   }
 
   // generate ageGroup
   static generateAgeGroup() {
     const { ageWeights, ageGroups } = defaults;
 
-    return ageGroups[randomWeighted(ageWeights)];
+    return defaults.mapAgeGroups[ageGroups[randomWeighted(ageWeights)]];
   }
 
   // generate personality traits
@@ -180,10 +198,10 @@ class Personae {
   }
 
   // generate ideal
-  generateIdeal(alignment = 'Lawfaul Good', ideals = { any: [], good: [], evil: [], lawful: [], neutral: [], chaotic: [] }) {
-    const alignmentDetail = this.defaults.alignmentDetails[alignment];
-    this.alignmentX = this.defaults.alignmentX[alignmentDetail.x].toLowerCase();
-    this.alignmentY = this.defaults.alignmentY[alignmentDetail.y].toLowerCase();
+  generateIdeal(alignment = ExpandedAlignments.LG, ideals = { any: [], good: [], evil: [], lawful: [], neutral: [], chaotic: [] }) {
+    const alignmentDetail = expandedAlignmentsMatrix[ExpandedAlignments[alignment]];
+    this.alignmentX = expandedAlignmentsX[alignmentDetail.x];
+    this.alignmentY = expandedAlignmentsY[alignmentDetail.y];
 
     // generate a sample set
     let sampleSet = ideals.any.concat(ideals[this.alignmentX]).concat(ideals[this.alignmentY]);
@@ -203,7 +221,7 @@ class Personae {
   // generate abilities
   generateAbilities() {
     const { race } = this.opts;
-    const racialMod = this.defaults.racialMod[race];
+    const racialMod = this.defaults.racialMod[race.uuid];
     const available = Object.assign([], this.defaults.standardArray);
     const abilities = Object.assign({}, this.defaults.abilities);
     const abilityList = Object.keys(abilities); // create a list of abilities for RND to only assign to an ability once
@@ -211,13 +229,9 @@ class Personae {
     // assign abilities
     Object.keys(abilities).forEach((ability) => {
       const score = available.sample();
-      const mod = this.calculateMod(score);
 
       // assign score and mod
-      abilities[ability] = {
-        score,
-        mod,
-      };
+      abilities[ability] = score;
 
       // remove from available
       available.splice(available.indexOf(score), 1);
@@ -228,27 +242,19 @@ class Personae {
       // assign to all
       if (rule.ability === 'ALL') {
         Object.keys(abilities).forEach((ability) => {
-          const score = abilities[ability].score + rule.amount;
-          const mod = this.calculateMod(score);
+          const score = abilities[ability] + rule.amount;
 
           // assign score and mod
-          abilities[ability] = {
-            score,
-            mod,
-          };
+          abilities[ability] = score;
         });
 
         return;
       } else if (rule.ability === 'RND') {
         // find a random ability and add to amount
         const rndAbility = abilityList.sample();
-        const score = abilities[rndAbility].score + rule.amount;
-        const mod = this.calculateMod(score);
+        const score = abilities[rndAbility] + rule.amount;
 
-        abilities[rndAbility] = {
-          score,
-          mod,
-        };
+        abilities[rndAbility] = score;
 
         // remove from the random list so we don't assign it twice
         abilityList.splice(abilityList.indexOf(rndAbility), 1);
@@ -257,13 +263,9 @@ class Personae {
       }
 
       // do the standard rule
-      const score = abilities[rule.ability].score + rule.amount;
-      const mod = this.calculateMod(score);
+      const score = abilities[rule.ability] + rule.amount;
 
-      abilities[rule.ability] = {
-        score,
-        mod,
-      };
+      abilities[rule.ability] = score;
     });
 
     return abilities;
@@ -271,8 +273,8 @@ class Personae {
 
   // generate a child
   generateChild(opts:any = {}, motherPerson:any = {}, fatherPerson:any = {}) {
-    if (motherPerson.DNA.gender !== 'female') throw new Error('Mother is not female!');
-    if (fatherPerson.DNA.gender !== 'male') throw new Error('Father is not male!');
+    if (motherPerson.DNA.gender !== Genders.Female) throw new Error('Mother is not female!');
+    if (fatherPerson.DNA.gender !== Genders.Male) throw new Error('Father is not male!');
 
     this.validateOpts(Object.assign(this.opts, opts));
     const { theme } = motherPerson;
@@ -308,7 +310,7 @@ class Personae {
       theme,
       type,
       race,
-      gender: 'female',
+      gender: Genders.Female,
       DNA: parentsDNA.motherDNA,
     });
 
@@ -316,7 +318,7 @@ class Personae {
       theme,
       type,
       race,
-      gender: 'male',
+      gender: Genders.Male,
       DNA: parentsDNA.fatherDNA,
     });
 
@@ -328,13 +330,15 @@ class Personae {
 
   // generate a person
   generate(opts = {}): Person {
+    const uuid = uuidv1();
     const genOpts = this.validateOpts(Object.assign(this.opts, opts));
     const { type, race, klass, alignment, theme, name, gender, age, ageGroup, background } = genOpts;
+    const culture = { uuid: theme };
     const { version } = pinfo;
 
     // generate person details
     const abilities = this.generateAbilities();
-    const backgroundDetail = this.defaults.backgroundDetails[background];
+    const backgroundDetail = this.defaults.backgroundDetails[background.uuid];
     const specialty = backgroundDetail.specialties.sample();
     const personalityTraits = this.generatePersonalityTraits(backgroundDetail.personalityTraits);
     const ideal = this.generateIdeal(alignment, backgroundDetail.ideals);
@@ -356,7 +360,8 @@ class Personae {
 
     return {
       version,
-      theme,
+      uuid,
+      culture,
       name,
       age,
       ageGroup,
@@ -375,6 +380,146 @@ class Personae {
       trait,
       characteristic,
       DNA,
+
+      // TODO: add new fields
+      abstract: false,
+      abstractProperties: {},
+      derivation: null,
+      level: 0,
+      XP: 0,
+      playerName: '',
+      power: 0,
+      honor: 0,
+      piety: 0,
+      reputation: 0,
+      treasury: {
+        cp: 0,
+        sp: 0,
+        ep: 0,
+        gp: 0,
+        pp: 0,
+      },
+      cost: 0,
+      proficiencies: {
+        skills: [],
+        languages: [],
+        armors: [],
+        weapons: [],
+        transportation: [],
+        tools: [],
+        bonus: 2,
+      },
+      initiative: 0,
+      speed: 0,
+      AC: 0,
+      hitDice: [],
+      maxHP: 0,
+      tempHP: 0,
+      HP: 0,
+      conditions: [],
+      exhaustion: 0,
+      resistance: null,
+      vulnerability: null,
+      spellcasting: {
+        ability: null,
+        saveDC: 0,
+        attackModifier: 0,
+        spells: [],
+      },
+      faith: null,
+      mother: null,
+      father: null,
+      siblings: [],
+      spouse: null,
+      children: [],
+      family: null,
+      liege: null,
+      allies: [],
+      enemies: [],
+      factions: {
+        memberOf: [],
+        allies: [],
+        enemies: [],
+      },
+      birth: {
+        domain: null,
+        date: null,
+        rank: 0,
+      },
+      death: {
+        domain: null,
+        date: null,
+      },
+      features: [],
+      actions: [],
+      items: [],
+      magicItems: [],
+      weight: 0,
+      capacity: 0,
+      equipment: {
+        head: null,
+        leftBrow: null,
+        leftEye: null,
+        leftEar: null,
+        rightBrow: null,
+        rightEye: null,
+        rightEar: null,
+        eyes: null,
+        nose: null,
+        mouth: null,
+        chin: null,
+        neck: null,
+        leftShoulder: null,
+        leftBreast: null,
+        leftArm: null,
+        leftWrist: null,
+        leftHand: null,
+        leftFingers: null,
+        leftGrip: null,      
+        rightShoulder: null,
+        rightBreast: null,
+        rightArm: null,
+        rightWrist: null,
+        rightHand: null,
+        rightFingers: null,
+        rightGrip: null,
+        torso: null,
+        back: null,
+        abdomen: null,
+        waist: null,
+        groin: null,
+        rear: null,
+        leftThigh: null,
+        leftLeg: null,
+        leftKnee: null,
+        leftShin: null,
+        leftAnkle: null,
+        leftFoot: null,
+        leftToes: null,
+        rightThigh: null,
+        rightLeg: null,
+        rightKnee: null,
+        rightShin: null,
+        rightAnkle: null,
+        rightFoot: null,
+        rightToes: null,
+        mount: null,
+      },
+      chattel: [],
+      domains: [],
+      buildings: [],
+      titles: [],
+      familiars: [],
+      vehicles: [],
+      knowledge: [],
+      backstory: '',
+      campaigns: [],
+      activeCampaign: null,
+      quests: [],
+      stories: [],
+      dialogs: [],
+      currentDialog: 0,
+      notes: '',
     };
   }
 }
