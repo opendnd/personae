@@ -115,7 +115,7 @@ class Personae {
     if (opts.theme === undefined) opts.theme = this.themes.sample();
 
     // generate random name
-    if (opts.name === undefined) opts.name = this.nomina.generate({ type: Genders[opts.gender], theme: opts.theme });
+    if (opts.name === undefined) opts.name = this.nomina.generate({ type: Genders[opts.gender].toLocaleLowerCase(), theme: opts.theme });
 
     // generate age and ageGroup
     if ((opts.age === undefined) && (opts.ageGroup === undefined)) {
