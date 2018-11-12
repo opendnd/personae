@@ -1,27 +1,30 @@
-const fs = require('fs');
+import * as fs from 'fs';
+import * as path from 'path';
+import Genetica from 'genetica';
+
+import Personae from './personae';
+import defaults from './defaults';
+import Saver from './saver';
+
 const questions = require('questions');
 const colors = require('colors/safe');
-const Genetica = require('genetica');
-const path = require('path');
+
 const rootDir = path.join(__dirname, '..');
-const libDir = path.join(rootDir, 'lib');
 const logo = fs.readFileSync(path.join(rootDir, 'logo.txt'), { encoding: 'utf-8' });
-const Personae = require(path.join(libDir, 'personae'));
-const defaults = require(path.join(libDir, 'defaults'));
-const Saver = require(path.join(libDir, 'saver'));
+
 const Nomina = require('nomina');
 const nomina = new Nomina();
 const themes = nomina.getThemes();
 
-const wizardDNA = (outputDir, DNApath) => {
+const wizardSeed = (outputDir, seedPath) => {
   if (outputDir === undefined) outputDir = '.';
 
   // output welcome
   process.stdout.write(`\n${colors.yellow(logo)}\n`);
 
-  // load DNA
-  const DNA = Genetica.load(DNApath);
-  const { race, gender } = DNA;
+  // load seed
+  const seed = Genetica.loadSeed(seedPath);
+  const { race, gender } = seed;
 
   // ask a few questions
   questions.askMany({
@@ -60,14 +63,26 @@ const wizardDNA = (outputDir, DNApath) => {
   }, (opts) => {
     opts.gender = gender;
     opts.race = race;
-    opts.DNA = DNA;
+    opts.seed = seed;
+
+    // make conversions for the opts
+    if (opts.type) opts.type = defaults.mapTypes[opts.type.toLowerCase()];
+    if (opts.age) opts.age = parseInt(opts.age);
+    if (opts.alignment) opts.alignment = defaults.mapAlignments[opts.alignment];
+    if (opts.background) opts.background = { uuid: opts.background };
+    if (opts.klass) opts.klass = { name: opts.klass };
+
+    // remove empty opts
+    Object.keys(opts).forEach(key => {
+      if (opts[key] === '') opts[key] = undefined;
+    });
 
     const personae = new Personae(opts);
     const person = personae.generate();
 
     process.stdout.write(Personae.output(person));
-    Saver.finish(outputDir, 'Would you like to save your person? (y | n)', person, person.name);
+    Saver.finish(outputDir, 'Would you like to save your person? (y | n)', person, person.name, undefined);
   });
 };
 
-module.exports = wizardDNA;
+export default wizardSeed;

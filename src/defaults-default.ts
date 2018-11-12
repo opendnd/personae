@@ -102,7 +102,6 @@ const defaults = {
 
   // types
   types: ['PC', 'NPC'],
-  type: 'NPC',
 
   // info
   classes: ['Barbarian', 'Bard', 'Cleric', 'Druid', 'Fighter', 'Monk', 'Paladin', 'Ranger', 'Rogue', 'Sorcerer', 'Warlock', 'Wizard'],
@@ -191,19 +190,6 @@ const defaults = {
   ageGroups: ['child', 'young', 'middle', 'old'],
   ageWeights: [0.1, 0.2, 0.5, 0.2],
 
-  // alignment details
-  alignmentDetails: {
-    'Lawful Good'     : { x: 0, y: 2 },
-    'Neutral Good'    : { x: 1, y: 2 },
-    'Chaotic Good'    : { x: 2, y: 2 },
-    'Lawful Neutral'  : { x: 0, y: 1 },
-    'True Neutral'    : { x: 1, y: 1 },
-    'Chaotic Neutral' : { x: 2, y: 1 },
-    'Lawful Evil'     : { x: 0, y: 0 },
-    'Neutral Evil'    : { x: 1, y: 0 },
-    'Chaotic Evil'    : { x: 2, y: 0 },
-  },
-
   // alignment x and y
   alignmentX: ['Lawful', 'Neutral', 'Chaotic'],
   alignmentY: ['Evil', 'Neutral', 'Good'],
@@ -236,4 +222,4 @@ const defaults = {
   characteristics: ["all thumbs", "anemic", "attractive", "bad smelling", "battle scarred", "birthmarked", "big footed", "big handed", "tiny handed", "burn scarred", "chaos-tainted", "cheap, gaudy ring wearing", "clean", "club footed", "clumsy", "colorful", "crippled", "crooked toothed", "decoratively clothed", "deep voiced", "demure", "diseased", "distinctively jeweled", "distinctively ringed", "raggedly dressed", "poorly dressed", "flamboyantly dressed", "outlandishly dressed", "formally dressed", "very cleanly dressed", "earring wearing", "elegant", "exceptionally beautiful", "exceptionally ugly", "eye-patch wearing", "face tattooed", "facial scarred", "feline", "filthy", "foul-smelling", "gap-toothed", "gap-toothed", "gold toothed", "good looking", "greasy haired", "grizzled", "haggard", "hard of hearing", "harelipped", "healthy-looking", "heavily pierced", "heavily tattooed", "high-pitched", "hook handed", "hunchbacked", "injured", "lame", "lanky", "maimed", "masked", "missing fingered", "missing toothed", "mute", "neat", "nimble", "one armed", "one eyed", "one legged", "perfumed", "pierced", "pointy toothed", "rosy-cheeked", "rough", "ruddy", "sallow", "scarred", "six fingered", "slobbish", "slouching", "squinting", "sweaty", "twisted lipped", "twitching eyed", "ugly", "unhealthy looking", "veiled", "very attractive", "wart covered", "wolfish"],
 };
 
-module.exports = defaults;
+export default defaults;

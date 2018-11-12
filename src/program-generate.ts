@@ -1,10 +1,8 @@
+import wizard from './wizard';
+import wizardDNA from './wizard-dna';
+import wizardSeed from './wizard-seed';
+
 const program = require('commander');
-const path = require('path');
-const rootDir = path.join(__dirname, '..');
-const libDir = path.join(rootDir, 'lib');
-const wizard = require(path.join(libDir, 'wizard'));
-const wizardDNA = require(path.join(libDir, 'wizard-dna'));
-const wizardSeed = require(path.join(libDir, 'wizard-seed'));
 
 // program basics
 program

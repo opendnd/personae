@@ -1,3 +1,5 @@
+import Saver from './saver';
+
 const PDFDocument = require('pdfkit');
 const SVGtoPDF = require('svg-to-pdfkit');
 const fs = require('fs');
@@ -5,8 +7,6 @@ const path = require('path');
 const Avataria = require('avataria');
 const rootDir = path.join(__dirname, '..');
 const assetsDir = path.join(rootDir, 'assets');
-const libDir = path.join(rootDir, 'lib');
-const Saver = require(path.join(libDir, 'saver'));
 const doc = new PDFDocument();
 
 let filename = process.argv[2];

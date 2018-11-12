@@ -1,9 +1,18 @@
-const expect = require('chai').expect;
-const path = require('path');
-const rootDir = path.join(__dirname, '..', '..');
-const libDir = path.join(rootDir, 'lib');
-const Personae = require(path.join(libDir, 'personae'));
+import { expect } from 'chai';
+import Personae from '../src/personae';
+import { PersonTypes, Genders } from 'opendnd-core';
 let personae, person, parents, child;
+
+// TODO: investigate what's setting this
+Object.defineProperty(
+  global,
+  'token',
+  { 
+    set: (x) => { 
+      debugger;
+    } 
+  }
+);
 
 describe('Personae', () => {
   before(() => {
@@ -20,7 +29,7 @@ describe('Personae', () => {
     });
 
     it('has a theme', () => {
-      expect(person.theme).to.be.a('string');
+      expect(person.culture.uuid).to.be.a('string');
     });
 
     it('has a name', () => {
@@ -32,7 +41,7 @@ describe('Personae', () => {
     });
 
     it('has an ageGroup', () => {
-      expect(person.ageGroup).to.be.a('string');
+      expect(person.ageGroup).to.be.a('number');
     });
 
     it('has abilities', () => {
@@ -40,19 +49,19 @@ describe('Personae', () => {
     });
 
     it('has a type', () => {
-      expect(person.type).to.be.a('string');
+      expect(person.type).to.be.a('number');
     });
 
     it('has an alignment', () => {
-      expect(person.type).to.be.a('string');
+      expect(person.type).to.be.a('number');
     });
 
     it('has a klass', () => {
-      expect(person.klass).to.be.a('string');
+      expect(person.klass.name).to.be.a('string');
     });
 
     it('has a background', () => {
-      expect(person.background).to.be.a('string');
+      expect(person.background.uuid).to.be.a('string');
     });
 
     it('has a specialty', () => {
@@ -93,15 +102,15 @@ describe('Personae', () => {
 
     it('has DNA', () => {
       expect(person.DNA).to.be.an('object');
-      expect(person.DNA.gender).to.be.a('string');
-      expect(person.DNA.race).to.be.a('string');
+      expect(person.DNA.gender).to.be.a('number');
+      expect(person.DNA.race.uuid).to.be.a('string');
     });    
   })
 
   it('generates with default options', () => {
     person = personae.generate();
 
-    expect(person.type).to.eq('NPC');
+    expect(person.type).to.eq(PersonTypes.Playable);
   });
 
   it('generates parents', () => {
@@ -115,8 +124,8 @@ describe('Personae', () => {
   });
 
   it('generates a child', () => {
-    const mother = personae.generate({ gender: 'female', race: 'Dragonborn' });
-    const father = personae.generate({ gender: 'male', race: 'Dragonborn' });
+    const mother = personae.generate({ gender: Genders.Female, race: { uuid: 'Dragonborn' } });
+    const father = personae.generate({ gender: Genders.Male, race: { uuid: 'Dragonborn' } });
     child = personae.generateChild({}, mother, father);
 
     expect(child).to.be.an('object');

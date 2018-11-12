@@ -5,9 +5,13 @@
   "main": "lib/personae.js",
   "scripts": {
     "start": "bin/personae",
-    "test": "npm run test:mocha && npm run test:lint",
-    "test:mocha": "mocha --reporter spec 'test/**/*.js'",
-    "test:lint": "eslint ."
+    "prebuild": "rimraf dist",
+    "build": "tsc --declaration",
+    "lint": "tslint src/**/*.ts",
+    "env:dev": "cross-env NODE_ENV=development",
+    "env:prod": "cross-env NODE_ENV=production",
+    "test": "mocha -c -S -R spec --compilers ts:ts-node/register --check-leaks",
+    "test:watch": "yarn test -- -w"
   },
   "repository": {
     "type": "git",
@@ -31,20 +35,31 @@
     "avataria": "^0.4.1",
     "colors": "^1.1.2",
     "commander": "^2.13.0",
-    "genetica": "^0.4.1",
+    "genetica": "^0.5.3",
     "node-zip": "^1.1.1",
     "nomina": "^0.4.3",
+    "opendnd-core": "^0.1.1",
     "pdfkit": "^0.8.3",
     "questions": "0.0.6",
     "random-weighted": "^1.0.0",
     "roll": "^1.2.0",
-    "svg-to-pdfkit": "^0.1.7"
+    "svg-to-pdfkit": "^0.1.7",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.12.1",
     "chai": "^4.1.2",
+    "cross-env": "^5.2.0",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^11.1.0",
     "eslint-plugin-import": "^2.12.0",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "rimraf": "^2.6.2",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.11.0",
+    "typescript": "^3.1.4",
+    "yarn": "^1.10.1"
   }
 }

@@ -1,30 +1,30 @@
+import './extensions';
+
+import { Person, Genders, AgeGroups, PersonTypes, ExpandedAlignments } from 'opendnd-core';
+
 const colors = require('colors/safe');
-const path = require('path');
-const rootDir = path.join(__dirname, '..');
-const libDir = path.join(rootDir, 'lib');
-require(path.join(libDir, 'extensions'));
 
 class Renderer {
-  static renderDescription(person) {
+  static renderDescription(person:Person) {
     const { name, ageGroup, type, characteristic, DNA } = person;
     const appearance = DNA.traits;
     const { gender, race } = DNA;
 
     const renderAppearance = (legendName) => {
       if (appearance[legendName] === undefined) return ''; // make sure this race has the legendName
-      if ((legendName === 'skin-aging') && (ageGroup !== 'old')) return ''; // only apply aging if we're in the old ageGroup
+      if ((legendName === 'skin-aging') && (ageGroup !== AgeGroups.Old)) return ''; // only apply aging if we're in the old ageGroup
       const gene = appearance[legendName];
       return gene.trait;
     };
 
-    const posPro = (gender === 'male') ? 'his' : 'her';
-    const perPro = (gender === 'male') ? 'he' : 'she';
+    const posPro = (gender === Genders.Male) ? 'his' : 'her';
+    const perPro = (gender === Genders.Male) ? 'he' : 'she';
 
     let descOutput = '';
-    descOutput += `\t${name} is a ${gender} ${colors.bold(race)} (${type}) described as ${renderAppearance('general')} with ${renderAppearance('skin-aging')} ${renderAppearance('skin-general')} ${renderAppearance('skin-color')} skin.\n`;
+    descOutput += `\t${name} is a ${Genders[gender]} ${colors.bold(race.uuid)} (${PersonTypes[type]}) described as ${renderAppearance('general')} with ${renderAppearance('skin-aging')} ${renderAppearance('skin-general')} ${renderAppearance('skin-color')} skin.\n`;
     descOutput += `\t${posPro.capitalize()} most noticeable physical characteristic is that ${perPro}'s ${characteristic}.\n`;
 
-    if (gender === 'male') {
+    if (gender === Genders.Male) {
       descOutput += `\t${posPro.capitalize()} ${renderAppearance('hair-general')} ${renderAppearance('hair-color')} hair sits atop ${posPro} ${renderAppearance('hair-facial')} ${renderAppearance('face-shape')} face and features ${posPro} ${renderAppearance('face-nose')} nose and ${renderAppearance('face-mouth')} mouth.\n`;
       if (renderAppearance('sex').length >= 1) descOutput += `\tAs a male ${race}, they say I'm ${renderAppearance('sex')}.\n`;
     } else {
@@ -44,19 +44,19 @@ class Renderer {
     const { gender, race } = DNA;
 
     let introOutput = '';
-    introOutput += `\tGreetings, my name is ${colors.bold(name)} and I'm ${age} years old (${ageGroup}-age).\n`;
-    introOutput += `\tI am a ${gender} ${colors.bold(race)} ${colors.bold(klass)} and my alignment is ${colors.underline(alignment)}.\n`;
+    introOutput += `\tGreetings, my name is ${colors.bold(name)} and I'm ${age} years old (${AgeGroups[ageGroup]}-age).\n`;
+    introOutput += `\tI am a ${Genders[gender]} ${colors.bold(race.uuid)} ${colors.bold(klass.name)} and my alignment is ${colors.underline(ExpandedAlignments[alignment])}.\n`;
 
-    if (background === 'Folk Hero') {
-      introOutput += `\tI've been known as a ${colors.bold(background)} ever since ${specialty}\n`;
-    } else if (background === 'Charlatan') {
-      introOutput += `\tI'm a ${colors.bold(background)}, my favorite scam is ${specialty}\n`;
-    } else if (background === 'Hermit') {
-      introOutput += `\tI've been a ${colors.bold(background)}, I entered the life of seclusion as ${specialty}\n`;
-    } else if (background === 'Urchin') {
-      introOutput += `\tI grew up as a ${colors.bold(background)} as I was orphaned, ${specialty}\n`;
+    if (background.uuid === 'Folk Hero') {
+      introOutput += `\tI've been known as a ${colors.bold(background.uuid)} ever since ${specialty}\n`;
+    } else if (background.uuid === 'Charlatan') {
+      introOutput += `\tI'm a ${colors.bold(background.uuid)}, my favorite scam is ${specialty}\n`;
+    } else if (background.uuid === 'Hermit') {
+      introOutput += `\tI've been a ${colors.bold(background.uuid)}, I entered the life of seclusion as ${specialty}\n`;
+    } else if (background.uuid === 'Urchin') {
+      introOutput += `\tI grew up as a ${colors.bold(background.uuid)} as I was orphaned, ${specialty}\n`;
     } else {
-      introOutput += `\tPreviously, I've been a ${colors.bold(background)} with the ${colors.bold(specialty)} specialty.\n`;
+      introOutput += `\tPreviously, I've been a ${colors.bold(background.uuid)} with the ${colors.bold(specialty)} specialty.\n`;
     }
 
     introOutput += `\t${personalityTraits[0]}\n`;
@@ -77,12 +77,12 @@ class Renderer {
     const { abilities } = person;
 
     let abilitiesOutput = '';
-    abilitiesOutput += `\t- STR: ${abilities.STR.score} (mod: ${abilities.STR.mod})\n`;
-    abilitiesOutput += `\t- DEX: ${abilities.DEX.score} (mod: ${abilities.DEX.mod})\n`;
-    abilitiesOutput += `\t- CON: ${abilities.CON.score} (mod: ${abilities.CON.mod})\n`;
-    abilitiesOutput += `\t- INT: ${abilities.INT.score} (mod: ${abilities.INT.mod})\n`;
-    abilitiesOutput += `\t- WIS: ${abilities.WIS.score} (mod: ${abilities.WIS.mod})\n`;
-    abilitiesOutput += `\t- CHA: ${abilities.CHA.score} (mod: ${abilities.CHA.mod})\n`;
+    abilitiesOutput += `\t- STR: ${abilities.STR}\n`;
+    abilitiesOutput += `\t- DEX: ${abilities.DEX}\n`;
+    abilitiesOutput += `\t- CON: ${abilities.CON}\n`;
+    abilitiesOutput += `\t- INT: ${abilities.INT}\n`;
+    abilitiesOutput += `\t- WIS: ${abilities.WIS}\n`;
+    abilitiesOutput += `\t- CHA: ${abilities.CHA}\n`;
     abilitiesOutput += '\n';
 
     abilitiesOutput = abilitiesOutput.replace(/ {2}/gi, ' '); // remove double spaces
@@ -127,4 +127,4 @@ class Renderer {
   }
 }
 
-module.exports = Renderer;
+export default Renderer;

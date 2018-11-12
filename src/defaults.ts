@@ -1,10 +1,11 @@
 /* eslint-disable */
+import * as fs from 'fs';
+import * as path from 'path';
+import Genetica from 'genetica';
 
-const fs = require('fs');
-const path = require('path');
-const Genetica = require('genetica');
-const rootDir = path.join(__dirname, '..');
-const libDir = path.join(rootDir, 'lib');
+import defaultsDefault from './defaults-default';
+import { PersonTypes, ExpandedAlignments, Genders, AgeGroups } from 'opendnd-core';
+
 const home = process.env.HOME || process.env.USERPROFILE;
 const userPath = path.join(home, '.dnd', 'personae', 'defaults.js');
 let defaults;
@@ -13,7 +14,7 @@ let defaults;
 if (fs.existsSync(userPath)) {
   defaults = require(userPath);
 } else {
-  defaults = require(path.join(libDir, 'defaults-default'));
+  defaults = defaultsDefault;
 }
 
 // put all of the backgrounds into a single master set
@@ -37,4 +38,31 @@ const geneticaDefaults = Genetica.getDefaults();
 defaults.races = geneticaDefaults.races;
 defaults.genders = geneticaDefaults.genders;
 
-module.exports = defaults;
+// TODO: replace with new enums
+defaults.mapTypes = { 
+  'PC': PersonTypes.Playable,
+  'NPC': PersonTypes.NonPlayable,
+};
+defaults.mapAlignments = {
+  'Lawful Good': ExpandedAlignments.LG,
+  'Neutral Good': ExpandedAlignments.NG,
+  'Chaotic Good': ExpandedAlignments.CG,
+  'Lawful Neutral': ExpandedAlignments.LN,
+  'True Neutral': ExpandedAlignments.NN,
+  'Chaotic Neutral': ExpandedAlignments.CN,
+  'Lawful Evil': ExpandedAlignments.LE,
+  'Neutral Evil': ExpandedAlignments.NE,
+  'Chaotic Evil': ExpandedAlignments.CE,
+};
+defaults.mapGenders = { 
+  'male': Genders.Male,
+  'female': Genders.Female,
+};
+defaults.mapAgeGroups = {
+  'child': AgeGroups.Child,
+  'young': AgeGroups.Young,
+  'middle': AgeGroups.Middle,
+  'old': AgeGroups.Old,
+};
+
+export default defaults;

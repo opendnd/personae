@@ -1,3 +1,17 @@
+declare global {
+  interface Array<T> {
+    pushUnique(element: T): void;
+    sample(): T;
+    ignoreCaseIncludes(searchElement:any, fromIndex:any): any;
+  }
+
+  interface String {
+    capitalize();
+    capitalizeAll();
+    lowerCaseFirst();
+  }
+}
+
 Array.prototype.ignoreCaseIncludes = function (searchElement, fromIndex) {
   if (this == null) throw new TypeError('"this" is null or not defined');
   return this.map(el => el.toLowerCase()).includes(searchElement.toLowerCase(), fromIndex);
@@ -28,3 +42,5 @@ String.prototype.lowerCaseFirst = function () {
   if (this.charAt(0) === 'I') return this;
   return this.charAt(0).toLowerCase() + this.slice(1);
 };
+
+export default {};
