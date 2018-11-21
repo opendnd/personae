@@ -1,60 +1,60 @@
-import * as uuidv1 from 'uuid/v1';
-import Genetica from 'genetica';
-import { 
-  Person, 
-  PersonTypes, 
-  LinkRace, 
-  LinkKlass, 
-  LinkBackground, 
-  ExpandedAlignments, 
+import Genetica from "genetica";
+import {
+  AgeGroups,
+  ExpandedAlignments,
   expandedAlignmentsMatrix,
   expandedAlignmentsX,
   expandedAlignmentsY,
-  Genders, 
-  AgeGroups,
-} from 'opendnd-core';
+  Genders,
+  ILinkBackground,
+  ILinkKlass,
+  ILinkRace,
+  IPerson,
+  PersonTypes,
+} from "opendnd-core";
+import * as uuidv1 from "uuid/v1";
 
-import defaults from './defaults';
-import Saver from './saver';
-import Renderer from './renderer';
+import defaults from "./defaults";
+import Renderer from "./renderer";
+import Saver from "./saver";
 
-import './extensions';
+import "./extensions";
 
 // this is the main class for generating a person
-const randomWeighted = require('random-weighted');
-const Nomina = require('nomina');
-const Roll = require('roll');
-const path = require('path');
-const rootDir = path.join(__dirname, '..');
-const pinfo = require(path.join(rootDir, 'package.json'));
+const randomWeighted = require("random-weighted");
+const Nomina = require("nomina");
+const Roll = require("roll");
+const path = require("path");
+const rootDir = path.join(__dirname, "..");
+const pinfo = require(path.join(rootDir, "package.json"));
 const roll = new Roll();
 
 export interface PersonaeOpts {
-  defaults?: any
-  defaultsNomina?: any
-  type?: PersonTypes
-  race?: LinkRace
-  klass?: LinkKlass
-  background?: LinkBackground
-  alignment?: ExpandedAlignments
-  gender?: Genders
-  theme?: string // TODO: replace with cultures
-  name?: string
-  age?: number
-  ageGroup?: AgeGroups
+  defaults?: any;
+  defaultsNomina?: any;
+  type?: PersonTypes;
+  race?: ILinkRace;
+  klass?: ILinkKlass;
+  background?: ILinkBackground;
+  alignment?: ExpandedAlignments;
+  gender?: Genders;
+  theme?: string; // TODO: replace with cultures
+  name?: string;
+  age?: number;
+  ageGroup?: AgeGroups;
 }
 
 class Personae {
-  defaults:any
-  defaultsNomina:any
-  nomina:any
-  opts:any
-  themes:any
-  alignmentX:any
-  alignmentY:any
+  public defaults: any;
+  public defaultsNomina: any;
+  public nomina: any;
+  public opts: any;
+  public themes: any;
+  public alignmentX: any;
+  public alignmentY: any;
 
   // init
-  constructor(opts:PersonaeOpts = {}) {
+  constructor(opts: PersonaeOpts = {}) {
     this.opts = opts;
 
     this.defaults = opts.defaults || defaults;
@@ -65,57 +65,31 @@ class Personae {
     this.themes = this.nomina.getThemes();
   }
 
-  // list defaults
-  static getDefaults() {
-    return defaults;
-  }
-
-  // load a file and return person
-  static load(filepath) {
-    return Saver.load(filepath);
-  }
-
-  // save a person
-  static save(filepath, person) {
-    return Saver.save(filepath, person);
-  }
-
-  // output
-  static output(person, type = 'sh') {
-    const mdTypes = ['md', 'markdown'];
-
-    // markdown
-    if (mdTypes.includes(type)) return Renderer.toMarkdown(person);
-
-    // default to console
-    return Renderer.toConsole(person);
-  }
-
   // validate the options
-  validateOpts(opts:PersonaeOpts = {}) {
+  public validateOpts(opts: PersonaeOpts = {}) {
     // generate default type
-    if (opts.type === undefined) opts.type = PersonTypes.Playable;
+    if (opts.type === undefined) { opts.type = PersonTypes.Playable; }
 
     // generate random race
-    if (opts.race === undefined) opts.race = { uuid: this.defaults.races.sample() };
+    if (opts.race === undefined) { opts.race = { uuid: this.defaults.races.sample(), name: this.defaults.races.sample() }; }
 
     // generate random klass
-    if (opts.klass === undefined) opts.klass = { name: this.defaults.classes.sample() };
+    if (opts.klass === undefined) { opts.klass = { uuid: this.defaults.classes.sample(), name: this.defaults.classes.sample() }; }
 
     // generate random background
-    if (opts.background === undefined) opts.background = { uuid: this.defaults.backgrounds.sample() };
+    if (opts.background === undefined) { opts.background = { uuid: this.defaults.backgrounds.sample(), name: this.defaults.backgrounds.sample() }; }
 
     // generate random alignment
-    if (opts.alignment === undefined) opts.alignment = this.defaults.mapAlignments[this.defaults.alignments.sample()];
+    if (opts.alignment === undefined) { opts.alignment = this.defaults.mapAlignments[this.defaults.alignments.sample()]; }
 
     // generate random gender
-    if (opts.gender === undefined) opts.gender = this.defaults.mapGenders[this.defaults.genders.sample()];
+    if (opts.gender === undefined) { opts.gender = this.defaults.mapGenders[this.defaults.genders.sample()]; }
 
     // generate random theme
-    if (opts.theme === undefined) opts.theme = this.themes.sample();
+    if (opts.theme === undefined) { opts.theme = this.themes.sample(); }
 
     // generate random name
-    if (opts.name === undefined) opts.name = this.nomina.generate({ type: Genders[opts.gender].toLocaleLowerCase(), theme: opts.theme });
+    if (opts.name === undefined) { opts.name = this.nomina.generate({ type: Genders[opts.gender], theme: opts.theme }); }
 
     // generate age and ageGroup
     if ((opts.age === undefined) && (opts.ageGroup === undefined)) {
@@ -134,33 +108,53 @@ class Personae {
     return opts;
   }
 
-  // reset opts
-  resetOpts() {
-    this.opts = {};
+  // list defaults
+  public static getDefaults() {
+    return defaults;
+  }
+
+  // load a file and return person
+  public static load(filepath) {
+    return Saver.load(filepath);
+  }
+
+  // save a person
+  public static save(filepath, person) {
+    return Saver.save(filepath, person);
+  }
+
+  // output
+  public static output(person, type = "sh") {
+    const mdTypes = ["md", "markdown"];
+
+    // markdown
+    if (mdTypes.includes(type)) { return Renderer.toMarkdown(person); }
+
+    // default to console
+    return Renderer.toConsole(person);
   }
 
   // generate age
-  static generateAge(raceUUID:string, ageGroup = AgeGroups.Child) {
-    const tmpAgeGroup = AgeGroups[ageGroup].toLowerCase(); // TODO: rework this ageGroup logic to the enum
+  public static generateAge(raceUUID: string, ageGroup = AgeGroups.Child) {
     const { ageRanges, ageGroups, ageGroupDice } = defaults;
-    const ageRange = ageRanges[raceUUID].split('/');
-    const diceGroups = ageGroupDice[raceUUID].split('/');
-    const currentGroupIndex = ageGroups.indexOf(tmpAgeGroup);
+    const ageRange = ageRanges[raceUUID].split("/");
+    const diceGroups = ageGroupDice[raceUUID].split("/");
+    const currentGroupIndex = ageGroups.indexOf(ageGroup);
     const prevGroupIndex = currentGroupIndex - 1;
     const dice = diceGroups[currentGroupIndex];
 
     // set the previous group min
     let prevGroupMin = 0;
-    if (prevGroupIndex >= 0) prevGroupMin = parseInt(ageRange[prevGroupIndex], 10);
+    if (prevGroupIndex >= 0) { prevGroupMin = parseInt(ageRange[prevGroupIndex], 10); }
 
     return prevGroupMin + roll.roll(dice).result;
   }
 
   // get ageGroup from age
-  static getAgeGroup(raceUUID:string, age:number = 1) {
+  public static getAgeGroup(raceUUID: string, age: number = 1) {
     const { ageRanges } = defaults;
     const ageRange = ageRanges[raceUUID];
-    const groups = ageRange.split('/');
+    const groups = ageRange.split("/");
     const child = parseInt(groups[0], 10);
     const young = parseInt(groups[1], 10);
     const middle = parseInt(groups[2], 10);
@@ -181,24 +175,29 @@ class Personae {
   }
 
   // generate ageGroup
-  static generateAgeGroup() {
+  public static generateAgeGroup() {
     const { ageWeights, ageGroups } = defaults;
 
     return defaults.mapAgeGroups[ageGroups[randomWeighted(ageWeights)]];
   }
 
+  // reset opts
+  public resetOpts() {
+    this.opts = {};
+  }
+
   // generate personality traits
-  generatePersonalityTraits(personalityTraits = []) {
+  public generatePersonalityTraits(personalityTraits = []) {
     const personalityTraitA = personalityTraits.sample();
     const pesronalityTraitB = this.defaults.personalityTraits.sample();
 
     // if it's the same then try again
-    if (personalityTraitA === pesronalityTraitB) return this.generatePersonalityTraits(personalityTraits);
+    if (personalityTraitA === pesronalityTraitB) { return this.generatePersonalityTraits(personalityTraits); }
     return [personalityTraitA, pesronalityTraitB];
   }
 
   // generate ideal
-  generateIdeal(alignment = ExpandedAlignments.LG, ideals = { any: [], good: [], evil: [], lawful: [], neutral: [], chaotic: [] }) {
+  public generateIdeal(alignment = ExpandedAlignments.LG, ideals = { any: [], good: [], evil: [], lawful: [], neutral: [], chaotic: [] }) {
     const alignmentDetail = expandedAlignmentsMatrix[ExpandedAlignments[alignment]];
     this.alignmentX = expandedAlignmentsX[alignmentDetail.x];
     this.alignmentY = expandedAlignmentsY[alignmentDetail.y];
@@ -214,12 +213,12 @@ class Personae {
   }
 
   // calculate modifier
-  calculateMod(score = 0) {
+  public calculateMod(score = 0) {
     return Math.floor((score - 10) / 2);
   }
 
   // generate abilities
-  generateAbilities() {
+  public generateAbilities() {
     const { race } = this.opts;
     const racialMod = this.defaults.racialMod[race.uuid];
     const available = Object.assign([], this.defaults.standardArray);
@@ -240,7 +239,7 @@ class Personae {
     // assign racial abilities
     racialMod.forEach((rule) => {
       // assign to all
-      if (rule.ability === 'ALL') {
+      if (rule.ability === "ALL") {
         Object.keys(abilities).forEach((ability) => {
           const score = abilities[ability] + rule.amount;
 
@@ -249,7 +248,7 @@ class Personae {
         });
 
         return;
-      } else if (rule.ability === 'RND') {
+      } else if (rule.ability === "RND") {
         // find a random ability and add to amount
         const rndAbility = abilityList.sample();
         const score = abilities[rndAbility] + rule.amount;
@@ -272,9 +271,9 @@ class Personae {
   }
 
   // generate a child
-  generateChild(opts:any = {}, motherPerson:any = {}, fatherPerson:any = {}) {
-    if (motherPerson.DNA.gender !== Genders.Female) throw new Error('Mother is not female!');
-    if (fatherPerson.DNA.gender !== Genders.Male) throw new Error('Father is not male!');
+  public generateChild(opts: any = {}, motherPerson: any = {}, fatherPerson: any = {}) {
+    if (motherPerson.DNA.gender !== Genders.Female) { throw new Error("Mother is not female!"); }
+    if (fatherPerson.DNA.gender !== Genders.Male) { throw new Error("Father is not male!"); }
 
     this.validateOpts(Object.assign(this.opts, opts));
     const { theme } = motherPerson;
@@ -299,7 +298,7 @@ class Personae {
   }
 
   // generate parents
-  generateParents(person) {
+  public generateParents(person) {
     const { DNA, type, theme } = person;
     const { race } = DNA;
     const genetica = new Genetica();
@@ -329,11 +328,11 @@ class Personae {
   }
 
   // generate a person
-  generate(opts = {}): Person {
+  public generate(opts = {}): IPerson {
     const uuid = uuidv1();
     const genOpts = this.validateOpts(Object.assign(this.opts, opts));
     const { type, race, klass, alignment, theme, name, gender, age, ageGroup, background } = genOpts;
-    const culture = { uuid: theme };
+    const culture = { uuid: theme, name: theme };
     const { version } = pinfo;
 
     // generate person details
@@ -353,7 +352,7 @@ class Personae {
       gender,
     });
     let DNA = this.opts.DNA || genetica.generate();
-    if (this.opts.seed) DNA = genetica.generate(this.opts.seed); // set DNA to the seed if we have it
+    if (this.opts.seed) { DNA = genetica.generate(this.opts.seed); } // set DNA to the seed if we have it
 
     // after generating a person reset DNA
     this.resetOpts();
@@ -383,11 +382,9 @@ class Personae {
 
       // TODO: add new fields
       abstract: false,
-      abstractProperties: {},
-      derivation: null,
       level: 0,
       XP: 0,
-      playerName: '',
+      playerName: "",
       power: 0,
       honor: 0,
       piety: 0,
@@ -475,7 +472,7 @@ class Personae {
         leftWrist: null,
         leftHand: null,
         leftFingers: null,
-        leftGrip: null,      
+        leftGrip: null,
         rightShoulder: null,
         rightBreast: null,
         rightArm: null,
@@ -512,14 +509,13 @@ class Personae {
       familiars: [],
       vehicles: [],
       knowledge: [],
-      backstory: '',
+      backstory: "",
       campaigns: [],
       activeCampaign: null,
       quests: [],
       stories: [],
       dialogs: [],
       currentDialog: 0,
-      notes: '',
     };
   }
 }

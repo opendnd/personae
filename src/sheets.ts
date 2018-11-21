@@ -1,176 +1,177 @@
-import Saver from './saver';
+import { ILinkPerson, IPerson } from "opendnd-core";
+import Saver from "./saver";
 
-const PDFDocument = require('pdfkit');
-const SVGtoPDF = require('svg-to-pdfkit');
-const fs = require('fs');
-const path = require('path');
-const Avataria = require('avataria');
-const rootDir = path.join(__dirname, '..');
-const assetsDir = path.join(rootDir, 'assets');
+const PDFDocument = require("pdfkit");
+const SVGtoPDF = require("svg-to-pdfkit");
+const fs = require("fs");
+const path = require("path");
+const Avataria = require("avataria");
+const rootDir = path.join(__dirname, "..");
+const assetsDir = path.join(rootDir, "assets");
 const doc = new PDFDocument();
 
 let filename = process.argv[2];
-if (filename === undefined) throw new Error('You must pass in a person as an input!');
+if (filename === undefined) { throw new Error("You must pass in a person as an input!"); }
 filename = path.resolve(filename);
 
 const avataria = new Avataria();
-const person = Saver.load(filename);
+const person: IPerson = Saver.load(filename);
 
 console.log(person); // eslint-disable-line no-console
 
-const sheet1 = fs.readFileSync(path.join(assetsDir, 'sheet1.svg'), 'utf-8');
-const sheet2 = fs.readFileSync(path.join(assetsDir, 'sheet2.svg'), 'utf-8');
-const sheet3 = fs.readFileSync(path.join(assetsDir, 'sheet3.svg'), 'utf-8');
-const sheet4 = fs.readFileSync(path.join(assetsDir, 'sheet4.svg'), 'utf-8');
-const sheet5 = fs.readFileSync(path.join(assetsDir, 'sheet5.svg'), 'utf-8');
+const sheet1 = fs.readFileSync(path.join(assetsDir, "sheet1.svg"), "utf-8");
+const sheet2 = fs.readFileSync(path.join(assetsDir, "sheet2.svg"), "utf-8");
+const sheet3 = fs.readFileSync(path.join(assetsDir, "sheet3.svg"), "utf-8");
+const sheet4 = fs.readFileSync(path.join(assetsDir, "sheet4.svg"), "utf-8");
+const sheet5 = fs.readFileSync(path.join(assetsDir, "sheet5.svg"), "utf-8");
 
 // add svg to doc
-PDFDocument.prototype.addSVG = function (svg, x, y, options) {
+PDFDocument.prototype.addSVG = function(svg, x, y, options) {
   return SVGtoPDF(this, svg, x, y, options), this; // eslint-disable-line no-sequences
 };
 
-doc.pipe(fs.createWriteStream(filename.replace('.per', '.pdf')));
+doc.pipe(fs.createWriteStream(filename.replace(".per", ".pdf")));
 
 const PDFOptions = {
-  preserveAspectRatio: 'xMaxYMax',
+  preserveAspectRatio: "xMaxYMax",
 };
 
 const renderBonus = (n) => {
-  if (n >= 0) return `+${n}`;
+  if (n >= 0) { return `+${n}`; }
   return n;
+};
+
+const calculateModifier = (score) => {
+  return Math.floor((score - 10) / 2);
+};
+
+const calculateSkills = (skills) => {
+  return {
+    survival: 0,
+    stealth: 0,
+    sleightOfHand: 0,
+    religion: 0,
+    persuasion: 0,
+    performance: 0,
+    perception: 0,
+    nature: 0,
+    medicine: 0,
+    investigation: 0,
+    intimidation: 0,
+    insight: 0,
+    history: 0,
+    deception: 0,
+    athletics: 0,
+    arcana: 0,
+    animalHandling: 0,
+    acrobatics: 0,
+  };
+};
+
+const calculateSenses = (skills) => {
+  return {
+    passivePerception: 0,
+    passiveInsight: 0,
+    passiveIntelligence: 0,
+  };
 };
 
 const renderMain = (svg) => {
   const {
-    name = '',
-    klass = '',
-    xp = 0,
-    level = 1,
-    background = '',
-    playerName = '',
-    DNA = {},
-    abilities = {},
-    stats = {},
-    skills = {},
-    senses = {},
-    saving = {},
-    defenses = {},
-    proficiencies = {},
+    name ,
+    klass,
+    XP,
+    level,
+    background,
+    playerName,
+    DNA,
+    speed,
+    abilities,
+    proficiencies,
+    resistance,
+    initiative,
+    AC,
+    HP,
+    maxHP,
+    tempHP,
+    hitDice,
   } = person;
   const {
-    race = '',
-  } = DNA;
-  const {
-    resistances = '',
-  } = defenses;
-  const {
-    weapons: weaponsProf = '',
-    tools: toolsProf = '',
-    languages: languagesProf = '',
+    skills,
+    weapons,
+    tools,
+    languages,
+    bonus: profBonus,
   } = proficiencies;
   const {
-    STR = {},
-    DEX = {},
-    CON = {},
-    INT = {},
-    WIS = {},
-    CHA = {},
+    STR,
+    DEX,
+    CON,
+    INT,
+    WIS,
+    CHA,
   } = abilities;
   const {
-    STR: savingStr = 0,
-    DEX: savingDex = 0,
-    CON: savingCon = 0,
-    INT: savingInt = 0,
-    WIS: savingWis = 0,
-    CHA: savingCha = 0,
-  } = saving;
+    race,
+  } = DNA;
   const {
-    score: strength = 10,
-    mod: strengthMod = 0,
-  } = STR;
+    survival,
+    stealth,
+    sleightOfHand,
+    religion,
+    persuasion,
+    performance,
+    perception,
+    nature,
+    medicine,
+    investigation,
+    intimidation,
+    insight,
+    history,
+    deception,
+    athletics,
+    arcana,
+    animalHandling,
+    acrobatics,
+  } = calculateSkills(skills);
+
   const {
-    score: dexterity = 10,
-    mod: dexterityMod = 0,
-  } = DEX;
-  const {
-    score: constitution = 10,
-    mod: constitutionMod = 0,
-  } = CON;
-  const {
-    score: intelligence = 10,
-    mod: intelligenceMod = 0,
-  } = INT;
-  const {
-    score: wisdom = 10,
-    mod: wisdomMod = 0,
-  } = WIS;
-  const {
-    score: charisma = 10,
-    mod: charismaMod = 0,
-  } = CHA;
-  const {
-    initiative = 0,
-    HP = {},
-    AC = 10,
-    'proficiency-bonus': profBonus = 0,
-    speed = 30,
-  } = stats;
-  const {
-    dice: hitDice = '1d6',
-    max: maxHP = 0,
-    current: currentHP = '',
-    temp: tempHP = '',
-  } = HP;
-  const {
-    survival = 0,
-    stealth = 0,
-    'sleight-of-hand': sleightOfHand = 0,
-    religion = 0,
-    persuasion = 0,
-    performance = 0,
-    perception = 0,
-    nature = 0,
-    medicine = 0,
-    investigation = 0,
-    intimidation = 0,
-    insight = 0,
-    history = 0,
-    deception = 0,
-    athletics = 0,
-    arcana = 0,
-    'animal-handling': animalHandling = 0,
-    acrobatics = 0,
-  } = skills;
-  const {
-    perception: passivePerception = 10,
-    insight: passiveInsight = 10,
-    intelligence: passiveIntelligence = 10,
-  } = senses;
+    passivePerception,
+    passiveInsight,
+    passiveIntelligence,
+  } = calculateSenses(abilities);
+
+  const weaponsProf = weapons.join(", ");
+  const toolsProf = tools.join(", ");
+  const languagesProf = languages.join(", ");
 
   const speedTxt = `${speed} ft. (Walking)`;
-  const defensesTxt = `Resistances: ${resistances}`;
+  const defensesTxt = `Resistances: ${resistance}`;
   const proficienciesTxt = `Weapons: ${weaponsProf}\nTools: ${toolsProf}\nLanguages: ${languagesProf}`;
-  const actionsTxt = '';
+  const actionsTxt = "";
+
+  let displayHitDice = "";
+  if (hitDice.length > 0) { displayHitDice = `${hitDice.length} ${hitDice[0]}`; }
 
   svg = svg
     .replace(/{character-name}/gi, name)
-    .replace(/{class-level}/gi, `${klass} Level ${level}`)
-    .replace(/{xp}/gi, xp)
-    .replace(/{race}/gi, race)
-    .replace(/{background}/gi, background)
+    .replace(/{class-level}/gi, `${klass.name} Level ${level}`)
+    .replace(/{xp}/gi, XP)
+    .replace(/{race}/gi, race.uuid)
+    .replace(/{background}/gi, background.uuid)
     .replace(/{player-name}/gi, playerName)
-    .replace(/{str}/gi, strength)
-    .replace(/{str-mod}/gi, renderBonus(strengthMod))
-    .replace(/{dex}/gi, dexterity)
-    .replace(/{dex-mod}/gi, renderBonus(dexterityMod))
-    .replace(/{con}/gi, constitution)
-    .replace(/{con-mod}/gi, renderBonus(constitutionMod))
-    .replace(/{int}/gi, intelligence)
-    .replace(/{int-mod}/gi, renderBonus(intelligenceMod))
-    .replace(/{wis}/gi, wisdom)
-    .replace(/{wis-mod}/gi, renderBonus(wisdomMod))
-    .replace(/{cha}/gi, charisma)
-    .replace(/{cha-mod}/gi, renderBonus(charismaMod))
+    .replace(/{str}/gi, STR)
+    .replace(/{str-mod}/gi, renderBonus(calculateModifier(STR)))
+    .replace(/{dex}/gi, DEX)
+    .replace(/{dex-mod}/gi, renderBonus(calculateModifier(DEX)))
+    .replace(/{con}/gi, CON)
+    .replace(/{con-mod}/gi, renderBonus(calculateModifier(CON)))
+    .replace(/{int}/gi, INT)
+    .replace(/{int-mod}/gi, renderBonus(calculateModifier(INT)))
+    .replace(/{wis}/gi, WIS)
+    .replace(/{wis-mod}/gi, renderBonus(calculateModifier(WIS)))
+    .replace(/{cha}/gi, CHA)
+    .replace(/{cha-mod}/gi, renderBonus(calculateModifier(CHA)))
     .replace(/{survival}/gi, renderBonus(survival))
     .replace(/{stealth}/gi, renderBonus(stealth))
     .replace(/{sleight-of-hand}/gi, renderBonus(sleightOfHand))
@@ -193,15 +194,15 @@ const renderMain = (svg) => {
     .replace(/{passive-insight}/gi, passiveInsight)
     .replace(/{passive-intelligence}/gi, passiveIntelligence)
     .replace(/{max-hp}/gi, maxHP)
-    .replace(/{current-hp}/gi, currentHP)
+    .replace(/{current-hp}/gi, HP)
     .replace(/{temp-hp}/gi, tempHP)
-    .replace(/{hit-dice}/gi, hitDice)
-    .replace(/{saving-str}/gi, renderBonus(savingStr))
-    .replace(/{saving-dex}/gi, renderBonus(savingDex))
-    .replace(/{saving-con}/gi, renderBonus(savingCon))
-    .replace(/{saving-int}/gi, renderBonus(savingInt))
-    .replace(/{saving-wis}/gi, renderBonus(savingWis))
-    .replace(/{saving-cha}/gi, renderBonus(savingCha))
+    .replace(/{hit-dice}/gi, displayHitDice)
+    .replace(/{saving-str}/gi, renderBonus(calculateModifier(STR)))
+    .replace(/{saving-dex}/gi, renderBonus(calculateModifier(DEX)))
+    .replace(/{saving-con}/gi, renderBonus(calculateModifier(CON)))
+    .replace(/{saving-int}/gi, renderBonus(calculateModifier(INT)))
+    .replace(/{saving-wis}/gi, renderBonus(calculateModifier(WIS)))
+    .replace(/{saving-cha}/gi, renderBonus(calculateModifier(CHA)))
     .replace(/{ac}/gi, AC)
     .replace(/{prof-bonus}/gi, renderBonus(profBonus))
     .replace(/{speed}/gi, speedTxt)
@@ -213,7 +214,7 @@ const renderMain = (svg) => {
   // weapons
   [...Array(6).keys()].forEach((i) => {
     const n = i + 1;
-    svg = svg.replace(`{weapon-${n}}`, '');
+    svg = svg.replace(`{weapon-${n}}`, "");
   });
 
   return svg;
@@ -221,37 +222,37 @@ const renderMain = (svg) => {
 
 const renderFeatures = (svg) => {
   const {
-    name = '',
-    klass = '',
-    xp = 0,
-    level = 1,
-    background = '',
-    playerName = '',
-    DNA = {},
-    money = {},
+    name,
+    klass,
+    XP,
+    level,
+    background,
+    playerName,
+    DNA,
+    treasury,
   } = person;
   const {
-    race = '',
+    race,
   } = DNA;
   const {
-    cp = 0,
-    sp = 0,
-    ep = 0,
-    gp = 0,
-    pp = 0,
-  } = money;
+    cp,
+    sp,
+    ep,
+    gp,
+    pp,
+  } = treasury;
 
-  const featuresTxt = '';
+  const featuresTxt = "";
   const weightTxt = `${0} lb.`;
   const encumberedTxt = `${0} lb.`;
   const pushTxt = `${0} lb.`;
 
   svg = svg
     .replace(/{character-name}/gi, name)
-    .replace(/{class-level}/gi, `${klass} Level ${level}`)
-    .replace(/{xp}/gi, xp)
-    .replace(/{race}/gi, race)
-    .replace(/{background}/gi, background)
+    .replace(/{class-level}/gi, `${klass.name} Level ${level}`)
+    .replace(/{xp}/gi, XP)
+    .replace(/{race}/gi, race.uuid)
+    .replace(/{background}/gi, background.uuid)
     .replace(/{player-name}/gi, playerName)
     .replace(/{features}/gi, featuresTxt)
     .replace(/{cp}/gi, cp)
@@ -266,13 +267,13 @@ const renderFeatures = (svg) => {
   // items
   [...Array(26).keys()].forEach((i) => {
     const n = i + 1;
-    svg = svg.replace(`{item-${n}}`, '');
+    svg = svg.replace(`{item-${n}}`, "");
   });
 
   // magic items
   [...Array(3).keys()].forEach((i) => {
     const n = i + 1;
-    svg = svg.replace(`{magic-item-${n}}`, '');
+    svg = svg.replace(`{magic-item-${n}}`, "");
   });
 
   return svg;
@@ -280,41 +281,47 @@ const renderFeatures = (svg) => {
 
 const renderAppearance = (svg) => {
   const {
-    name = '',
-    age = 0,
-    size = '',
-    height = '',
-    weight = '',
-    alignment = '',
-    faith = '',
-    DNA = {},
-    personalityTraits = [],
-    ideal: ideals = '',
-    bond: bonds = '',
-    flaw: flaws = '',
-    allies = [],
+    name,
+    age,
+    alignment,
+    faith,
+    DNA,
+    personalityTraits,
+    ideal: ideals,
+    bond: bonds,
+    flaw: flaws,
+    allies,
   } = person;
   const {
-    gender = '',
-    traits = {},
+    race,
+    gender,
+    traits,
+    weight,
+    height,
+    size,
   } = DNA;
   const {
-    'skin-color': skinColor = {},
-    'skin-general': skinGeneral = {},
-    'eye-color': eyeColor = {},
-    'eye-shape': eyeShape = {},
-    'hair-color': hairColor = {},
-    'hair-general': hairGeneral = {},
-  } = traits;
+    "skin-color": skinColor = {},
+    "skin-general": skinGeneral = {},
+    "eye-color": eyeColor = {},
+    "eye-shape": eyeShape = {},
+    "hair-color": hairColor = {},
+    "hair-general": hairGeneral = {},
+  } = traits as any; // TODO: fix with proper trait mapping
 
-  const avatar = avataria.generate({ DNA });
-  fs.writeFileSync(filename.replace('.per', '.svg'), avatar);
+  // TODO: fix with updating avataria
+  const avatar = avataria.generate({
+    DNA: Object.assign(DNA, {
+      race: race.uuid,
+    }),
+  });
+  fs.writeFileSync(filename.replace(".per", ".svg"), avatar);
 
   const skin = `${skinGeneral.trait} ${skinColor.trait}`;
   const eyes = `${eyeColor.trait} ${eyeShape.trait}`;
   const hair = `${hairColor.trait} ${hairGeneral.trait}`;
-  const personalityTraitsTxt = personalityTraits.join(' ');
-  const alliesTxt = allies.join(' ');
+  const personalityTraitsTxt = personalityTraits.join(" ");
+  const alliesTxt = allies.join(" ");
 
   svg = svg
     .replace(/{character-name}/gi, name)
@@ -332,9 +339,9 @@ const renderAppearance = (svg) => {
     .replace(/{bonds}/gi, bonds)
     .replace(/{flaws}/gi, flaws)
     .replace(/{allies}/gi, alliesTxt)
-    .replace(/{notes}/gi, '')
-    .replace(/{backstory}/gi, '')
-    .replace(/{appearance}/gi, '')
+    .replace(/{notes}/gi, "")
+    .replace(/{backstory}/gi, "")
+    .replace(/{appearance}/gi, "")
     // .replace(/{avatar}/gi, avatar)
     .replace(/{personality-traits}/gi, personalityTraitsTxt);
 
@@ -343,14 +350,14 @@ const renderAppearance = (svg) => {
 
 const renderSpells = (svg) => {
   const {
-    magic = {},
+    spellcasting,
   } = person;
   const {
-    'spellcasting-klass': spellcastingClass = '',
-    'spellcasting-ability': spellcastingAbility = '',
-    'spell-save-dc': spellSaveDC = '',
-    'spell-attack-bonus': spellAttackBonus = '',
-  } = magic;
+    ability: spellcastingAbility = "",
+    saveDC: spellSaveDC = "",
+    attackModifier: spellAttackBonus = "",
+  } = spellcasting;
+  const spellcastingClass = "";
 
   svg = svg
     .replace(/{spellcasting-class}/gi, spellcastingClass)
@@ -361,7 +368,7 @@ const renderSpells = (svg) => {
   // spells
   [...Array(40).keys()].forEach((i) => {
     const n = i + 1;
-    svg = svg.replace(`{spell-${n}}`, '');
+    svg = svg.replace(`{spell-${n}}`, "");
   });
 
   return svg;
@@ -369,63 +376,63 @@ const renderSpells = (svg) => {
 
 const renderGenetics = (svg) => {
   const {
-    name = '',
-    DNA = {},
-    spouse = {},
-    issue = [],
-    house = {},
-    siblings = [],
-    birth = {},
+    name,
+    DNA,
+    spouse = {} as ILinkPerson,
+    mother = {} as ILinkPerson,
+    father = {} as ILinkPerson,
+    children = [] as ILinkPerson[],
+    liege = {} as ILinkPerson,
+    family = {} as ILinkPerson,
+    siblings = [] as ILinkPerson[],
+    birth,
   } = person;
   const {
-    gender = '',
-    mother = {},
-    father = {},
-    traits = {},
-    chromosomes = {},
+    gender,
+    traits,
+    chromosomes,
   } = DNA;
   const {
     general: resultGeneral = {},
-    'eye-color': resultEyeColor = {},
-    'hair-general': resultHairGeneral = {},
-    'hair-color': resultHairColor = {},
-    'skin-general': resultSkinGeneral = {},
-    'skin-color': resultSkinColor = {},
-    'eye-shape': resultEyeShape = {},
-    'face-shape': resultFaceShape = {},
-    'face-nose': resultFaceNose = {},
-    'hair-facial': resultHairFacial = {},
-    'face-mouth': resultFaceMouth = {},
-    'eye-brows': resultEyeBrows = {},
-    'skin-aging': resultSkinAging = {},
+    "eye-color": resultEyeColor = {},
+    "hair-general": resultHairGeneral = {},
+    "hair-color": resultHairColor = {},
+    "skin-general": resultSkinGeneral = {},
+    "skin-color": resultSkinColor = {},
+    "eye-shape": resultEyeShape = {},
+    "face-shape": resultFaceShape = {},
+    "face-nose": resultFaceNose = {},
+    "hair-facial": resultHairFacial = {},
+    "face-mouth": resultFaceMouth = {},
+    "eye-brows": resultEyeBrows = {},
+    "skin-aging": resultSkinAging = {},
     sex: resultSex = {},
-  } = traits;
+  } = traits as any;
   const {
-    name: motherName = '',
+    name: motherName = "",
   } = mother;
   const {
-    name: fatherName = '',
+    name: fatherName = "",
   } = father;
   const {
-    name: spouseName = '',
+    name: spouseName = "",
   } = spouse;
   const {
-    name: familyName = '',
-    liege = {},
-  } = house;
+    uuid: familyName = "",
+  } = family;
   const {
-    name: liegeName = '',
+    name: liegeName = "",
   } = liege;
   const {
-    order: birthRank = 0,
-    domain: birthDomain = {},
+    rank: birthRank,
+    domain: birthDomain,
   } = birth;
   const {
-    name: homeland,
+    uuid: homeland,
   } = birthDomain;
-  const childrenCount = issue.length;
+  const childrenCount = children.length;
   const siblingsCount = siblings.length;
-  const notes = '';
+  const notes = "";
 
   svg = svg
     .replace(/{character-name}/gi, name)
@@ -447,45 +454,45 @@ const renderGenetics = (svg) => {
     const chromosome = chromosomes[n];
 
     if (chromosome) {
-      const parts = chromosome.split('=');
+      const parts = chromosome.split("=");
       svg = svg
         .replace(`{chromosome-${n}-mother}`, parts[0])
         .replace(`{chromosome-${n}-father}`, parts[1]);
     } else {
       svg = svg
-        .replace(`{chromosome-${n}-mother}`, '')
-        .replace(`{chromosome-${n}-father}`, '');
+        .replace(`{chromosome-${n}-mother}`, "")
+        .replace(`{chromosome-${n}-father}`, "");
     }
   });
 
   // results
   const results = {
-    '{general-result}': resultGeneral,
-    '{eye-shape-result}': resultEyeShape,
-    '{eye-color-result}': resultEyeColor,
-    '{eye-brows-result}': resultEyeBrows,
-    '{skin-result}': resultSkinGeneral,
-    '{skin-color-result}': resultSkinColor,
-    '{skin-aging-result}': resultSkinAging,
-    '{face-result}': resultFaceShape,
-    '{nose-result}': resultFaceNose,
-    '{mouth-result}': resultFaceMouth,
-    '{hair-result}': resultHairGeneral,
-    '{hair-color-result}': resultHairColor,
-    '{facial-hair-result}': resultHairFacial,
-    '{sex-result}': resultSex,
+    "{general-result}": resultGeneral,
+    "{eye-shape-result}": resultEyeShape,
+    "{eye-color-result}": resultEyeColor,
+    "{eye-brows-result}": resultEyeBrows,
+    "{skin-result}": resultSkinGeneral,
+    "{skin-color-result}": resultSkinColor,
+    "{skin-aging-result}": resultSkinAging,
+    "{face-result}": resultFaceShape,
+    "{nose-result}": resultFaceNose,
+    "{mouth-result}": resultFaceMouth,
+    "{hair-result}": resultHairGeneral,
+    "{hair-color-result}": resultHairColor,
+    "{facial-hair-result}": resultHairFacial,
+    "{sex-result}": resultSex,
   };
 
   // display results
   Object.keys(results).forEach((resultKey) => {
     const resultValue = results[resultKey];
     const {
-      gene = '',
-      trait = '',
+      gene = "",
+      trait = "",
     } = resultValue;
-    const parts = gene.split(':');
+    const parts = gene.split(":");
     if (parts.length >= 2) {
-      const chromosome = parts[1].replace(/c/gi, '');
+      const chromosome = parts[1].replace(/c/gi, "");
       const result = parts[2];
       svg = svg
         .replace(resultKey, `${chromosome} ${result} ${trait}`);

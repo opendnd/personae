@@ -41,7 +41,7 @@ describe('Personae', () => {
     });
 
     it('has an ageGroup', () => {
-      expect(person.ageGroup).to.be.a('number');
+      expect(person.ageGroup).to.be.a('string');
     });
 
     it('has abilities', () => {
@@ -49,11 +49,11 @@ describe('Personae', () => {
     });
 
     it('has a type', () => {
-      expect(person.type).to.be.a('number');
+      expect(person.type).to.be.a('string');
     });
 
     it('has an alignment', () => {
-      expect(person.type).to.be.a('number');
+      expect(person.type).to.be.a('string');
     });
 
     it('has a klass', () => {
@@ -102,7 +102,7 @@ describe('Personae', () => {
 
     it('has DNA', () => {
       expect(person.DNA).to.be.an('object');
-      expect(person.DNA.gender).to.be.a('number');
+      expect(person.DNA.gender).to.be.a('string');
       expect(person.DNA.race.uuid).to.be.a('string');
     });    
   })

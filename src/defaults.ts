@@ -1,13 +1,13 @@
 /* eslint-disable */
-import * as fs from 'fs';
-import * as path from 'path';
-import Genetica from 'genetica';
+import * as fs from "fs";
+import Genetica from "genetica";
+import * as path from "path";
 
-import defaultsDefault from './defaults-default';
-import { PersonTypes, ExpandedAlignments, Genders, AgeGroups } from 'opendnd-core';
+import { AgeGroups, ExpandedAlignments, Genders, PersonTypes } from "opendnd-core";
+import defaultsDefault from "./defaults-default";
 
 const home = process.env.HOME || process.env.USERPROFILE;
-const userPath = path.join(home, '.dnd', 'personae', 'defaults.js');
+const userPath = path.join(home, ".dnd", "personae", "defaults.js");
 let defaults;
 
 // get from the user path
@@ -39,30 +39,30 @@ defaults.races = geneticaDefaults.races;
 defaults.genders = geneticaDefaults.genders;
 
 // TODO: replace with new enums
-defaults.mapTypes = { 
-  'PC': PersonTypes.Playable,
-  'NPC': PersonTypes.NonPlayable,
+defaults.mapTypes = {
+  PC: PersonTypes.Playable,
+  NPC: PersonTypes.NonPlayable,
 };
 defaults.mapAlignments = {
-  'Lawful Good': ExpandedAlignments.LG,
-  'Neutral Good': ExpandedAlignments.NG,
-  'Chaotic Good': ExpandedAlignments.CG,
-  'Lawful Neutral': ExpandedAlignments.LN,
-  'True Neutral': ExpandedAlignments.NN,
-  'Chaotic Neutral': ExpandedAlignments.CN,
-  'Lawful Evil': ExpandedAlignments.LE,
-  'Neutral Evil': ExpandedAlignments.NE,
-  'Chaotic Evil': ExpandedAlignments.CE,
+  "Lawful Good": ExpandedAlignments.LG,
+  "Neutral Good": ExpandedAlignments.NG,
+  "Chaotic Good": ExpandedAlignments.CG,
+  "Lawful Neutral": ExpandedAlignments.LN,
+  "True Neutral": ExpandedAlignments.NN,
+  "Chaotic Neutral": ExpandedAlignments.CN,
+  "Lawful Evil": ExpandedAlignments.LE,
+  "Neutral Evil": ExpandedAlignments.NE,
+  "Chaotic Evil": ExpandedAlignments.CE,
 };
-defaults.mapGenders = { 
-  'male': Genders.Male,
-  'female': Genders.Female,
+defaults.mapGenders = {
+  male: Genders.Male,
+  female: Genders.Female,
 };
 defaults.mapAgeGroups = {
-  'child': AgeGroups.Child,
-  'young': AgeGroups.Young,
-  'middle': AgeGroups.Middle,
-  'old': AgeGroups.Old,
+  child: AgeGroups.Child,
+  young: AgeGroups.Young,
+  middle: AgeGroups.Middle,
+  old: AgeGroups.Old,
 };
 
 export default defaults;

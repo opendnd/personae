@@ -1,14 +1,14 @@
-import wizard from './wizard';
-import wizardDNA from './wizard-dna';
-import wizardSeed from './wizard-seed';
+import wizard from "./wizard";
+import wizardDNA from "./wizard-dna";
+import wizardSeed from "./wizard-seed";
 
-const program = require('commander');
+const program = require("commander");
 
 // program basics
 program
-  .option('-o, --output <dir>', 'output directory')
-  .option('-d, --dna <file>', 'input *.dna file')
-  .option('-s, --seed <file>', 'input *.seed file')
+  .option("-o, --output <dir>", "output directory")
+  .option("-d, --dna <file>", "input *.dna file")
+  .option("-s, --seed <file>", "input *.seed file")
   .parse(process.argv);
 
 // generate person with DNA

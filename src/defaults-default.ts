@@ -3,17 +3,17 @@
 // factory to create a background detail
 const createBgDetail = (specialties, personalityTraits, ideals, bonds, flaws) => {
   return {
-    specialties, 
-    personalityTraits, 
-    ideals, 
-    bonds, 
+    specialties,
+    personalityTraits,
+    ideals,
+    bonds,
     flaws,
   };
-}
+};
 
 // background details
 const Acolyte = createBgDetail(
-  ['God', 'Goddess', 'Pantheon of Gods', 'Quasi-divine Being'],
+  ["God", "Goddess", "Pantheon of Gods", "Quasi-divine Being"],
   ["I idolize a particular hero of my faith, and constantly refer to that person's deeds and example.", "I can find common ground between the fiercest enemies, empathizing with them and always working toward peace.", "I see omens in every event and action. The gods try to speak to us, we just need to listen.", "Nothing can shake my optimistic attitude.", "I quote (or misquote) sacred texts and proverbs in almost every situation.", "I am tolerant (or intolerant) of other faiths and respect (or condemn) the worship of other gods.", "I've enjoyed fine food, drink, and high society among my temple's elite. Rough living grates on me.", "I've spent so long in the temple that I have little practical experience dealing with people in the outside world."],
   {
     any: ["Aspiration. I seek to prove myself worthy of my god's favor by matching my actions against his or her teachings."],
@@ -27,7 +27,7 @@ const Acolyte = createBgDetail(
   ["I judge others harshly, and myself even more severely.", "I put too much trust in those who wield power within my temple's hierarchy.", "My piety sometimes leads me to blindly trust those that profess faith in my god.", "I am inflexible in my thinking.", "I am suspicious of strangers and expect the worst of them.", "Once I pick a goal, I become obsessed with it to the detriment of everything else in my life."],
 );
 const Criminal = createBgDetail(
-  ['Blackmailer', 'Burglar', 'Enforcer', 'Fence', 'Highway robber', 'Hired killer', 'Pickpocket', 'Smuggler'],
+  ["Blackmailer", "Burglar", "Enforcer", "Fence", "Highway robber", "Hired killer", "Pickpocket", "Smuggler"],
   ["I always have a plan for what to do when things go wrong.", "I am always calm, no matter what the situation. I never raise my voice or let my emotions control me.", "The first thing I do in a new place is note the locations of everything valuable -- or where such things could be hidden.", "I would rather make a new friend than a new enemy.", "I am incredibly slow to trust. Those who seem the fairest often have the most to hide.", "I don't pay attention to the risks in a situation. Never tell me the odds.", "The best way to get me to do something is to tell me I can't do it.", "I blow up at the slightest insult."],
   {
     any: [],
@@ -55,7 +55,7 @@ const FolkHero = createBgDetail(
   ["The tyrant who rules my land will stop at nothing to see me killed.", "I'm convinced of the significance of my destiny, and blind to my shortcomings and the risk of failure.", "The people who knew me when I was young know my shameful secret, so I can never go home again.", "I have a weakness for the vices of the city, especially hard drink.", "Secretly, I believe that things would be better if I were a tyrant lording over the land.", "I have trouble trusting in my allies."],
 );
 const Noble = createBgDetail(
-  ['Prince/Princess', 'Marquess/Marquise', 'Count/Countess', 'Viscount/Viscountess', 'Baron/Baroness', 'Baronet', 'Knight'],
+  ["Prince/Princess", "Marquess/Marquise", "Count/Countess", "Viscount/Viscountess", "Baron/Baroness", "Baronet", "Knight"],
   ["My eloquent flattery makes everyone I talk to feel like the most wonderful and important person in the world.", "The common folk love me for my kindness and generosity.", "No one could doubt by looking at my regal bearing that I am a cut above the unwashed masses.", "I take great pains to always look my best and follow the latest fashions.", "I don't like to get my hands dirty, and I won't be caught dead in unsuitable accommodations.", "Despite my noble birth, I do not place myself above other folk. We all have the same blood.", "My favor, once lost, is lost forever.", "If you do me an injury, I will crush you, ruin your name, and salt your fields."],
   {
     any: ["Family. Blood runs thicker than water."],
@@ -83,72 +83,72 @@ const Sage = createBgDetail(
   ["I am easily distracted by the promise of information.", "Most people scream and run when they see a demon. I stop and take notes on its anatomy.", "Unlocking an ancient mystery is worth the price of a civilization.", "I overlook obvious solutions in favor of complicated ones.", "I speak without really thinking through my words, invariably insulting others.", "I can't keep a secret to save my life, or anyone else's."],
 );
 const Soldier = createBgDetail(
-  ['Officer', 'Scout', 'Infantry', 'Cavalry', 'Healer', 'Quartermaster', 'Standard bearer', 'Support staff (cook, blacksmith, or the like)'],
+  ["Officer", "Scout", "Infantry", "Cavalry", "Healer", "Quartermaster", "Standard bearer", "Support staff (cook, blacksmith, or the like)"],
   ["I'm always polite and respectful.", "I'm haunted by memories of war. I can't get the images of violence out of my mind.", "I've lost too many friends, and I'm slow to make new ones.", "I'm full of inspiring and cautionary tales from my military experience relevant to almost every combat situation.", "I can stare down a hell hound without flinching.", "I enjoy being strong and like breaking things.", "I have a crude sense of humor.", "I face problems head-on. A simple, direct solution is the best path to success."],
   {
     any: ["Nation. My city, nation, or people are all that matter."],
-    good: ["Greater Good. Our lot is to lay down our lives in defense of others."], 
-    evil: ["Might. In life as in war, the stronger force wins."], 
-    lawful: ["Responsibility. I do what I must and obey just authority."], 
-    neutral: ["Live and Let Live. Ideals aren't worth killing over or going to war for."], 
-    chaotic: ["Independence. When people follow orders blindly, they embrace a kind of tyranny."], 
+    good: ["Greater Good. Our lot is to lay down our lives in defense of others."],
+    evil: ["Might. In life as in war, the stronger force wins."],
+    lawful: ["Responsibility. I do what I must and obey just authority."],
+    neutral: ["Live and Let Live. Ideals aren't worth killing over or going to war for."],
+    chaotic: ["Independence. When people follow orders blindly, they embrace a kind of tyranny."],
   },
   ["I would still lay down my life for the people I served with.", "Someone saved my life on the battlefield. To this day, I will never leave a friend behind.", "My honor is my life.", "I'll never forget the crushing defeat my company suffered or the enemies who dealt it.", "Those who fight beside me are those worth dying for.", "I fight for those who cannot fight for themselves."],
-  ["The monstrous enemy we faced in battle still leaves me quivering with fear.", "I have little respect for anyone who is not a proven warrior.", "I made a terrible mistake in battle that cost many lives -- and I would do anything to keep that mistake secret.", "My hatred of my enemies is blind and unreasoning.", "I obey the law, even if the law causes misery.", "I'd rather eat my armor than admit when I'm wrong."]
+  ["The monstrous enemy we faced in battle still leaves me quivering with fear.", "I have little respect for anyone who is not a proven warrior.", "I made a terrible mistake in battle that cost many lives -- and I would do anything to keep that mistake secret.", "My hatred of my enemies is blind and unreasoning.", "I obey the law, even if the law causes misery.", "I'd rather eat my armor than admit when I'm wrong."],
 );
 
 // default info
 const defaults = {
 
   // types
-  types: ['PC', 'NPC'],
+  types: ["PC", "NPC"],
 
   // info
-  classes: ['Barbarian', 'Bard', 'Cleric', 'Druid', 'Fighter', 'Monk', 'Paladin', 'Ranger', 'Rogue', 'Sorcerer', 'Warlock', 'Wizard'],
-  alignments: ['Lawful Good', 'Neutral Good', 'Chaotic Good', 'Lawful Neutral', 'True Neutral', 'Chaotic Neutral', 'Lawful Evil', 'Neutral Evil', 'Chaotic Evil'],
+  classes: ["Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"],
+  alignments: ["Lawful Good", "Neutral Good", "Chaotic Good", "Lawful Neutral", "True Neutral", "Chaotic Neutral", "Lawful Evil", "Neutral Evil", "Chaotic Evil"],
 
   // points
   standardArray: [15, 14, 13, 12, 10, 8],
-  abilities: { 
-    'STR': { score: 0, mod: 0 },
-    'DEX': { score: 0, mod: 0 },
-    'CON': { score: 0, mod: 0 },
-    'INT': { score: 0, mod: 0 },
-    'WIS': { score: 0, mod: 0 },
-    'CHA': { score: 0, mod: 0 },
+  abilities: {
+    STR: { score: 0, mod: 0 },
+    DEX: { score: 0, mod: 0 },
+    CON: { score: 0, mod: 0 },
+    INT: { score: 0, mod: 0 },
+    WIS: { score: 0, mod: 0 },
+    CHA: { score: 0, mod: 0 },
   },
   racialMod: {
-    'Dragonborn': [
-      { ability: 'STR', amount: 2 },
-      { ability: 'CHA', amount: 1 },
+    "Dragonborn": [
+      { ability: "STR", amount: 2 },
+      { ability: "CHA", amount: 1 },
     ],
-    'Dwarf': [
-      { ability: 'CON', amount: 2 },
+    "Dwarf": [
+      { ability: "CON", amount: 2 },
     ],
-    'Elf': [
-      { ability: 'DEX', amount: 2 },
+    "Elf": [
+      { ability: "DEX", amount: 2 },
     ],
-    'Gnome': [
-      { ability: 'INT', amount: 2 },
+    "Gnome": [
+      { ability: "INT", amount: 2 },
     ],
-    'Half-Elf': [
-      { ability: 'CHA', amount: 2 },
-      { ability: 'RND', amount: 1 },
-      { ability: 'RND', amount: 1 },
+    "Half-Elf": [
+      { ability: "CHA", amount: 2 },
+      { ability: "RND", amount: 1 },
+      { ability: "RND", amount: 1 },
     ],
-    'Halfling': [
-      { ability: 'DEX', amount: 2 },
+    "Halfling": [
+      { ability: "DEX", amount: 2 },
     ],
-    'Half-Orc': [
-      { ability: 'STR', amount: 2 },
-      { ability: 'CON', amount: 1 },
+    "Half-Orc": [
+      { ability: "STR", amount: 2 },
+      { ability: "CON", amount: 1 },
     ],
-    'Human': [
-      { ability: 'ALL', amount: 1 },
+    "Human": [
+      { ability: "ALL", amount: 1 },
     ],
-    'Tiefling': [
-      { ability: 'INT', amount: 1 },
-      { ability: 'CHA', amount: 2 },
+    "Tiefling": [
+      { ability: "INT", amount: 1 },
+      { ability: "CHA", amount: 2 },
     ],
   },
   // TODO: work on list of physical traits that add or subtract to certain abilities, like obese does -1 to DEX
@@ -157,15 +157,15 @@ const defaults = {
   // race age ranges
   // minAge / youngAge / middleAge / oldAge
   ageRanges: {
-    'Dragonborn' : '20/40/60/80',
-    'Dwarf'      : '20/60/260/360',
-    'Elf'        : '100/200/400/700',
-    'Gnome'      : '20/100/300/500',
-    'Half-Elf'   : '20/60/120/180',
-    'Halfling'   : '20/40/100/160',
-    'Half-Orc'   : '12/24/48/72',
-    'Human'      : '16/32/64/96',
-    'Tiefling'   : '12/48/84/120',
+    "Dragonborn" : "20/40/60/80",
+    "Dwarf"      : "20/60/260/360",
+    "Elf"        : "100/200/400/700",
+    "Gnome"      : "20/100/300/500",
+    "Half-Elf"   : "20/60/120/180",
+    "Halfling"   : "20/40/100/160",
+    "Half-Orc"   : "12/24/48/72",
+    "Human"      : "16/32/64/96",
+    "Tiefling"   : "12/48/84/120",
   },
 
   // race age groups child/young/middle/old
@@ -175,30 +175,30 @@ const defaults = {
   // ex: middle - 1d20 => 20 + 20 + 13 = 53
   // ex: old    - 1d20 => 20 + 20 + 20 + 9 = 69
   ageGroupDice: {
-    'Dragonborn' : '1d20/1d20/1d20/1d20',     // 20/40/60/80
-    'Dwarf'      : '1d20/2d20/2d100/1d100',   // 20/60/260/360
-    'Elf'        : '1d100/1d100/2d100/3d100', // 100/200/400/700
-    'Gnome'      : '1d20/4d20/2d100/2d100',   // 20/100/300/500
-    'Half-Elf'   : '1d20/2d20/3d20/3d20',     // 20/60/120/180
-    'Halfling'   : '1d20/1d20/3d20/3d20',     // 20/40/100/160
-    'Half-Orc'   : '2d6/2d6/4d6/4d6',         // 12/24/48/72
-    'Human'      : '2d8/2d8/4d8/4d8',         // 16/32/64/96
-    'Tiefling'   : '2d6/6d6/6d6/6d6',         // 12/48/84/120
+    "Dragonborn" : "1d20/1d20/1d20/1d20",     // 20/40/60/80
+    "Dwarf"      : "1d20/2d20/2d100/1d100",   // 20/60/260/360
+    "Elf"        : "1d100/1d100/2d100/3d100", // 100/200/400/700
+    "Gnome"      : "1d20/4d20/2d100/2d100",   // 20/100/300/500
+    "Half-Elf"   : "1d20/2d20/3d20/3d20",     // 20/60/120/180
+    "Halfling"   : "1d20/1d20/3d20/3d20",     // 20/40/100/160
+    "Half-Orc"   : "2d6/2d6/4d6/4d6",         // 12/24/48/72
+    "Human"      : "2d8/2d8/4d8/4d8",         // 16/32/64/96
+    "Tiefling"   : "2d6/6d6/6d6/6d6",         // 12/48/84/120
   },
 
   // age groups
-  ageGroups: ['child', 'young', 'middle', 'old'],
+  ageGroups: ["child", "young", "middle", "old"],
   ageWeights: [0.1, 0.2, 0.5, 0.2],
 
   // alignment x and y
-  alignmentX: ['Lawful', 'Neutral', 'Chaotic'],
-  alignmentY: ['Evil', 'Neutral', 'Good'],
+  alignmentX: ["Lawful", "Neutral", "Chaotic"],
+  alignmentY: ["Evil", "Neutral", "Good"],
 
   // background details
   backgroundDetails: {
     Acolyte,
     Criminal,
-    'Folk Hero': FolkHero,
+    "Folk Hero": FolkHero,
     Noble,
     Sage,
     Soldier,
