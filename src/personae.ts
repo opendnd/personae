@@ -71,13 +71,22 @@ class Personae {
     if (opts.type === undefined) { opts.type = PersonTypes.Playable; }
 
     // generate random race
-    if (opts.race === undefined) { opts.race = { uuid: this.defaults.races.sample(), name: this.defaults.races.sample() }; }
+    if (opts.race === undefined) {
+      const sampleRace = this.defaults.races.sample();
+      opts.race = { uuid: sampleRace, name: sampleRace }; 
+    }
 
     // generate random klass
-    if (opts.klass === undefined) { opts.klass = { uuid: this.defaults.classes.sample(), name: this.defaults.classes.sample() }; }
+    if (opts.klass === undefined) { 
+      const sampleClass = this.defaults.classes.sample();
+      opts.klass = { uuid: sampleClass, name: sampleClass }; 
+    }
 
     // generate random background
-    if (opts.background === undefined) { opts.background = { uuid: this.defaults.backgrounds.sample(), name: this.defaults.backgrounds.sample() }; }
+    if (opts.background === undefined) { 
+      const sampleBackground = this.defaults.backgrounds.sample();
+      opts.background = { uuid: sampleBackground, name: sampleBackground }; 
+    }
 
     // generate random alignment
     if (opts.alignment === undefined) { opts.alignment = this.defaults.mapAlignments[this.defaults.alignments.sample()]; }
