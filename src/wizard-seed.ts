@@ -69,7 +69,7 @@ const wizardSeed = (outputDir, seedPath) => {
     if (opts.type) { opts.type = defaults.mapTypes[opts.type.toLowerCase()]; }
     if (opts.age) { opts.age = parseInt(opts.age); }
     if (opts.alignment) { opts.alignment = defaults.mapAlignments[opts.alignment]; }
-    if (opts.background) { opts.background = { uuid: opts.background }; }
+    if (opts.background) { opts.background = { uuid: opts.background, name: opts.background }; }
     if (opts.klass) { opts.klass = { name: opts.klass }; }
 
     // remove empty opts

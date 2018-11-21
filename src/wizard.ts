@@ -68,9 +68,9 @@ const wizard = (outputDir) => {
     if (opts.type) { opts.type = defaults.mapTypes[opts.type.toLowerCase()]; }
     if (opts.age) { opts.age = parseInt(opts.age); }
     if (opts.gender) { opts.gender = defaults.mapGenders[opts.gender.toLowerCase()]; }
-    if (opts.race) { opts.race = { uuid: opts.race }; }
+    if (opts.race) { opts.race = { uuid: opts.race, name: opts.race }; }
     if (opts.alignment) { opts.alignment = defaults.mapAlignments[opts.alignment]; }
-    if (opts.background) { opts.background = { uuid: opts.background }; }
+    if (opts.background) { opts.background = { uuid: opts.background, name: opts.background }; }
     if (opts.klass) { opts.klass = { name: opts.klass }; }
 
     // remove empty opts
