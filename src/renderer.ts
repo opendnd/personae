@@ -1,8 +1,17 @@
 import "./extensions";
 
-import { AgeGroups, ExpandedAlignments, Genders, Person, PersonTypes } from "opendnd-core";
+import { AgeGroups, Genders, Person } from "opendnd-core";
 
 const colors = require("colors/safe");
+
+// TODO: move this to opendnd-core
+const expandedAlignmentsMapping = {
+  'LG': 'Lawful Good', 'SG': 'Social Good', 'NG': 'Neutral Good', 'RG': 'Rebel Good', 'CG': 'Chaotic Good',
+  'LM': 'Lawful Moral', 'SM': 'Social Moral', 'NM': 'Neutral Moral', 'RM': 'Rebel Moral', 'CM': 'Chaotic Moral',
+  'LN': 'Lawful Neutral', 'SN': 'Social Neutral', 'NN': 'True Neutral', 'RN': 'Rebel Neutral', 'CN': 'Chaotic Neutral',
+  'LI': 'Lawful Impure', 'SI': 'Social Impure', 'NI': 'Neutral Impure', 'RI': 'Rebel Impure', 'CI': 'Chaotic Impure',
+  'LE': 'Lawful Evil', 'SE': 'Social Evil', 'NE': 'Neutral Evil', 'RE': 'Rebel Evil', 'CE': 'Chaotic Evil',
+}
 
 class Renderer {
   public static renderDescription(person: Person) {
@@ -21,15 +30,15 @@ class Renderer {
     const perPro = (gender === Genders.Male) ? "he" : "she";
 
     let descOutput = "";
-    descOutput += `\t${name} is a ${Genders[gender]} ${colors.bold(race.uuid)} (${PersonTypes[type]}) described as ${renderAppearance("general")} with ${renderAppearance("skin-aging")} ${renderAppearance("skin-general")} ${renderAppearance("skin-color")} skin.\n`;
+    descOutput += `\t${name} is a ${gender} ${colors.bold(race.name)} (${type}) described as ${renderAppearance("general")} with ${renderAppearance("skin-aging")} ${renderAppearance("skin-general")} ${renderAppearance("skin-color")} skin.\n`;
     descOutput += `\t${posPro.capitalize()} most noticeable physical characteristic is that ${perPro}'s ${characteristic}.\n`;
 
     if (gender === Genders.Male) {
       descOutput += `\t${posPro.capitalize()} ${renderAppearance("hair-general")} ${renderAppearance("hair-color")} hair sits atop ${posPro} ${renderAppearance("hair-facial")} ${renderAppearance("face-shape")} face and features ${posPro} ${renderAppearance("face-nose")} nose and ${renderAppearance("face-mouth")} mouth.\n`;
-      if (renderAppearance("sex").length >= 1) { descOutput += `\tAs a male ${race}, they say I'm ${renderAppearance("sex")}.\n`; }
+      if (renderAppearance("sex").length >= 1) { descOutput += `\tAs a male ${race.name}, they say I'm ${renderAppearance("sex")}.\n`; }
     } else {
       descOutput += `\t${posPro.capitalize()} ${renderAppearance("hair-general")} ${renderAppearance("hair-color")} hair sits atop ${posPro} ${renderAppearance("face-shape")} face and features ${posPro} ${renderAppearance("face-nose")} nose and ${renderAppearance("face-mouth")} mouth.\n`;
-      if (renderAppearance("sex").length >= 1) { descOutput += `\tAs a female ${race}, they say I'm ${renderAppearance("sex")}.\n`; }
+      if (renderAppearance("sex").length >= 1) { descOutput += `\tAs a female ${race.name}, they say I'm ${renderAppearance("sex")}.\n`; }
     }
 
     descOutput += `\t${posPro.capitalize()} ${renderAppearance("eye-color")} ${renderAppearance("eye-shape")} eyes sit beneath ${posPro} ${renderAppearance("eye-brows")} brows.\n`;
@@ -44,19 +53,19 @@ class Renderer {
     const { gender, race } = DNA;
 
     let introOutput = "";
-    introOutput += `\tGreetings, my name is ${colors.bold(name)} and I'm ${age} years old (${AgeGroups[ageGroup]}-age).\n`;
-    introOutput += `\tI am a ${Genders[gender]} ${colors.bold(race.uuid)} ${colors.bold(klass.name)} and my alignment is ${colors.underline(ExpandedAlignments[alignment])}.\n`;
+    introOutput += `\tGreetings, my name is ${colors.bold(name)} and I'm ${age} years old (${ageGroup}-age).\n`;
+    introOutput += `\tI am a ${gender} ${colors.bold(race.name)} ${colors.bold(klass.name)} and my alignment is ${colors.underline(expandedAlignmentsMapping[alignment])}.\n`;
 
-    if (background.uuid === "Folk Hero") {
-      introOutput += `\tI've been known as a ${colors.bold(background.uuid)} ever since ${specialty}\n`;
-    } else if (background.uuid === "Charlatan") {
-      introOutput += `\tI'm a ${colors.bold(background.uuid)}, my favorite scam is ${specialty}\n`;
-    } else if (background.uuid === "Hermit") {
-      introOutput += `\tI've been a ${colors.bold(background.uuid)}, I entered the life of seclusion as ${specialty}\n`;
-    } else if (background.uuid === "Urchin") {
-      introOutput += `\tI grew up as a ${colors.bold(background.uuid)} as I was orphaned, ${specialty}\n`;
+    if (background.name === "Folk Hero") {
+      introOutput += `\tI've been known as a ${colors.bold(background.name)} ever since ${specialty}\n`;
+    } else if (background.name === "Charlatan") {
+      introOutput += `\tI'm a ${colors.bold(background.name)}, my favorite scam is ${specialty}\n`;
+    } else if (background.name === "Hermit") {
+      introOutput += `\tI've been a ${colors.bold(background.name)}, I entered the life of seclusion as ${specialty}\n`;
+    } else if (background.name === "Urchin") {
+      introOutput += `\tI grew up as a ${colors.bold(background.name)} as I was orphaned, ${specialty}\n`;
     } else {
-      introOutput += `\tPreviously, I've been a ${colors.bold(background.uuid)} with the ${colors.bold(specialty)} specialty.\n`;
+      introOutput += `\tPreviously, I've been a ${colors.bold(background.name)} with the ${colors.bold(specialty)} specialty.\n`;
     }
 
     introOutput += `\t${personalityTraits[0]}\n`;
