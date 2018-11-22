@@ -6,15 +6,31 @@ describe('defaults', () => {
     expect(defaults).to.be.an('object');
   });
 
-  it('has races', () => {
-    expect(defaults.races).to.be.an('array');
+  it('has race options', () => {
+    expect(defaults.raceOptions).to.be.an('array');
   });
 
-  it('has genders', () => {
-    expect(defaults.genders).to.be.an('array');
+  it('has klass options', () => {
+    expect(defaults.klassOptions).to.be.an('array');
   });
 
-  it('has races', () => {
-    expect(defaults.backgroundDetails).to.be.an('object');
+  it('has background options', () => {
+    expect(defaults.backgroundOptions).to.be.an('array');
+  });
+
+  it('has culture options', () => {
+    expect(defaults.cultureOptions).to.be.an('array');
+  });
+
+  it('has gender options', () => {
+    expect(defaults.genderOptions).to.be.an('array');
+  });
+
+  it('has type options', () => {
+    expect(defaults.typeOptions).to.be.an('array');
+  });
+
+  it('has alignment options', () => {
+    expect(defaults.alignmentOptions).to.be.an('array');
   });
 });
