@@ -1,6 +1,6 @@
 {
   "name": "personae",
-  "version": "0.10.3",
+  "version": "0.10.4",
   "description": "This tool is used to generate a person either NPC or other Edit",
   "main": "dist/personae.js",
   "scripts": {
