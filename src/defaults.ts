@@ -3,14 +3,7 @@ import * as fs from "fs";
 import * as path from "path";
 
 import {
-  races,
-  klasses,
-  backgrounds,
-  cultures,
-  racesDict,
-  klassesDict,
-  backgroundsDict,
-  culturesDict,
+  SRD,
   ILinkRace,
   ILinkCulture,
   ILinkBackground,
@@ -24,6 +17,17 @@ import {
   ExpandedAlignments,
   IIdeals,
 } from "opendnd-core";
+
+const {
+  races,
+  klasses,
+  backgrounds,
+  cultures,
+  racesDict,
+  klassesDict,
+  backgroundsDict,
+  culturesDict,
+} = SRD;
 
 export interface IPersonaeDefaults {
   races: {

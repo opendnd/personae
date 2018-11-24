@@ -1,4 +1,4 @@
-import Genetica from "genetica";
+import Genetica, { IGeneticaOpts } from "genetica";
 import {
   AgeGroups,
   ExpandedAlignments,
@@ -188,6 +188,12 @@ class Personae {
   // reset opts
   public resetOpts() {
     this.opts = {};
+    this.race = undefined;
+    this.klass = undefined;
+    this.background = undefined;
+    this.culture = undefined;
+    this.alignmentX = undefined;
+    this.alignmentY = undefined;
   }
 
   // generate personality traits
@@ -287,14 +293,8 @@ class Personae {
 
     this.validateOpts(Object.assign(this.opts, opts));
     const { culture } = motherPerson;
-    const { race:tmpRace } = motherPerson.DNA;
+    const { race } = motherPerson.DNA;
     const { gender } = this.opts;
-
-    // TODO: short term fix as the uuid/name is messed up in Genetica
-    let race:ILinkRace;
-    Object.values(this.defaults.races).forEach((linkRace) => {
-      if (linkRace.name === tmpRace.uuid) race = linkRace;
-    });
 
     // generate DNA from mother and father
     const genetica = new Genetica({
@@ -316,16 +316,17 @@ class Personae {
   // generate parents
   public generateParents(person) {
     const { DNA, type, culture } = person;
-    const { race:tmpRace } = DNA;
-    const genetica = new Genetica();
+    const { race } = DNA;
+    const raceLink:ILinkRace = {
+      uuid: race.uuid,
+      name: race.name,
+    };
+    const geneticaOpts:IGeneticaOpts = {
+      race: raceLink,
+    };
+    const genetica = new Genetica(geneticaOpts);
 
     const parentsDNA = genetica.generateParents(DNA);
-
-    // TODO: short term fix as the uuid/name is messed up in Genetica
-    let race:ILinkRace;
-    Object.values(this.defaults.races).forEach((linkRace) => {
-      if (linkRace.name === tmpRace.uuid) race = linkRace;
-    });
 
     const mother = this.generate({
       culture,
@@ -368,12 +369,15 @@ class Personae {
     const talent = this.defaults.talents.sample();
     const trait = this.defaults.traits.sample();
     const characteristic = this.defaults.characteristics.sample();
-    const genetica = new Genetica({
-      race,
+
+    // generate DNA
+    const geneticaOpts:IGeneticaOpts = {
+      race: genOpts.race,
       gender,
-    });
+    };
+    const genetica = new Genetica(geneticaOpts);
     let DNA = this.opts.DNA || genetica.generate();
-    if (this.opts.seed) { DNA = genetica.generate(this.opts.seed); } // set DNA to the seed if we have it
+    if (this.opts.seed) { DNA = genetica.generate(Object.assign(geneticaOpts, this.opts.seed)); } // set DNA to the seed if we have it
 
     // after generating a person reset DNA
     this.resetOpts();

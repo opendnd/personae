@@ -125,13 +125,12 @@ describe('Personae', () => {
     expect(father).to.be.an('object');
   });
 
-  // TODO: fix this test when updating genetica
-  // it('generates a child', () => {
-  //   const race = Object.values(defaults.races).sample();
-  //   const mother = personae.generate({ gender: Genders.Female, race });
-  //   const father = personae.generate({ gender: Genders.Male, race });
-  //   child = personae.generateChild({}, mother, father);
+  it('generates a child', () => {
+    const race = Object.values(defaults.races).sample();
+    const mother = personae.generate({ gender: Genders.Female, race });
+    const father = personae.generate({ gender: Genders.Male, race });
+    child = personae.generateChild({}, mother, father);
 
-  //   expect(child).to.be.an('object');
-  // });
+    expect(child).to.be.an('object');
+  });
 });
