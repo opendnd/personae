@@ -1,17 +1,8 @@
 import "./extensions";
 
-import { AgeGroups, Genders, Person } from "opendnd-core";
+import { AgeGroups, Genders, Person, Categories } from "opendnd-core";
 
 const colors = require("colors/safe");
-
-// TODO: move this to opendnd-core
-const expandedAlignmentsMapping = {
-  'LG': 'Lawful Good', 'SG': 'Social Good', 'NG': 'Neutral Good', 'RG': 'Rebel Good', 'CG': 'Chaotic Good',
-  'LM': 'Lawful Moral', 'SM': 'Social Moral', 'NM': 'Neutral Moral', 'RM': 'Rebel Moral', 'CM': 'Chaotic Moral',
-  'LN': 'Lawful Neutral', 'SN': 'Social Neutral', 'NN': 'True Neutral', 'RN': 'Rebel Neutral', 'CN': 'Chaotic Neutral',
-  'LI': 'Lawful Impure', 'SI': 'Social Impure', 'NI': 'Neutral Impure', 'RI': 'Rebel Impure', 'CI': 'Chaotic Impure',
-  'LE': 'Lawful Evil', 'SE': 'Social Evil', 'NE': 'Neutral Evil', 'RE': 'Rebel Evil', 'CE': 'Chaotic Evil',
-}
 
 class Renderer {
   public static renderDescription(person: Person) {
@@ -19,10 +10,10 @@ class Renderer {
     const appearance = DNA.traits;
     const { gender, race } = DNA;
 
-    const renderAppearance = (legendName) => {
-      if (appearance[legendName] === undefined) { return ""; } // make sure this race has the legendName
-      if ((legendName === "skin-aging") && (ageGroup !== AgeGroups.Old)) { return ""; } // only apply aging if we're in the old ageGroup
-      const gene = appearance[legendName];
+    const renderAppearance = (categoryName) => {
+      if (appearance[categoryName] === undefined) return ""; // make sure this race has the categoryName
+      if ((categoryName === Categories.SkinAging) && (ageGroup !== AgeGroups.Old)) return ""; // only apply aging if we're in the old ageGroup
+      const gene = appearance[categoryName];
       return gene.trait;
     };
 
@@ -30,18 +21,18 @@ class Renderer {
     const perPro = (gender === Genders.Male) ? "he" : "she";
 
     let descOutput = "";
-    descOutput += `\t${name} is a ${gender} ${colors.bold(race.name)} (${type}) described as ${renderAppearance("general")} with ${renderAppearance("skin-aging")} ${renderAppearance("skin-general")} ${renderAppearance("skin-color")} skin.\n`;
+    descOutput += `\t${name} is a ${gender} ${colors.bold(race.name)} (${type}) described as ${renderAppearance(Categories.General)} with ${renderAppearance(Categories.SkinAging)} ${renderAppearance(Categories.SkinGeneral)} ${renderAppearance(Categories.SkinColor)} skin.\n`;
     descOutput += `\t${posPro.capitalize()} most noticeable physical characteristic is that ${perPro}'s ${characteristic}.\n`;
 
     if (gender === Genders.Male) {
-      descOutput += `\t${posPro.capitalize()} ${renderAppearance("hair-general")} ${renderAppearance("hair-color")} hair sits atop ${posPro} ${renderAppearance("hair-facial")} ${renderAppearance("face-shape")} face and features ${posPro} ${renderAppearance("face-nose")} nose and ${renderAppearance("face-mouth")} mouth.\n`;
-      if (renderAppearance("sex").length >= 1) { descOutput += `\tAs a male ${race.name}, they say I'm ${renderAppearance("sex")}.\n`; }
+      descOutput += `\t${posPro.capitalize()} ${renderAppearance(Categories.HairGeneral)} ${renderAppearance(Categories.HairColor)} hair sits atop ${posPro} ${renderAppearance(Categories.HairFacial)} ${renderAppearance(Categories.FaceShape)} face and features ${posPro} ${renderAppearance(Categories.FaceNose)} nose and ${renderAppearance(Categories.FaceMouth)} mouth.\n`;
+      if (renderAppearance(Categories.Sex).length >= 1) { descOutput += `\tAs a male ${race.name}, they say I'm ${renderAppearance(Categories.Sex)}.\n`; }
     } else {
-      descOutput += `\t${posPro.capitalize()} ${renderAppearance("hair-general")} ${renderAppearance("hair-color")} hair sits atop ${posPro} ${renderAppearance("face-shape")} face and features ${posPro} ${renderAppearance("face-nose")} nose and ${renderAppearance("face-mouth")} mouth.\n`;
-      if (renderAppearance("sex").length >= 1) { descOutput += `\tAs a female ${race.name}, they say I'm ${renderAppearance("sex")}.\n`; }
+      descOutput += `\t${posPro.capitalize()} ${renderAppearance(Categories.HairGeneral)} ${renderAppearance(Categories.HairColor)} hair sits atop ${posPro} ${renderAppearance(Categories.FaceShape)} face and features ${posPro} ${renderAppearance(Categories.FaceNose)} nose and ${renderAppearance(Categories.FaceMouth)} mouth.\n`;
+      if (renderAppearance(Categories.Sex).length >= 1) { descOutput += `\tAs a female ${race.name}, they say I'm ${renderAppearance(Categories.Sex)}.\n`; }
     }
 
-    descOutput += `\t${posPro.capitalize()} ${renderAppearance("eye-color")} ${renderAppearance("eye-shape")} eyes sit beneath ${posPro} ${renderAppearance("eye-brows")} brows.\n`;
+    descOutput += `\t${posPro.capitalize()} ${renderAppearance(Categories.EyeColor)} ${renderAppearance(Categories.EyeShape)} eyes sit beneath ${posPro} ${renderAppearance(Categories.EyeBrows)} brows.\n`;
 
     descOutput = descOutput.replace(/ {2}/gi, " "); // remove double spaces
 
@@ -53,8 +44,8 @@ class Renderer {
     const { gender, race } = DNA;
 
     let introOutput = "";
-    introOutput += `\tGreetings, my name is ${colors.bold(name)} and I'm ${age} years old (${ageGroup}-age).\n`;
-    introOutput += `\tI am a ${gender} ${colors.bold(race.name)} ${colors.bold(klass.name)} and my alignment is ${colors.underline(expandedAlignmentsMapping[alignment])}.\n`;
+    introOutput += `\tGreetings, my name is ${colors.bold(name)} and I'm ${age} years old (${ageGroup}).\n`;
+    introOutput += `\tI am a ${gender} ${colors.bold(race.name)} ${colors.bold(klass.name)} and my alignment is ${colors.underline(alignment)}.\n`;
 
     if (background.name === "Folk Hero") {
       introOutput += `\tI've been known as a ${colors.bold(background.name)} ever since ${specialty}\n`;
