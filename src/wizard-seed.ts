@@ -1,8 +1,8 @@
+import Genetica from "@opendnd/genetica";
 import * as fs from "fs";
-import Genetica from "genetica";
 import * as path from "path";
 
-import { standardQuestions, sanitizeWizardOpts } from "./common";
+import { sanitizeWizardOpts, standardQuestions } from "./common";
 import Personae from "./personae";
 import Saver from "./saver";
 

@@ -1,5 +1,5 @@
 {
-  "name": "personae",
+  "name": "@opendnd/personae",
   "version": "0.10.5",
   "description": "This tool is used to generate a person either NPC or other Edit",
   "main": "dist/personae.js",
@@ -33,13 +33,13 @@
     "personae": "./bin/personae"
   },
   "dependencies": {
-    "avataria": "^0.4.1",
+    "@opendnd/avataria": "^0.5.0",
+    "@opendnd/core": "^0.2.4",
+    "@opendnd/genetica": "^0.6.0",
     "colors": "^1.1.2",
     "commander": "^2.13.0",
-    "genetica": "^0.6.0",
     "node-zip": "^1.1.1",
     "nomina": "^0.4.3",
-    "opendnd-core": "^0.2.4",
     "pdfkit": "^0.8.3",
     "questions": "0.0.6",
     "random-weighted": "^1.0.0",

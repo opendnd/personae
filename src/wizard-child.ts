@@ -1,8 +1,8 @@
 import * as fs from "fs";
 import * as path from "path";
 
-import { Genders } from "opendnd-core";
-import { standardQuestions, sanitizeWizardOpts } from "./common";
+import { Genders } from "@opendnd/core";
+import { sanitizeWizardOpts, saveMsg, standardQuestions } from "./common";
 import Personae from "./personae";
 import Saver from "./saver";
 
@@ -26,9 +26,15 @@ const wizardChild = (outputDir, mother = "", father = "") => {
     const fatherPerson = Saver.load(father);
 
     // check for proper inputs
-    if (motherPerson.DNA.race.uuid !== fatherPerson.DNA.race.uuid) { throw new Error("Cross-breeding between races is not yet supported!"); }
-    if (motherPerson.DNA.gender !== Genders.Female) { throw new Error("The mother is not female!"); }
-    if (fatherPerson.DNA.gender !== Genders.Male) { throw new Error("The father is not male!"); }
+    if (motherPerson.DNA.race.uuid !== fatherPerson.DNA.race.uuid) {
+      throw new Error("Cross-breeding between races is not yet supported!");
+    }
+    if (motherPerson.DNA.gender !== Genders.Female) {
+      throw new Error("The mother is not female!");
+    }
+    if (fatherPerson.DNA.gender !== Genders.Male) {
+      throw new Error("The father is not male!");
+    }
 
     // add mother's race
     opts.race = motherPerson.race;
@@ -39,7 +45,7 @@ const wizardChild = (outputDir, mother = "", father = "") => {
     const person = personae.generateChild(opts, motherPerson, fatherPerson);
 
     process.stdout.write(Personae.output(person));
-    Saver.finish(outputDir, "Would you like to save your child? (y | n)", person, person.name, undefined);
+    Saver.finish(outputDir, saveMsg("child"), person, person.name, undefined);
   });
 };
 

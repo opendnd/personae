@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import Personae from '../src/personae';
-import { PersonTypes, Genders } from 'opendnd-core';
+import { PersonTypes, Genders } from '@opendnd/core';
 let personae, person, parents, child;
 
 import defaults from '../src/defaults';

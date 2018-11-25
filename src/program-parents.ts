@@ -1,3 +1,4 @@
+import { saveMsg } from "./common";
 import Personae from "./personae";
 import Saver from "./saver";
 
@@ -16,8 +17,8 @@ if (program.child) {
   const parents = personae.generateParents(person);
 
   process.stdout.write(Personae.output(parents.mother));
-  Saver.finish(outputDir, "Would you like to save the mother? (y | n)", parents.mother, parents.mother.name, () => {
+  Saver.finish(outputDir, saveMsg("mother"), parents.mother, parents.mother.name, () => {
     process.stdout.write(Personae.output(parents.father));
-    Saver.finish(outputDir, "Would you like to save the father? (y | n)", parents.father, parents.father.name, undefined);
+    Saver.finish(outputDir, saveMsg("father"), parents.father, parents.father.name, undefined);
   });
 }

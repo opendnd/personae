@@ -1,32 +1,32 @@
-import Genetica, { IGeneticaOpts } from "genetica";
 import {
+  AbilityMethods,
   AgeGroups,
   ExpandedAlignments,
   expandedAlignmentsMatrix,
-  standardArray,
+  ExpandedAlignmentsX,
+  ExpandedAlignmentsY,
   Genders,
-  ShortAbilityTypes,
+  IBackground,
+  ICulture,
+  IDNA,
+  IExpandedAlignmentMatrixDetail,
+  IIdeals,
+  IKlass,
   ILinkBackground,
+  ILinkCulture,
   ILinkKlass,
   ILinkRace,
   IPerson,
-  PersonTypes,
-  ILinkCulture,
   IRace,
-  ExpandedAlignmentsY,
-  ExpandedAlignmentsX,
-  IExpandedAlignmentMatrixDetail,
-  IKlass,
-  ICulture,
-  IBackground,
-  AbilityMethods,
+  PersonTypes,
   RacialAbilityIncreaseTypes,
-  IIdeals,
-  IDNA,
   roll,
-} from "opendnd-core";
-import defaults, { IPersonaeDefaults } from './defaults';
+  ShortAbilityTypes,
+  standardArray,
+} from "@opendnd/core";
+import Genetica, { IGeneticaOpts } from "@opendnd/genetica";
 import * as uuidv1 from "uuid/v1";
+import defaults, { IPersonaeDefaults } from "./defaults";
 
 import Renderer from "./renderer";
 import Saver from "./saver";
@@ -57,71 +57,6 @@ export interface IPersonaeOpts {
 }
 
 class Personae {
-  public defaults: IPersonaeDefaults;
-  public opts: IPersonaeOpts;
-  public race: IRace;
-  public klass: IKlass;
-  public background: IBackground;
-  public culture: ICulture;
-  public alignmentX: ExpandedAlignmentsX;
-  public alignmentY: ExpandedAlignmentsY;
-
-  // init
-  constructor(opts: IPersonaeOpts = {}) {
-    this.opts = opts;
-    this.defaults = opts.defaults || defaults;
-  }
-
-  // validate the options
-  public validateOpts(opts: IPersonaeOpts = {}) {
-    // generate default type
-    if (opts.type === undefined) { opts.type = PersonTypes.Playable; }
-
-    // generate random race
-    if (opts.race === undefined) opts.race = Object.values(this.defaults.races).sample();
-    this.race = this.defaults.racesDict[opts.race.uuid];
-
-    // generate random klass
-    if (opts.klass === undefined) opts.klass = Object.values(this.defaults.klasses).sample(); 
-    this.klass = this.defaults.klassesDict[opts.klass.uuid];
-
-    // generate random background
-    if (opts.background === undefined) opts.background = Object.values(this.defaults.backgrounds).sample();
-    this.background = this.defaults.backgroundsDict[opts.background.uuid];
-
-    // generate random culture
-    if (opts.culture === undefined) opts.culture = Object.values(this.defaults.cultures).sample();
-    this.culture = this.defaults.culturesDict[opts.culture.uuid];
-
-    // generate random alignment
-    if (opts.alignment === undefined) opts.alignment = Object.values(ExpandedAlignments).sample();
-
-    // generate random gender
-    if (opts.gender === undefined) opts.gender = Object.values(Genders).sample();
-
-    // generate random name
-    if (opts.name === undefined) opts.name = new Nomina().generate(); // TODO: replace w/ properties and update nomina
-
-    if (this.race === undefined) {
-      console.log(opts.race);
-    }
-
-    // generate age and ageGroup
-    if ((opts.age === undefined) && (opts.ageGroup === undefined)) {
-      opts.ageGroup = Personae.generateAgeGroup(this.race);
-      opts.age = Personae.generateAge(this.race, opts.ageGroup);
-    // generate ageGroup from age
-    } else if ((opts.age !== undefined) && (opts.ageGroup === undefined)) {
-      opts.ageGroup = Personae.generateAgeGroup(this.race);
-    // generate age from ageGroup
-    } else if ((opts.age === undefined) && (opts.ageGroup !== undefined)) {
-      opts.age = Personae.generateAge(this.race, opts.ageGroup);
-    }
-
-    this.opts = opts;
-
-    return opts;
-  }
 
   // load a file and return person
   public static load(filepath) {
@@ -168,12 +103,12 @@ class Personae {
     } else if (age <= child.max) {
       return AgeGroups.Child;
     } else {
-      throw new Error('There was an error with the age group maximums!');
+      throw new Error("There was an error with the age group maximums!");
     }
   }
 
   // generate ageGroup
-  public static generateAgeGroup(race:IRace) {
+  public static generateAgeGroup(race: IRace) {
     const { ageRanges } = race;
     const ageWeights = [
       ageRanges.child.weight,
@@ -183,6 +118,83 @@ class Personae {
     ];
 
     return Object.values(AgeGroups)[randomWeighted(ageWeights)];
+  }
+  public defaults: IPersonaeDefaults;
+  public opts: IPersonaeOpts;
+  public race: IRace;
+  public klass: IKlass;
+  public background: IBackground;
+  public culture: ICulture;
+  public alignmentX: ExpandedAlignmentsX;
+  public alignmentY: ExpandedAlignmentsY;
+
+  // init
+  constructor(opts: IPersonaeOpts = {}) {
+    this.opts = opts;
+    this.defaults = opts.defaults || defaults;
+  }
+
+  // validate the options
+  public validateOpts(opts: IPersonaeOpts = {}) {
+    // generate default type
+    if (opts.type === undefined) {
+      opts.type = PersonTypes.Playable;
+    }
+
+    // generate random race
+    if (opts.race === undefined) {
+      opts.race = Object.values(this.defaults.races).sample();
+    }
+    this.race = this.defaults.racesDict[opts.race.uuid];
+
+    // generate random klass
+    if (opts.klass === undefined) {
+      opts.klass = Object.values(this.defaults.klasses).sample();
+    }
+    this.klass = this.defaults.klassesDict[opts.klass.uuid];
+
+    // generate random background
+    if (opts.background === undefined) {
+      opts.background = Object.values(this.defaults.backgrounds).sample();
+    }
+    this.background = this.defaults.backgroundsDict[opts.background.uuid];
+
+    // generate random culture
+    if (opts.culture === undefined) {
+      opts.culture = Object.values(this.defaults.cultures).sample();
+    }
+    this.culture = this.defaults.culturesDict[opts.culture.uuid];
+
+    // generate random alignment
+    if (opts.alignment === undefined) {
+      opts.alignment = Object.values(ExpandedAlignments).sample();
+    }
+
+    // generate random gender
+    if (opts.gender === undefined) {
+      opts.gender = Object.values(Genders).sample();
+    }
+
+    // generate random name
+    if (opts.name === undefined) {
+      opts.name = new Nomina().generate(); // TODO: replace w/ properties and update nomina
+    }
+
+    // generate age and ageGroup
+    if ((opts.age === undefined) && (opts.ageGroup === undefined)) {
+      opts.ageGroup = Personae.generateAgeGroup(this.race);
+      opts.age = Personae.generateAge(this.race, opts.ageGroup);
+    // generate ageGroup from age
+    } else if ((opts.age !== undefined) && (opts.ageGroup === undefined)) {
+      opts.ageGroup = Personae.generateAgeGroup(this.race);
+    // generate age from ageGroup
+    } else if ((opts.age === undefined) && (opts.ageGroup !== undefined)) {
+      opts.age = Personae.generateAge(this.race, opts.ageGroup);
+    }
+
+    this.opts = opts;
+
+    return opts;
   }
 
   // reset opts
@@ -199,7 +211,7 @@ class Personae {
   // generate personality traits
   public generatePersonalityTraits(personalityTraits = []) {
     const personalityTraitA = personalityTraits.sample();
-    const pesronalityTraitB = personalityTraits.sample();;
+    const pesronalityTraitB = personalityTraits.sample();
 
     // if it's the same then try again
     if (personalityTraitA === pesronalityTraitB) { return this.generatePersonalityTraits(personalityTraits); }
@@ -207,8 +219,8 @@ class Personae {
   }
 
   // generate ideal
-  public generateIdeal(alignment:ExpandedAlignments, ideals:IIdeals) {
-    const alignmentDetail:IExpandedAlignmentMatrixDetail = expandedAlignmentsMatrix[alignment];
+  public generateIdeal(alignment: ExpandedAlignments, ideals: IIdeals) {
+    const alignmentDetail: IExpandedAlignmentMatrixDetail = expandedAlignmentsMatrix[alignment];
     this.alignmentX = alignmentDetail.x;
     this.alignmentY = alignmentDetail.y;
 
@@ -223,7 +235,7 @@ class Personae {
     // TODO: clean this up, happening due to impure/social, etc coming back as undeined
     const finalSet = [];
     sampleSet.forEach((el) => {
-      if (el === undefined) return;
+      if (el === undefined) { return; }
       finalSet.push(el);
     });
 
@@ -236,7 +248,7 @@ class Personae {
   }
 
   // generate abilities
-  public generateAbilities(method:string = AbilityMethods.StandardArray) {
+  public generateAbilities(method: string = AbilityMethods.StandardArray) {
     const { abilitiyIncreases } = this.race;
 
     // setup the ability object
@@ -260,7 +272,7 @@ class Personae {
         available.splice(available.indexOf(ability), 1);
       });
     } else {
-      throw new Error('Method not implemented for ability generation!');
+      throw new Error("Method not implemented for ability generation!");
     }
 
     // compute the racial ability increase
@@ -271,7 +283,7 @@ class Personae {
       if (ability === RacialAbilityIncreaseTypes.All) {
         Object.keys(abilities).forEach((key) => {
           abilities[key] += amount;
-        })
+        });
       // increase the ability of your choice
       } else if (ability === RacialAbilityIncreaseTypes.Choice) {
         abilities[Object.keys(abilities).sample()] += amount;
@@ -317,11 +329,11 @@ class Personae {
   public generateParents(person) {
     const { DNA, type, culture } = person;
     const { race } = DNA;
-    const raceLink:ILinkRace = {
+    const raceLink: ILinkRace = {
       uuid: race.uuid,
       name: race.name,
     };
-    const geneticaOpts:IGeneticaOpts = {
+    const geneticaOpts: IGeneticaOpts = {
       race: raceLink,
     };
     const genetica = new Genetica(geneticaOpts);
@@ -371,13 +383,15 @@ class Personae {
     const characteristic = this.defaults.characteristics.sample();
 
     // generate DNA
-    const geneticaOpts:IGeneticaOpts = {
+    const geneticaOpts: IGeneticaOpts = {
       race: genOpts.race,
       gender,
     };
     const genetica = new Genetica(geneticaOpts);
     let DNA = this.opts.DNA || genetica.generate();
-    if (this.opts.seed) { DNA = genetica.generate(Object.assign(geneticaOpts, this.opts.seed)); } // set DNA to the seed if we have it
+    if (this.opts.seed) {
+      DNA = genetica.generate(Object.assign(geneticaOpts, this.opts.seed)); // set DNA to the seed if we have it
+    }
 
     // after generating a person reset DNA
     this.resetOpts();

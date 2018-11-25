@@ -1,6 +1,6 @@
 import "./extensions";
 
-import { AgeGroups, Genders, Person, Categories } from "opendnd-core";
+import { AgeGroups, Categories, Genders, Person } from "@opendnd/core";
 
 const colors = require("colors/safe");
 
@@ -11,8 +11,8 @@ class Renderer {
     const { gender, race } = DNA;
 
     const renderAppearance = (categoryName) => {
-      if (appearance[categoryName] === undefined) return ""; // make sure this race has the categoryName
-      if ((categoryName === Categories.SkinAging) && (ageGroup !== AgeGroups.Old)) return ""; // only apply aging if we're in the old ageGroup
+      if (appearance[categoryName] === undefined) { return ""; } // make sure this race has the categoryName
+      if ((categoryName === Categories.SkinAging) && (ageGroup !== AgeGroups.Old)) { return ""; } // only apply aging if we're in the old ageGroup
       const gene = appearance[categoryName];
       return gene.trait;
     };

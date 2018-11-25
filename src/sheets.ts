@@ -1,4 +1,4 @@
-import { ILinkPerson, IPerson } from "opendnd-core";
+import { ILinkPerson, IPerson } from "@opendnd/core";
 import Saver from "./saver";
 
 const PDFDocument = require("pdfkit");
@@ -17,7 +17,7 @@ filename = path.resolve(filename);
 const avataria = new Avataria();
 const person: IPerson = Saver.load(filename);
 
-console.log(person); // eslint-disable-line no-console
+console.log(person); // tslint:disable-line
 
 const sheet1 = fs.readFileSync(path.join(assetsDir, "sheet1.svg"), "utf-8");
 const sheet2 = fs.readFileSync(path.join(assetsDir, "sheet2.svg"), "utf-8");

@@ -1,10 +1,12 @@
 declare global {
+  // tslint:disable-next-line
   interface Array<T> {
     pushUnique(element: T): void;
     sample(): T;
     ignoreCaseIncludes(searchElement: any, fromIndex: any): any;
   }
 
+  // tslint:disable-next-line
   interface String {
     capitalize();
     capitalizeAll();

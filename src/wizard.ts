@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
 
-import { standardQuestions, sanitizeWizardOpts } from "./common";
+import { sanitizeWizardOpts, standardQuestions } from "./common";
 import Personae from "./personae";
 import Saver from "./saver";
 
