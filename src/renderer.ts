@@ -11,8 +11,12 @@ class Renderer {
     const { gender, race } = DNA;
 
     const renderAppearance = (categoryName) => {
-      if (appearance[categoryName] === undefined) { return ""; } // make sure this race has the categoryName
-      if ((categoryName === Categories.SkinAging) && (ageGroup !== AgeGroups.Old)) { return ""; } // only apply aging if we're in the old ageGroup
+      if (appearance[categoryName] === undefined) {
+        return ""; // make sure this race has the categoryName
+      }
+      if ((categoryName === Categories.SkinAging) && (ageGroup !== AgeGroups.Old)) {
+        return ""; // only apply aging if we're in the old ageGroup
+      }
       const gene = appearance[categoryName];
       return gene.trait;
     };
@@ -21,18 +25,40 @@ class Renderer {
     const perPro = (gender === Genders.Male) ? "he" : "she";
 
     let descOutput = "";
-    descOutput += `\t${name} is a ${gender} ${colors.bold(race.name)} (${type}) described as ${renderAppearance(Categories.General)} with ${renderAppearance(Categories.SkinAging)} ${renderAppearance(Categories.SkinGeneral)} ${renderAppearance(Categories.SkinColor)} skin.\n`;
-    descOutput += `\t${posPro.capitalize()} most noticeable physical characteristic is that ${perPro}'s ${characteristic}.\n`;
+    descOutput += `\t${name} is a ${gender} ${colors.bold(race.name)} (${type}) `;
+    descOutput += `described as ${renderAppearance(Categories.General)} with `;
+    descOutput += `${renderAppearance(Categories.SkinAging)} `;
+    descOutput += `${renderAppearance(Categories.SkinGeneral)} `;
+    descOutput += `${renderAppearance(Categories.SkinColor)} skin.\n`;
+    descOutput += `\t${posPro.capitalize()} most noticeable physical characteristic `;
+    descOutput += `is that ${perPro}'s ${characteristic}.\n`;
 
     if (gender === Genders.Male) {
-      descOutput += `\t${posPro.capitalize()} ${renderAppearance(Categories.HairGeneral)} ${renderAppearance(Categories.HairColor)} hair sits atop ${posPro} ${renderAppearance(Categories.HairFacial)} ${renderAppearance(Categories.FaceShape)} face and features ${posPro} ${renderAppearance(Categories.FaceNose)} nose and ${renderAppearance(Categories.FaceMouth)} mouth.\n`;
-      if (renderAppearance(Categories.Sex).length >= 1) { descOutput += `\tAs a male ${race.name}, they say I'm ${renderAppearance(Categories.Sex)}.\n`; }
+      descOutput += `\t${posPro.capitalize()} ${renderAppearance(Categories.HairGeneral)} `;
+      descOutput += `${renderAppearance(Categories.HairColor)} hair `;
+      descOutput += `sits atop ${posPro} ${renderAppearance(Categories.HairFacial)} `;
+      descOutput += `${renderAppearance(Categories.FaceShape)} face `;
+      descOutput += `and features ${posPro} ${renderAppearance(Categories.FaceNose)} nose `;
+      descOutput += `and ${renderAppearance(Categories.FaceMouth)} mouth.\n`;
+
+      if (renderAppearance(Categories.Sex).length >= 1) {
+        descOutput += `\tAs a male ${race.name}, they say I'm ${renderAppearance(Categories.Sex)}.\n`;
+      }
     } else {
-      descOutput += `\t${posPro.capitalize()} ${renderAppearance(Categories.HairGeneral)} ${renderAppearance(Categories.HairColor)} hair sits atop ${posPro} ${renderAppearance(Categories.FaceShape)} face and features ${posPro} ${renderAppearance(Categories.FaceNose)} nose and ${renderAppearance(Categories.FaceMouth)} mouth.\n`;
-      if (renderAppearance(Categories.Sex).length >= 1) { descOutput += `\tAs a female ${race.name}, they say I'm ${renderAppearance(Categories.Sex)}.\n`; }
+      descOutput += `\t${posPro.capitalize()} ${renderAppearance(Categories.HairGeneral)} `;
+      descOutput += `${renderAppearance(Categories.HairColor)} hair `;
+      descOutput += `sits atop ${posPro} ${renderAppearance(Categories.FaceShape)} face `;
+      descOutput += `and features ${posPro} ${renderAppearance(Categories.FaceNose)} nose `;
+      descOutput += `and ${renderAppearance(Categories.FaceMouth)} mouth.\n`;
+
+      if (renderAppearance(Categories.Sex).length >= 1) {
+        descOutput += `\tAs a female ${race.name}, they say I'm ${renderAppearance(Categories.Sex)}.\n`;
+      }
     }
 
-    descOutput += `\t${posPro.capitalize()} ${renderAppearance(Categories.EyeColor)} ${renderAppearance(Categories.EyeShape)} eyes sit beneath ${posPro} ${renderAppearance(Categories.EyeBrows)} brows.\n`;
+    descOutput += `\t${posPro.capitalize()} ${renderAppearance(Categories.EyeColor)} `;
+    descOutput += `${renderAppearance(Categories.EyeShape)} eyes `;
+    descOutput += `sit beneath ${posPro} ${renderAppearance(Categories.EyeBrows)} brows.\n`;
 
     descOutput = descOutput.replace(/ {2}/gi, " "); // remove double spaces
 
@@ -40,12 +66,29 @@ class Renderer {
   }
 
   public static renderIntro(person) {
-    const { name, age, ageGroup, alignment, klass, background, specialty, personalityTraits, ideal, bond, flaw, mannerism, talent, trait, DNA } = person;
+    const {
+      name,
+      age,
+      ageGroup,
+      alignment,
+      klass,
+      background,
+      specialty,
+      personalityTraits,
+      ideal,
+      bond,
+      flaw,
+      mannerism,
+      talent,
+      trait,
+      DNA,
+    } = person;
     const { gender, race } = DNA;
 
     let introOutput = "";
     introOutput += `\tGreetings, my name is ${colors.bold(name)} and I'm ${age} years old (${ageGroup}).\n`;
-    introOutput += `\tI am a ${gender} ${colors.bold(race.name)} ${colors.bold(klass.name)} and my alignment is ${colors.underline(alignment)}.\n`;
+    introOutput += `\tI am a ${gender} ${colors.bold(race.name)} ${colors.bold(klass.name)} and my alignment is `;
+    introOutput += `${colors.underline(alignment)}.\n`;
 
     if (background.name === "Folk Hero") {
       introOutput += `\tI've been known as a ${colors.bold(background.name)} ever since ${specialty}\n`;
@@ -56,7 +99,8 @@ class Renderer {
     } else if (background.name === "Urchin") {
       introOutput += `\tI grew up as a ${colors.bold(background.name)} as I was orphaned, ${specialty}\n`;
     } else {
-      introOutput += `\tPreviously, I've been a ${colors.bold(background.name)} with the ${colors.bold(specialty)} specialty.\n`;
+      introOutput += `\tPreviously, I've been a ${colors.bold(background.name)} with `;
+      introOutput += `the ${colors.bold(specialty)} specialty.\n`;
     }
 
     introOutput += `\t${personalityTraits[0]}\n`;
