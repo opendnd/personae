@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "@opendnd/avataria": "^0.5.0",
-    "@opendnd/core": "^0.2.4",
+    "@opendnd/core": "^0.2.5",
     "@opendnd/genetica": "^0.6.0",
     "colors": "^1.1.2",
     "commander": "^2.13.0",

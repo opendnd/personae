@@ -14,6 +14,7 @@ program
   .command("parents", "generate parents")
   .command("desc", "generate a personality description")
   .command("convert", "convert a file between formats")
+  .command("sheet", "create a character sheet for the person")
   .command("render", "render a person")
   .alias("echo")
   .parse(process.argv);
