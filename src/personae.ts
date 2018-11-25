@@ -477,15 +477,9 @@ class Personae {
         allies: [],
         enemies: [],
       },
-      birth: {
-        domain: null,
-        date: null,
-        rank: 0,
-      },
-      death: {
-        domain: null,
-        date: null,
-      },
+      birth: null,
+      birthRank: 0,
+      death: null,
       features: [],
       actions: [],
       items: [],
