@@ -12,8 +12,9 @@ const colors = require("colors/safe");
 const rootDir = path.join(__dirname, "..");
 const logo = fs.readFileSync(path.join(rootDir, "logo.txt"), { encoding: "utf-8" });
 
-delete standardQuestions.race;
-delete standardQuestions.gender;
+const parsedQuestions = Object.assign({}, standardQuestions);
+delete parsedQuestions.race;
+delete parsedQuestions.gender;
 
 const wizardDNA = (outputDir, DNApath) => {
   if (outputDir === undefined) { outputDir = "."; }
@@ -26,7 +27,7 @@ const wizardDNA = (outputDir, DNApath) => {
   const { race, gender } = DNA;
 
   // ask a few questions
-  questions.askMany(standardQuestions, (opts) => {
+  questions.askMany(parsedQuestions, (opts) => {
     opts.gender = gender;
     opts.race = race;
     opts.DNA = DNA;

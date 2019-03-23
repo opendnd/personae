@@ -12,7 +12,8 @@ const colors = require("colors/safe");
 const rootDir = path.join(__dirname, "..");
 const logo = fs.readFileSync(path.join(rootDir, "logo.txt"), { encoding: "utf-8" });
 
-delete standardQuestions.race;
+const parsedQuestions = Object.assign({}, standardQuestions);
+delete parsedQuestions.race;
 
 const wizardChild = (outputDir, mother = "", father = "") => {
   if (outputDir === undefined) { outputDir = "."; }
@@ -21,7 +22,7 @@ const wizardChild = (outputDir, mother = "", father = "") => {
   process.stdout.write(`\n${colors.yellow(logo)}\n`);
 
   // ask a few questions
-  questions.askMany(standardQuestions, (opts) => {
+  questions.askMany(parsedQuestions, (opts) => {
     const motherPerson = Saver.load(mother);
     const fatherPerson = Saver.load(father);
 
