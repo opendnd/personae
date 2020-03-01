@@ -1,6 +1,6 @@
 {
   "name": "@opendnd/personae",
-  "version": "0.10.7",
+  "version": "0.10.8",
   "description": "This tool is used to generate a person either NPC or other Edit",
   "main": "dist/personae.js",
   "scripts": {
